@@ -1,6 +1,6 @@
 package models;
 
-import models.units.Engineer;
+import models.units.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +46,46 @@ public class Player {
     }
 
     public void createUnit(char newUnitType) {
-
+        UnitType type = UnitType.PEASANT;
+        Unit u = new Peasant(city.x, city.y, id);;
+        switch (newUnitType) {
+            case 'P':
+                type = UnitType.PEASANT;
+                u = new Peasant(city.x, city.y, id);
+                break;
+            case 'A':
+                type = UnitType.ARCHER;
+                u = new Archer(city.x, city.y, id);
+                break;
+            case 'N':
+                type = UnitType.DWARF;
+                u = new Dwarf(city.x, city.y, id);
+                break;
+            case 'B':
+                type = UnitType.BALISTA;
+                u = new Balista(city.x, city.y, id);
+                break;
+            case 'I':
+                type = UnitType.ENGINEER;
+                u = new Engineer(city.x, city.y, id);
+                break;
+            case 'E':
+                type = UnitType.SCOUT;
+                u = new Peasant(city.x, city.y, id);
+                break;
+            case 'C':
+                type = UnitType.PALADIN;
+                u = new Paladin(city.x, city.y, id);
+                break;
+            case 'S':
+                type = UnitType.ARCHER;
+                u = new Archer(city.x, city.y, id);
+                break;
+        }
+        if (gold < type.cost)
+            return;
+        gold -= type.cost;
+        int newUnitId = units.keySet().size() + 1;
+        units.put(newUnitId, u);
     }
 }
