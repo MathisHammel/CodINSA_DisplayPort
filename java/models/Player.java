@@ -24,15 +24,15 @@ public class Player {
     }
 
     public void gainGold(World world) {
-        cells = 1;
+        cellsNumber = 1;
         for (int i = 0; i < world.getSize(); i++) {
             for (int j = 0; j < world.getSize(); j++) {
                 if (world.getCell(i, j).owner == id) {
-                    cells += 1;
+                    cellsNumber += 1;
                 }
             }
         }
-        gold += 5 * cells;
+        gold += 5 * cellsNumber;
     }
 
     public void moveUnit(World world, int idUnit, int x, int y, int newAction) {

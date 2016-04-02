@@ -2,6 +2,7 @@ package models;
 
 import java.util.LinkedList;
 import java.util.List;
+import algorithms.Utils;
 
 public class Game {
     private World world;
@@ -31,15 +32,14 @@ public class Game {
 
         }
 
-
-        heal();  // interaction hospitals-units
+        heal();  // interaction between hospitals-units and action regeneration
     }
 
     private int checkMove(int idUnit, int x, int y) {
         if (world.getCell(x, y) == null)
             return -1;
-        if (Math.max(Math.abs(players.get(currentPlayer).units.get(idUnit).getX() - x),
-                Math.abs(players.get(currentPlayer).units.get(idUnit).getY() - y)) != 1)
+        if (Utils.infiniteDistance(x, y, players.get(currentPlayer).units.get(idUnit).getX(),
+                players.get(currentPlayer).units.get(idUnit).getY()) != 1)
             return -1;
         if (world.getCell(x, y).land == Land.RIVER
                 && players.get(currentPlayer).units.get(idUnit).getUnitType() != UnitType.ENGINEER)
@@ -56,6 +56,7 @@ public class Game {
             Unit unit = players.get(currentPlayer).units.get(i);
             if (world.getCell(unit.getX(), unit.getY()).building == Building.HOSPITAL)
                 unit.setHealth(unit.getMaxHealth());
+            unit.setActions(unit.getMaxActions());
         }
     }
 
