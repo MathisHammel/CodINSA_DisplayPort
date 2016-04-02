@@ -1,13 +1,14 @@
 package algorithms;
 
 import models.Cell;
+import models.Game;
 
-/**
- * Created by loict on 02/04/2016.
- */
-public class CellCoefficientOnDistance implements CellCoefficientInterface {
+
+public class CellCoefficientOnCitiesDistance implements CellCoefficientInterface {
     @Override
-    public int evaluate(Cell ourCity, Cell enemyCity, Cell cellToEvaluate) {
+    public int evaluate(Game game, Cell cellToEvaluate) {
+        Cell ourCity = game.us.city;
+        Cell enemyCity = game.them.city;
         int cityDistance = Utils.infiniteDistance(ourCity.x, ourCity.y, enemyCity.x, enemyCity.y);
         int cellToOurCity = Utils.infiniteDistance(ourCity.x, ourCity.y, cellToEvaluate.x, cellToEvaluate.y);
         int cellToEnemyCity = Utils.infiniteDistance(enemyCity.x, enemyCity.y, cellToEvaluate.x, cellToEvaluate.y);

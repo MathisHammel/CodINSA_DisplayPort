@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
-    int id;
-    int gold;
-    Cell city;
+    public int id;
+    public int gold;
+    public Cell city;
     // id, unit
-    Map<Integer, Unit> units;
-    int cellsNumber;
+    public Map<Integer, Unit> units;
+    public int cellsNumber;
 
     public final static int START_GOLD = 100;
 

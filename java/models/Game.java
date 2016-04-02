@@ -4,8 +4,8 @@ import algorithms.Utils;
 
 public class Game {
     private World world;
-    private Player us;
-    private Player them;
+    public Player us;
+    public Player them;
     private Player currentPlayer;
     private int roundNumber;
 
