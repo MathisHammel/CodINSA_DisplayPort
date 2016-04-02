@@ -19,6 +19,7 @@ public class ArtificialIntelligence {
     }
 
     public static List<Action> getNextActions(Game game) {
+        /*
         Unit peasant = null;
         for(Map.Entry<Integer, Unit> unit : game.getOurPlayer().getUnits().entrySet()) {
             if(unit.getValue().getUnitType() == UnitType.PEASANT) {
@@ -37,6 +38,12 @@ public class ArtificialIntelligence {
             actions.add(new MoveAction(peasant, i, 1));
             actions.add(new EndOfTurnAction());
         }
+        */
+        
+        List<Action> actions = new ArrayList<>();
+
+        BehaviourInterface algorithm = new BehaviourBad();
+        actions.addAll(algorithm.decideActions(game));
         
         return actions;
     }
