@@ -8,6 +8,10 @@ public class Paladin extends Unit{
         super(UnitType.PALADIN, x, y, id);
     }
 
+    public Paladin(int x, int y) {
+        super(UnitType.PALADIN, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;

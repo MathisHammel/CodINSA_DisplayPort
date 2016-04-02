@@ -22,6 +22,14 @@ public class Player {
         this.cellsNumber = 1;
         this.city = null;
     }
+    
+    public Player(int id, int gold, Map<Integer, Unit> units){
+        this.id = id;
+        this.gold = gold;
+        this.units = new HashMap<>();
+        this.cellsNumber = 1;
+        this.city = null;
+    }
 
     public void gainGold(World world) {
         cellsNumber = 1;
