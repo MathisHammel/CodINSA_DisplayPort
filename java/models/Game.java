@@ -1,10 +1,10 @@
 package models;
 
+import java.util.List;
+
 public class Game {
-    private int gold;
     private World world;
-    private int currentPlayer;
-    private int players;
+    private List<Player> players;
 
     public Game () {
 
