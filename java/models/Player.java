@@ -2,6 +2,7 @@ package models;
 
 import models.units.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +48,7 @@ public class Player {
 
     public void createUnit(char newUnitType) {
         UnitType type = UnitType.PEASANT;
-        Unit u = new Peasant(city.x, city.y, id);;
+        Unit u = new Peasant(city.x, city.y, id);
         switch (newUnitType) {
             case 'P':
                 type = UnitType.PEASANT;
@@ -85,7 +86,7 @@ public class Player {
         if (gold < type.cost)
             return;
         gold -= type.cost;
-        int newUnitId = units.keySet().size() + 1;
+        int newUnitId = Collections.max(units.keySet()) + 1;
         units.put(newUnitId, u);
     }
 }
