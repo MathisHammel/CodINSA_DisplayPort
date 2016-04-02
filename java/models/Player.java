@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
-    public int id;
-    public int gold;
-    public Cell city;
-    // id, unit
-    public Map<Integer, Unit> units;
-    public int cellsNumber;
-
     public final static int START_GOLD = 100;
+
+    private int id;
+    private int gold;
+    private Cell city;
+    // id, unit
+    private Map<Integer, Unit> units;
+    private int cellsNumber;
 
     public Player(int id){
         this.id = id;
@@ -31,6 +31,42 @@ public class Player {
         this.units = units;
         this.cellsNumber = 1;
         this.city = null;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public int getGold() {
+        return this.gold;
+    }
+
+    public int getCellsNumber() {
+        return this.cellsNumber;
+    }
+
+    public Cell getCity() {
+        return null;
+    }
+
+    public Map<Integer, Unit> getUnits() {
+        return this.units;
+    }
+
+    public Unit getUnit(int unitId) {
+        return this.units.get(unitId);
+    }
+
+    public Unit setUnit(int unitId, Unit unit) {
+        return this.units.put(unitId, unit);
+    }
+
+    private boolean unitDie(int idUnit) {
+        if (units.get(idUnit).getHealth() < 0) {
+            units.remove(idUnit);
+            return true;
+        }
+        return false;
     }
 
     public void gainGold(World world) {
@@ -155,13 +191,5 @@ public class Player {
                     break;
             }
         }
-    }
-
-    private boolean unitDie(int idUnit) {
-        if (units.get(idUnit).getHealth() < 0) {
-            units.remove(idUnit);
-            return true;
-        }
-        return false;
     }
 }

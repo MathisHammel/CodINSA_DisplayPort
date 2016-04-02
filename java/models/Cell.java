@@ -81,7 +81,7 @@ public class Cell {
     }
 
     public Cell setOwner(Player player) {
-        this.owner = player.id;
+        this.owner = player.getId();
         return this;
     }
 
