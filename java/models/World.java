@@ -3,17 +3,13 @@ package models;
 /**
  * Created by Charles on 02/04/2016.
  */
-public class World {
+public class World extends GameEntity {
     private int size;
     private Cell[][] map;
 
-    public World(int size) {
-        this.size = size;
-        this.initEmptyMap();
-    }
-
-    public World(int size, Cell[][] map) {
-        this.size = size;
+    public World(Cell[][] map) {
+        super(null);
+        this.size = map.length;
         this.map = map;
     }
 
@@ -68,6 +64,6 @@ public class World {
                 map[x][y] = this.map[x][y].clone();
             }
         }
-        return new World(this.size, map);
+        return new World(map);
     }
 }

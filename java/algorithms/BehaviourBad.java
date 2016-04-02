@@ -12,7 +12,7 @@ public class BehaviourBad implements BehaviourInterface {
     public List<String> decideActions(Game game) {
         // bad strategy
         // Buy engineers, and send them to the enemy city
-        for (Map.Entry<Integer,Unit> intUnit: game.currentPlayer.units.entrySet()) {
+        for (Map.Entry<Integer,Unit> intUnit: game.getCurrentPlayer().getUnits().entrySet()) {
             Unit unit = intUnit.getValue();
             UnitType unitType = unit.getUnitType();
             if(unitType == UnitType.ENGINEER){

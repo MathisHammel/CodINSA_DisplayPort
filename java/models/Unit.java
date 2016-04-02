@@ -5,7 +5,7 @@ import algorithms.Utils;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class Unit {
+public abstract class Unit extends GameEntity {
     private int actions;
     private int health;
     private UnitType unitType;
@@ -18,6 +18,7 @@ public abstract class Unit {
     }
 
     public Unit(UnitType type, int x, int y, int id) {
+        super(null);
         this.unitType = type;
         this.actions = type.maxActions;
         this.health = type.maxHealth;
