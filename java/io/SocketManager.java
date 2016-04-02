@@ -77,75 +77,9 @@ public class SocketManager {
         socket.close();
     }
     
-    /**
-     * Attaque un autre personnage.
-     * @param unit Unité qui doit attaquer
-     * @param x Coordonnée x à attaquer
-     * @param y Coordonnée y à attaquer
-     */
-    public void attack(Unit unit, int x, int y) {
-        send("A,"+unit.getId()+","+x+","+y);
-    }
-    
-    /**
-     * Demande à une unité de fabriquer un bâtiment.
-     * @param unit Unité qui doit fabriquer
-     * @param building Bâtiment à fabriquer
-     */
-    public void build(Unit unit, Building building) {
-        char buildId = 'Q';
-        switch(building) {
-            case BRIDGE: buildId = 'P'; break;
-            case FORT: buildId = 'F'; break;
-            case HOSPITAL: buildId = 'H'; break;
-            case ROAD: buildId = 'R'; break;
-            case NONE: 
-                System.err.println("How am I supposed to build nothing?");
-                return;
-            case CITY:
-                System.err.println("Can't build a city!");
-                return;
-        }
-        
-        send("B,"+unit.getId()+","+buildId);
-    }
-    
-    public void move(Unit unit, int x, int y) {
-        send("M,"+unit.getId()+","+x+","+y);
-    }
-    
-    /**
-     * Creates a new unit at the user's home city.
-     * @param type Unit type to create
-     */
-    public void create(UnitType type) {
-        char createId = 'Q';
-        if(type == UnitType.ARCHER) createId = 'A';
-        else if(type == UnitType.BALISTA) createId = 'B';
-        else if(type == UnitType.DWARF) createId = 'N';
-        else if(type == UnitType.ENGINEER) createId = 'I';
-        else if(type == UnitType.PALADIN) createId = 'C';
-        else if(type == UnitType.PEASANT) createId = 'P';
-        else if(type == UnitType.SCOUT) createId = 'E';
-        else if(type == UnitType.SOLDIER) createId = 'S';
-        else {
-            System.err.println("This UnitType is unknown!");
-            return;
-        }
-        
-        send("C,"+createId);
-    }
-    
-    /**
-     * Orders a unit to destroy the building on which it is currently.
-     * @param unit The unit
-     */
-    public void destroy(Unit unit) {
-        send("D,"+unit.getId());
-    }
-    
-    private void send(String s) {
-        System.out.println("Sent: "+s);
-        writer.println(s);
+    private void send(Action a) {
+        String actionString = a.serialize();
+        System.out.println("Sent: "+actionString);
+        writer.println(actionString);
     }
 }
