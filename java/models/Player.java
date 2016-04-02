@@ -1,5 +1,6 @@
 package models;
 
+import algorithms.Utils;
 import models.units.*;
 
 import java.util.Collections;
@@ -46,6 +47,7 @@ public class Player {
         }
     }
 
+
     public void createUnit(char newUnitType) {
         UnitType type = UnitType.PEASANT;
         Unit u = new Peasant(city.x, city.y, id);
@@ -88,5 +90,34 @@ public class Player {
         gold -= type.cost;
         int newUnitId = Collections.max(units.keySet()) + 1;
         units.put(newUnitId, u);
+    }
+
+    public void attack(World world, int idUnit, int x, int y) {
+        if (world.getCell(x, y).unit == null)
+            return;
+        // check attack range
+        int minRange = units.get(idUnit).getMinRange();
+        int maxRange = units.get(idUnit).getMaxRange();
+        if (world.getCell(x, y).land == Land.FOREST)
+            maxRange = 1;
+        int distance = Utils.infiniteDistance(x, y, units.get(idUnit).getX(), units.get(idUnit).getY());
+
+        if (minRange > distance || distance < maxRange)
+            return;
+        boolean counterAttack;
+
+
+        // check defense bonus
+
+        // 3 rounds of attack
+
+    }
+
+    private boolean unitDie(int idUnit) {
+        if (units.get(idUnit).getHealth() < 0) {
+            units.remove(idUnit);
+            return true;
+        }
+        return false;
     }
 }
