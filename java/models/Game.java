@@ -5,10 +5,10 @@ import algorithms.Utils;
 public class Game {
     public static int OUR_ID = 0;
 
-    private World world;
-    private Player[] players;
-    private int currentPlayerId;
-    private int roundNumber;
+    protected World world;
+    protected Player[] players;
+    protected int currentPlayerId;
+    protected int roundNumber;
 
     public Game () {
         this.players = new Player[]{
@@ -21,10 +21,14 @@ public class Game {
     }
 
     public Game(Player us, Player them, int currentPlayerId, Cell[][] map) {
+        this(us, them, currentPlayerId, new World(map));
+    }
+
+    public Game(Player us, Player them, int currentPlayerId, World world) {
         this.players[OUR_ID] = us;
         this.players[1 - OUR_ID] = them;
         this.currentPlayerId = currentPlayerId;
-        this.world = new World(map);
+        this.world = world;
     }
 
     public Player getPlayer(int id) {
@@ -115,7 +119,7 @@ public class Game {
     }
 
     public Game clone() {
-        World w = this.world.clone();
-        return new Game();
+        World world = this.world.clone();
+        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world);
     }
 }

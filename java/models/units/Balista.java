@@ -13,8 +13,12 @@ public class Balista extends Unit{
         super(UnitType.BALISTA, x, y, id);
     }
 
+    public Balista(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
+
     @Override
-    public Unit clone() {
-        return null;
+    public Balista clone() {
+        return new Balista(x, y, id, actions, health);
     }
 }

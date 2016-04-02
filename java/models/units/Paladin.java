@@ -12,10 +12,12 @@ public class Paladin extends Unit{
         super(UnitType.PALADIN, x, y, id);
     }
 
-
+    public Paladin(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
 
     @Override
-    public Unit clone() {
-        return null;
+    public Paladin clone() {
+        return new Paladin(x, y, id, actions, health);
     }
 }

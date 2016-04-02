@@ -12,8 +12,12 @@ public class Scout extends Unit{
         super(UnitType.SCOUT, x, y, id);
     }
 
+    public Scout(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
+
     @Override
-    public Unit clone() {
-        return null;
+    public Scout clone() {
+        return new Scout(x, y, id, actions, health);
     }
 }
