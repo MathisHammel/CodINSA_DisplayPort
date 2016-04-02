@@ -15,6 +15,13 @@ public class Game {
         currentPlayer = us;
         roundNumber = 0;
     }
+    
+    public Game(Player us, Player them, boolean myTurn, Cell[][] map) {
+        this.us = us;
+        this.them = them;
+        this.currentPlayer = myTurn ? us : them;
+        this.world = new World(map.length, map);
+    }
 
     public void nextRound() {
         currentPlayer = otherPlayer();

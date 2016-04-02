@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args){
         
-        io.Parser.updateGame("0:OK:M:[[[F,O,N,-1];[P,O,N,-1];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];[[F,O,N,-1];[F,N,V,0];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];[[F,O,N,-1];[P,P,N,0];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];[[F,O,N,-1];[P,O,N,-1];[M,O,N,-1];[F,O,V,1];[R,O,N,-1];];[[F,O,N,-1];[P,O,N,-1];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];]:U:P0:[[0,0,1,2,1];[1,2,4,1,1];];10:P1:[];110:");
+        io.Parser.updateGame("0:OK:M:[[[F,O,N,-1];[P,O,N,-1];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];[[F,O,N,-1];[F,N,V,0];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];[[F,O,N,-1];[P,P,N,0];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];[[F,O,N,-1];[P,O,N,-1];[M,O,N,-1];[F,O,V,1];[R,O,N,-1];];[[F,O,N,-1];[P,O,N,-1];[M,O,N,-1];[P,O,N,-1];[R,O,N,-1];];]:U:P0:[[0,0,1,2,1];[1,2,4,1,1];];10:P1:[];110:", 0);
         
         Pattern cellPattern = Pattern.compile("\\[;.;.;.;(?:-?\\d+)\\];");
         Pattern rowPattern = Pattern.compile("\\[(?:"+cellPattern.pattern()+")+\\];");
