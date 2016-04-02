@@ -20,6 +20,13 @@ public class Game {
         this.currentPlayerId = 0;
     }
 
+    public Game(Player us, Player them, int currentPlayerId, Cell[][] map) {
+        this.players[OUR_ID] = us;
+        this.players[1 - OUR_ID] = them;
+        this.currentPlayerId = currentPlayerId;
+        this.world = new World(map.length, map);
+    }
+
     public Player getPlayer(int id) {
         return this.players[id];
     }
@@ -39,12 +46,9 @@ public class Game {
     public Player getTheirPlayer() {
         return this.players[1 - OUR_ID];
     }
-    
-    public Game(Player us, Player them, boolean myTurn, Cell[][] map) {
-        this.us = us;
-        this.them = them;
-        this.currentPlayer = myTurn ? us : them;
-        this.world = new World(map.length, map);
+
+    public World getWorld() {
+        return this.getWorld();
     }
 
     public void nextRound() {
@@ -63,6 +67,7 @@ public class Game {
         int newAction = checkMove(0, 1, 1);  // format idUnit x y
         if (newAction >= 0) {
             currentPlayer.moveUnit(world, 0, 1, 1, newAction); // move the first unit to (1, 1)
+        }
 
         heal();  // interaction between hospitals-units and action regeneration
     }

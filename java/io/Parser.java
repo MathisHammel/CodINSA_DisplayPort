@@ -85,10 +85,10 @@ public class Parser {
         
         if(meId == 0) {
             return new Game(players.get(0), players.get(1), 
-                    currentNumber == meId, cells);
+                    currentNumber, cells);
         } else {
             return new Game(players.get(1), players.get(0), 
-                    currentNumber == meId, cells);
+                    currentNumber, cells);
         }
     }
     
