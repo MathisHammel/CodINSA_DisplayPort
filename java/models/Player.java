@@ -1,17 +1,19 @@
 package models;
 
+import algorithms.Utils;
 import models.units.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
-    int id;
-    int gold;
-    Cell city;
+    public int id;
+    public int gold;
+    public Cell city;
     // id, unit
-    Map<Integer, Unit> units;
-    int cellsNumber;
+    public Map<Integer, Unit> units;
+    public int cellsNumber;
 
     public final static int START_GOLD = 100;
 
@@ -53,9 +55,10 @@ public class Player {
         }
     }
 
+
     public void createUnit(char newUnitType) {
         UnitType type = UnitType.PEASANT;
-        Unit u = new Peasant(city.x, city.y, id);;
+        Unit u = new Peasant(city.x, city.y, id);
         switch (newUnitType) {
             case 'P':
                 type = UnitType.PEASANT;
@@ -93,7 +96,68 @@ public class Player {
         if (gold < type.cost)
             return;
         gold -= type.cost;
-        int newUnitId = units.keySet().size() + 1;
+        int newUnitId = Collections.max(units.keySet()) + 1;
+        u.setActions(2);
         units.put(newUnitId, u);
+    }
+
+    public void attack(World world, Player otherPlayer, int idUnit, int x, int y) {
+        if (world.getCell(x, y).unit == null)
+            return;
+        // check attack range
+        int minRange = units.get(idUnit).getMinRange();
+        int maxRange = units.get(idUnit).getMaxRange();
+        if (world.getCell(x, y).land == Land.FOREST)
+            maxRange = 1;
+        int minRangeOther = world.getCell(x, y).unit.getMinRange();
+        int maxRangeOther = world.getCell(x, y).unit.getMaxRange();
+        if (world.getCell(units.get(idUnit).getX(), units.get(idUnit).getY()).land == Land.FOREST)
+            maxRangeOther = 1;
+
+        int distance = Utils.infiniteDistance(x, y, units.get(idUnit).getX(), units.get(idUnit).getY());
+        if (minRange > distance || distance < maxRange)
+            return;
+        boolean counterAttack = true;
+        if (minRangeOther > distance || distance < maxRangeOther)
+            counterAttack = false;
+
+        // check defense bonus
+        int defense = units.get(idUnit).getDefense();
+        if (world.getCell(units.get(idUnit).getX(), units.get(idUnit).getY()).building == Building.FORT)
+            defense += 2;
+        int defenseOther = world.getCell(x, y).unit.getDefense();
+        if (world.getCell(x, y).building == Building.FORT)
+            defenseOther += 2;
+
+        // 3 rounds of attack
+        int ran;
+        for (int i = 0; i < 3; i++) {
+            ran = 1 + (int)(Math.random()) * 6;
+            if (ran == 6) {
+                world.getCell(x, y).unit.setHealth(world.getCell(x, y).unit.getHealth() - units.get(idUnit).getStrength());
+            } else if (ran >= defenseOther + 3) {
+                world.getCell(x, y).unit.setHealth(world.getCell(x, y).unit.getHealth() - units.get(idUnit).getStrength());
+            }
+            if (otherPlayer.unitDie(world.getCell(x, y).unit.getId()))
+                break;
+            if (counterAttack) {
+                ran = 1 + (int)(Math.random()) * 6;
+                if (ran == 6) {
+                   units.get(idUnit).setHealth(units.get(idUnit).getHealth() - world.getCell(x, y).unit.getStrength());
+                } else if (ran >= defense + 3) {
+                    units.get(idUnit).setHealth(units.get(idUnit).getHealth() - world.getCell(x, y).unit.getStrength());
+                }
+                if (unitDie(idUnit))
+                    break;
+            }
+        }
+    }
+
+    private boolean unitDie(int idUnit) {
+        if (units.get(idUnit).getHealth() < 0) {
+            units.remove(idUnit);
+            return true;
+        }
+        return false;
     }
 }

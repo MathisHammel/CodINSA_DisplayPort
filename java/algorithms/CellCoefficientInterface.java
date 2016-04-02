@@ -1,10 +1,8 @@
 package algorithms;
 
 import models.Cell;
+import models.Game;
 
-/**
- * Created by loict on 02/04/2016.
- */
 public interface CellCoefficientInterface {
-    public int evaluate(Cell ourCity, Cell enemyCity, Cell cellToEvaluate);
+    public int evaluate(Game game, Cell cellToEvaluate);
 }
