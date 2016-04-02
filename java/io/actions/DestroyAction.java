@@ -1,6 +1,7 @@
 package io.actions;
 
 import io.Action;
+import models.Game;
 import models.Unit;
 
 /**
@@ -20,5 +21,10 @@ public class DestroyAction implements Action {
 
     public String serialize() {
         return "D,"+this.unitId;
+    }
+
+    @Override
+    public boolean check(Game game) {
+        return false;
     }
 }

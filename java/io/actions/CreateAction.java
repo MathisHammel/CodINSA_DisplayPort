@@ -2,6 +2,7 @@ package io.actions;
 
 import io.Action;
 import models.Building;
+import models.Game;
 import models.Unit;
 import models.UnitType;
 
@@ -39,5 +40,10 @@ public class CreateAction implements Action {
         }
 
         return "C,"+createId;
+    }
+
+    @Override
+    public boolean check(Game game) {
+        return false;
     }
 }

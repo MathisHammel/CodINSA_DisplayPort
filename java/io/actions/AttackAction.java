@@ -1,6 +1,7 @@
 package io.actions;
 
 import io.Action;
+import models.Game;
 import models.Unit;
 
 /**
@@ -28,5 +29,10 @@ public class AttackAction implements Action {
 
     public String serialize() {
         return "A,"+this.attackerId+","+this.x+","+this.y;
+    }
+
+    @Override
+    public boolean check(Game game) {
+        return false;
     }
 }

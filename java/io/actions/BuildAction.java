@@ -2,6 +2,7 @@ package io.actions;
 
 import io.Action;
 import models.Building;
+import models.Game;
 import models.Unit;
 
 
@@ -39,5 +40,10 @@ public class BuildAction implements Action {
                 return "";
         }
         return "B,"+this.builderId+","+buildId;
+    }
+
+    @Override
+    public boolean check(Game game) {
+        return false;
     }
 }

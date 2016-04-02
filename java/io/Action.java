@@ -1,9 +1,8 @@
 package io;
 
-import models.Building;
-import models.Unit;
-import models.UnitType;
+import models.Game;
 
 public interface Action {
     String serialize();
+    boolean check(Game game);
 }
