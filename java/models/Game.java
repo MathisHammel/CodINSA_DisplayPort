@@ -20,13 +20,13 @@ public class Game {
         this.currentPlayerId = 0;
     }
 
-    public Game(Player us, Player them, int currentPlayerId, Cell[][] map) {
-        this(us, them, currentPlayerId, new World(map));
+    public Game(Player player0, Player player1, int currentPlayerId, Cell[][] map) {
+        this(player0, player1, currentPlayerId, new World(map));
     }
 
-    public Game(Player us, Player them, int currentPlayerId, World world) {
-        this.players[OUR_ID] = us;
-        this.players[1 - OUR_ID] = them;
+    public Game(Player player0, Player player1, int currentPlayerId, World world) {
+        this.players[0] = player0;
+        this.players[1] = player1;
         this.currentPlayerId = currentPlayerId;
         this.world = world;
     }

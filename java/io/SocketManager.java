@@ -5,21 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
-import models.Building;
-import models.Cell;
+import java.util.List;
+
+import algorithms.ArtificialIntelligence;
 import models.Game;
-import models.Unit;
-import models.UnitType;
 
 public class SocketManager {
     private Socket socket;
     private BufferedReader reader;
     private PrintWriter writer;
     
-    private int playNumber;
+    private int playerNumber;
     
     /**
      * Se connecte à un serveur.
@@ -34,9 +30,9 @@ public class SocketManager {
             writer = new PrintWriter(socket.getOutputStream());
             
             String playerNumber = reader.readLine();
-            playNumber = Integer.parseInt(playerNumber.substring(6));
+            this.playerNumber = Integer.parseInt(playerNumber.substring(6));
             
-            Game.OUR_ID = playNumber;
+            Game.OUR_ID = this.playerNumber;
             
             writer.println("OK");
             
@@ -49,14 +45,19 @@ public class SocketManager {
         new Thread("Server Listener") {
             @Override public void run() {
                 try {
-                    String s;
-                    while((s = reader.readLine()) != null) {
-                        if(s.split(":")[1].equals("OK")) {
-                            Parser.updateGame(s, playNumber);
-                            //TODO faire quelque chose de ce Game
+                    String serverResponse;
+                    while((serverResponse = reader.readLine()) != null) {
+                        if(serverResponse.split(":")[1].equals("OK")) {
+                            Game game = Parser.parse(serverResponse);
+                            if(false /*notre tour*/) {
+                                List<Action> actions = ArtificialIntelligence.getNextActions(game);
+                                // this.send();
+                            }
+
+                            // TODO: envoyer les actions
                         } else {
                             System.err.println("Server refused command, think I did something bad");
-                            System.err.println(s);
+                            System.err.println(serverResponse);
                         }
                     }
                 } catch (IOException ex) {
@@ -77,9 +78,16 @@ public class SocketManager {
         socket.close();
     }
     
-    private void send(Action a) {
-        String actionString = a.serialize();
+    private void send(List<Action> actions) {
+        for (Action action: actions) {
+            send(action);
+        }
+    }
+
+    private void send(Action action) {
+        String actionString = action.serialize();
         System.out.println("Sent: "+actionString);
         writer.println(actionString);
     }
+
 }
