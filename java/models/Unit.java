@@ -130,9 +130,9 @@ public abstract class Unit extends GameEntity {
         this.setX(x);
         this.setY(y);
         this.setActions(newAction);
-        world.getCell(x, y).setUnit(this.id);
-        if (world.getCell(x, y).getOwner().id != id) {
-            world.getCell(x, y).setOwner(id);
+        world.getCell(x, y).setUnit(this.getId());
+        if (world.getCell(x, y).getOwner().getId() != this.getId()) {
+            world.getCell(x, y).setOwner(this.getId());
         }
     }
 
