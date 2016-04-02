@@ -1,8 +1,8 @@
 package models;
 
 public enum Land {
-    MONTAGNE,
-    FORET,
-    PLAINE,
-    RIVIER
+    MONTAIN,
+    FOREST,
+    PLAIN,
+    RIVER
 }
