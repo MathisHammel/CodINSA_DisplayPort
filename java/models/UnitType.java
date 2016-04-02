@@ -4,13 +4,13 @@ package models;
  * Created by Charles on 02/04/2016.
  */
 public class UnitType {
-    public int maxActions;
-    public int maxHealth;
-    public int strength;
-    public int defense;
-    public int minRange;
-    public int maxRange;
-    public int cost;
+    protected int maxActions;
+    protected int maxHealth;
+    protected int strength;
+    protected int defense;
+    protected int minRange;
+    protected int maxRange;
+    protected int cost;
 
     private UnitType (
             int maxActions,

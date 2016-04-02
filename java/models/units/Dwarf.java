@@ -13,9 +13,12 @@ public class Dwarf extends Unit{
         super(UnitType.DWARF, x, y, id);
     }
 
+    public Dwarf(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
 
     @Override
-    public Unit clone() {
-        return null;
+    public Dwarf clone() {
+        return new Dwarf(x, y, id, actions, health);
     }
 }

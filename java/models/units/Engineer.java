@@ -13,8 +13,11 @@ public class Engineer extends Unit{
         super(UnitType.ENGINEER, x, y, id);
     }
 
+    public Engineer(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
     @Override
-    public Unit clone() {
-        return null;
+    public Engineer clone() {
+        return new Engineer(x, y, id, actions, health);
     }
 }

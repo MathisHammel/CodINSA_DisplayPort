@@ -13,8 +13,12 @@ public class Archer extends Unit{
         super(UnitType.ARCHER, x, y, id);
     }
 
+    public Archer(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
+
     @Override
-    public Unit clone() {
-        return null;
+    public Archer clone() {
+        return new Archer(x, y, id, actions, health);
     }
 }

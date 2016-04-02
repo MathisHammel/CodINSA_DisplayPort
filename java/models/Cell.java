@@ -4,13 +4,13 @@ package models;
  * Created by Charles on 02/04/2016.
  */
 public class Cell extends GameEntity {
-    private Land land;
-    private Building building;
-    private int unit;
-    private int owner;
-    private int score;
-    private int x;
-    private int y;
+    protected Land land;
+    protected Building building;
+    protected int unit;
+    protected int owner;
+    protected int score;
+    protected int x;
+    protected int y;
 
     public Cell(int x, int y, Land land, Building building) { this(x, y, land, building, -1); }
 

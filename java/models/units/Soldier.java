@@ -12,8 +12,12 @@ public class Soldier extends Unit{
         super(UnitType.SOLDIER, x, y, id);
     }
 
+    public Soldier(int x, int y, int id, int actions, int health) {
+        super(UnitType.ARCHER, x, y, id, actions, health);
+    }
+
     @Override
-    public Unit clone() {
-        return null;
+    public Soldier clone() {
+        return new Soldier(x, y, id, actions, health);
     }
 }

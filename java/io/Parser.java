@@ -25,10 +25,9 @@ public class Parser {
     /**
      * Permet de traiter la chaîne de caractères donnée pour créer un nouvel état.
      * @param s Chaîne à traiter
-     * @param meId Numéro du joueur que nous contrôlons
      * @return Nouveau jeu
      */
-    public static Game updateGame(String s, int meId) {
+    public static Game parse(String s) {
         s = s.replace("[", "").replace("]", "");
         
         String[] entries = s.split(":");
@@ -83,13 +82,8 @@ public class Parser {
             players.add(p);
         }
         
-        if(meId == 0) {
-            return new Game(players.get(0), players.get(1), 
-                    currentNumber, cells);
-        } else {
-            return new Game(players.get(1), players.get(0), 
-                    currentNumber, cells);
-        }
+
+        return new Game(players.get(0), players.get(1), currentNumber, cells);
     }
     
     

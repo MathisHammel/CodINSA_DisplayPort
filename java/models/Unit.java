@@ -5,22 +5,26 @@ import algorithms.Utils;
 import java.util.*;
 
 public abstract class Unit extends GameEntity {
-    private int actions;
-    private int health;
-    private UnitType unitType;
-    private int x;
-    private int y;
-    private int id;
+    protected int actions;
+    protected int health;
+    protected UnitType unitType;
+    protected int x;
+    protected int y;
+    protected int id;
 
     public void setId(int id) {
         this.id = id;
     }
 
     public Unit(UnitType type, int x, int y, int id) {
+        this(type, x, y, id, type.maxActions, type.maxHealth);
+    }
+
+    public Unit(UnitType type, int x, int y, int id, int actions, int health) {
         super(null);
         this.unitType = type;
-        this.actions = type.maxActions;
-        this.health = type.maxHealth;
+        this.actions = actions;
+        this.health = health;
         this.x = x;
         this.y = y;
         this.id = id;

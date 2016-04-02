@@ -4,8 +4,8 @@ package models;
  * Created by Charles on 02/04/2016.
  */
 public class World extends GameEntity {
-    private int size;
-    private Cell[][] map;
+    protected int size;
+    protected Cell[][] map;
 
     public World(Cell[][] map) {
         super(null);

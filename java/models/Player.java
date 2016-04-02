@@ -10,24 +10,36 @@ import java.util.Map;
 public class Player extends GameEntity {
     public final static int START_GOLD = 100;
 
-    private int id;
-    private int gold;
-    private Cell city;
+    protected int id;
+    protected int gold;
+    protected Cell city;
     // id, unit
-    private Map<Integer, Unit> units;
-    private int cellsNumber;
+    protected Map<Integer, Unit> units;
+    protected int cellsNumber;
 
     public Player(int id){
         this(id, START_GOLD, new HashMap<Integer, Unit>());
     }
     
     public Player(int id, int gold, Map<Integer, Unit> units){
+        this(id, gold, units, null, 1);
+    }
+
+    public Player(int id, int gold, Map<Integer, Unit> units, Cell city, int cellsNumber) {
         super(null);
         this.id = id;
         this.gold = gold;
         this.units = units;
-        this.cellsNumber = 1;
-        this.city = null;
+        this.cellsNumber = cellsNumber;
+        this.city = city;
+    }
+
+    public Player clone() {
+        Map<Integer, Unit> units = new HashMap<Integer, Unit>();
+        for(int id: units.keySet()) {
+            units.put(id, units.get(id).clone());
+        }
+        return new Player(id, gold, units, city, cellsNumber);
     }
 
     public int getId() {
