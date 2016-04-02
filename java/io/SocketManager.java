@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import models.Building;
 import models.Cell;
+import models.Game;
 import models.Unit;
 import models.UnitType;
 
@@ -34,6 +35,8 @@ public class SocketManager {
             
             String playerNumber = reader.readLine();
             playNumber = Integer.parseInt(playerNumber.substring(6));
+            
+            Game.OUR_ID = playNumber;
             
             writer.println("OK");
             
