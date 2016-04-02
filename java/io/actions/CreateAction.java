@@ -1,10 +1,7 @@
 package io.actions;
 
 import io.Action;
-import models.Building;
-import models.Game;
-import models.Unit;
-import models.UnitType;
+import models.*;
 
 /**
  * Demande à une unité de fabriquer un bâtiment.
@@ -14,7 +11,6 @@ import models.UnitType;
 
 /**
  * Creates a new unit at the user's home city.
- * @param type Unit type to create
  */
 
 public class CreateAction implements Action {
@@ -44,6 +40,16 @@ public class CreateAction implements Action {
 
     @Override
     public boolean check(Game game) {
-        return false;
+        Cell city = game.getCurrentPlayer().getCity();
+        if (city == null) {
+            System.err.println("Cannot create: city not found");
+            return false;
+        }
+        Unit unit = game.getWorld().getCell(city.getX(), city.getY()).getUnit();
+        if (unit != null) {
+            System.err.println("Cannot create: city is full");
+            return false;
+        }
+        return true;
     }
 }
