@@ -3,10 +3,10 @@ package models;
 import algorithms.Utils;
 
 public class Game {
-    private World world;
+    public World world;
     public Player us;
     public Player them;
-    private Player currentPlayer;
+    public Player currentPlayer;
     private int roundNumber;
 
     public Game () {

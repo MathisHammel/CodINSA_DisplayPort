@@ -103,15 +103,15 @@ public abstract class Unit {
     public int checkMove(Cell cellToReach) {
         if (cellToReach == null)
             return -1;
-        if (Utils.infiniteDistance(cellToReach.x, cellToReach.y, this.getX(),
+        if (Utils.infiniteDistance(cellToReach.getX(), cellToReach.getY(), this.getX(),
                 this.getY()) != 1)
             return -1;
-        if (cellToReach.land == Land.RIVER
+        if (cellToReach.getLand() == Land.RIVER
                 && this.getUnitType() != UnitType.ENGINEER)
             return -1;
-        if (cellToReach.land == Land.MONTAIN && cellToReach.building != Building.ROAD)
+        if (cellToReach.getLand() == Land.MONTAIN && cellToReach.getBuilding() != Building.ROAD)
             return this.getActions() - 4;
-        if (cellToReach.building == Building.ROAD)
+        if (cellToReach.getBuilding() == Building.ROAD)
             return this.getActions() - 1;
         return this.getActions() - 2;
     }
