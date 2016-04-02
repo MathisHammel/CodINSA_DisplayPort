@@ -75,6 +75,8 @@ public class Parser {
             Player p = new Player(playNumber, gold, units);
             players.add(p);
         }
+        
+        return new Game();
     }
     
     
