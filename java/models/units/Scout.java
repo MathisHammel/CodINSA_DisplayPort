@@ -8,6 +8,10 @@ public class Scout extends Unit{
         super(UnitType.SCOUT, x, y, id);
     }
 
+    public Scout(int x, int y) {
+        super(UnitType.SCOUT, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;

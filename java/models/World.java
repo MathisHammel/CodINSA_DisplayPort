@@ -60,4 +60,14 @@ public class World {
         }
         return this;
     }
+
+    public World clone() {
+        Cell[][] map = new Cell[this.size][this.size];
+        for(int x = 0; x < this.size; x++) {
+            for(int y = 0; y < this.size; y++) {
+                map[x][y] = this.map[x][y].clone();
+            }
+        }
+        return new World(this.size, map);
+    }
 }

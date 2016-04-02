@@ -3,10 +3,10 @@ package models;
 import algorithms.Utils;
 
 public class Game {
-    public World world;
+    private World world;
     public Player us;
     public Player them;
-    public Player currentPlayer;
+    private Player currentPlayer;
     private int roundNumber;
 
     public Game () {
@@ -40,16 +40,20 @@ public class Game {
     private void heal() {
         for (int i: currentPlayer.units.keySet()) {
             Unit unit =currentPlayer.units.get(i);
-            if (world.getCell(unit.getX(), unit.getY()).building == Building.HOSPITAL)
+            if (world.getCell(unit.getX(), unit.getY()).getBuilding() == Building.HOSPITAL)
                 unit.setHealth(unit.getMaxHealth());
             unit.setActions(unit.getMaxActions());
         }
     }
 
-    private Player otherPlayer() {
+    public Player otherPlayer() {
         if (currentPlayer == us)
             return them;
         return us;
     }
 
+    public Game clone() {
+        World w = this.world.clone();
+        return new Game();
+    }
 }

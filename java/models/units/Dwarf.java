@@ -8,6 +8,10 @@ public class Dwarf extends Unit{
         super(UnitType.DWARF, x, y, id);
     }
 
+    public Dwarf(int x, int y) {
+        super(UnitType.DWARF, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;

@@ -8,6 +8,10 @@ public class Archer extends Unit{
         super(UnitType.ARCHER, x, y, id);
     }
 
+    public Archer(int x, int y) {
+        super(UnitType.ARCHER, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;

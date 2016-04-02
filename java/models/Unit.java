@@ -13,6 +13,10 @@ public abstract class Unit {
     private int y;
     private int id;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Unit(UnitType type, int x, int y, int id) {
         this.unitType = type;
         this.actions = type.maxActions;

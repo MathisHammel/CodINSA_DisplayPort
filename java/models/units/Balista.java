@@ -8,6 +8,10 @@ public class Balista extends Unit{
         super(UnitType.BALISTA, x, y, id);
     }
 
+    public Balista(int x, int y) {
+        super(UnitType.BALISTA, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;

@@ -8,6 +8,10 @@ public class Peasant extends Unit{
         super(UnitType.PEASANT, x, y, id);
     }
 
+    public Peasant(int x, int y) {
+        super(UnitType.PEASANT, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;

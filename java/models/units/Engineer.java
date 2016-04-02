@@ -8,6 +8,10 @@ public class Engineer extends Unit{
         super(UnitType.ENGINEER, x, y, id);
     }
 
+    public Engineer(int x, int y) {
+        super(UnitType.ENGINEER, x, y, -1);
+    }
+
     @Override
     public Unit clone() {
         return null;
