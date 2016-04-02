@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1,
+    "address": "4 r Alexandre Boutin, 69100 Villeurbanne ",
+    "name": "Le Montesquieu",
+    "description": "Menu français créatif dans un cadre convivial avec grands miroirs, canapés capitonnés et terrasse en bois.",
+    "latitude": 45.7706885,
+    "longitude": 4.8686394
+  },
+  {
+    "id": 2,
+    "address": "96 r Anatole France, 69100 Villeurbanne ",
+    "name": "Le P'tit Tonneau",
+    "description": "Des plats traditionnels proposés dans un cadre soigné et rétro, décoré avec des objets chinés décalés.",
+    "latitude": 45.7678656,
+    "longitude": 4.8783075
+  },
+  {
+    "id": 3,
+    "address": "23 r Frédéric Mistral, 69100 Villeurbanne ",
+    "name": "À la Belle Cocotte",
+    "description": "Plats cosmopolites et métissés dans un cadre moderne, élégant et boisé avec banquettes et suspensions design.",
+    "latitude": 45.7563318,
+    "longitude": 4.8764145
+  },
+  {
+    "id": 4,
+    "address": "197 r Francis de Pressensé, 69100 Villeurbanne ",
+    "name": "La Fourchette à Soupe",
+    "description": "Ce restaurant de poisson sert une cuisine aux accents méditerranéens dans un cadre chaleureux et en terrasse.",
+    "latitude": 45.7712475,
+    "longitude": 4.8873427
+  },
+  {
+    "id": 5,
+    "address": "62 quai Charles de Gaulle, 69006 Lyon ",
+    "name": "Pizzéria Pinocchio",
+    "description": "Cet établissement chaleureux propose risottos, ravioles et pizzas dans un cadre clair aux accents mauves",
+    "latitude": 45.7851768,
+    "longitude": 4.853969999999999
+  },
+  {
+    "id": 6,
+    "address": "39 r Ney, 69006 Lyon ",
+    "name": "Les Enfants Terribles",
+    "description": "Une salle aux murs en pierre agrémentée de tableaux colorés pour une cuisine traditionnelle de type brasserie.",
+    "latitude": 45.7687114,
+    "longitude": 4.8555126
+  },
+  {
+    "id": 7,
+    "address": "3 pl Jules Ferry, 69006 Lyon ",
+    "name": "La Ciboulette",
+    "description": "Une carte bio et végétarienne volontairement restreinte servie dans une salle au mobilier simple et coloré.",
+    "latitude": 45.7674688,
+    "longitude": 4.858701
+  },
+  {
+    "id": 8,
+    "address": "283 av Jean Jaurès, 69007 Lyon ",
+    "name": "Tartines et Bouchons",
+    "description": "Cuisine créative du jour à l'ardoise, vin à la ficelle et ambiance détendue pour ce restaurant chaleureux.",
+    "latitude": 45.72991,
+    "longitude": 4.833169199999999
+  },
+  {
+    "id": 9,
+    "address": "6 pl Gabriel Péri, 69007 Lyon ",
+    "name": "L'entre-potes",
+    "description": "Cadre feutré et élégant pour ce restaurant gastronomique aux produits de saison cuisinés artisanalement.",
+    "latitude": 45.7549593,
+    "longitude": 4.8428779
+  },
+  {
+    "id": 10,
+    "address": "145 r Marcel Mérieux, 69007 Lyon ",
+    "name": "Chez Maman",
+    "description": "Plats originaux à la présentation raffinée pour ce bistrot intimiste au décor chaleureux, avec terrasse.",
+    "latitude": 45.7379159,
+    "longitude": 4.830365700000001
+  },
+  {
+    "id": 11,
+    "address": "8 place Saint-Vincent, 69001 Lyon",
+    "name": "Pâturage et potager",
+    "description": "Un cadre élégant avec murs en pierre, nappes immaculées et lustres pour une cuisine inventive et raffinée.",
+    "latitude": 45.7682305,
+    "longitude": 4.828330999999999
+  },
+  {
+    "id": 12,
+    "address": "29 rue du Boeuf Lyon, 69005 Lyon",
+    "name": "Le Boeuf d’argent",
+    "description": "Plats traditionnels servis dans une grande salle décorée de nappes à carreaux et d'objets d'école rétro.",
+    "latitude": 45.7621183,
+    "longitude": 4.8266441
+  },
+  {
+    "id": 13,
+    "address": "10 place Saint-Vincent, 69001 Lyon",
+    "name": "Les Papilles Insolites",
+    "description": "Un menu traditionnel finement repensé à base de produits de saison dans un cadre contemporain rouge et gris.",
+    "latitude": 45.7682305,
+    "longitude": 4.828330999999999
+  }
+]

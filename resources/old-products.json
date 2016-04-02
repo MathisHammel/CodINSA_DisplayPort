@@ -1,0 +1,513 @@
+[
+  {
+    "id": 51,
+    "name": "Alliance chocolat-citron",
+    "description": "bon",
+    "mass": 500,
+    "price": 10
+  },
+  {
+    "id": 52,
+    "name": "Andouillette AAAAA grillée",
+    "description": "très bon",
+    "mass": 450,
+    "price": 12
+  },
+  {
+    "id": 53,
+    "name": "Baba au rhum chantilly",
+    "description": "délicieux",
+    "mass": 521,
+    "price": 7
+  },
+  {
+    "id": 54,
+    "name": "Blanquette de veau",
+    "description": "très très bon",
+    "mass": 235,
+    "price": 15
+  },
+  {
+    "id": 55,
+    "name": "Cake aux pralines lyonnaises et crème anglaise",
+    "description": "bon",
+    "mass": 236,
+    "price": 8
+  },
+  {
+    "id": 56,
+    "name": "Cappuccino de cèpes et sa chantilly à la truffe",
+    "description": "délicieux",
+    "mass": 235,
+    "price": 10
+  },
+  {
+    "id": 57,
+    "name": "Choucroute de la mer",
+    "description": "bon",
+    "mass": 850,
+    "price": 23
+  },
+  {
+    "id": 58,
+    "name": "Crème brûlée",
+    "description": "bon",
+    "mass": 625,
+    "price": 5
+  },
+  {
+    "id": 59,
+    "name": "Crêpes façon Suzette flambées",
+    "description": "très bon",
+    "mass": 445,
+    "price": 5
+  },
+  {
+    "id": 60,
+    "name": "Croustillant chocolat grand cru Valrhona et noisette",
+    "description": "délicieux",
+    "mass": 223,
+    "price": 9
+  },
+  {
+    "id": 61,
+    "name": "Dos de cabillaud rôti sur un coussinet de brandade parmentière aux senteurs de chorizo",
+    "description": "très très bon",
+    "mass": 221,
+    "price": 18
+  },
+  {
+    "id": 62,
+    "name": "Dos de cabillaud, légumes racines du Val de Loire, salpicon de homard et truffe",
+    "description": "bon",
+    "mass": 120,
+    "price": 18
+  },
+  {
+    "id": 63,
+    "name": "Entremets mangue litchi",
+    "description": "délicieux",
+    "mass": 127,
+    "price": 10
+  },
+  {
+    "id": 64,
+    "name": "Filet de bar à la plancha, jeune épeautre à la coriandre",
+    "description": "bon",
+    "mass": 235,
+    "price": 15
+  },
+  {
+    "id": 65,
+    "name": "Filet de boeuf juste poêlé avec ses champignons des bois",
+    "description": "bon",
+    "mass": 850,
+    "price": 16
+  },
+  {
+    "id": 66,
+    "name": "Filet de canette pain d'épices et tonka, polenta croustillante et légumes du moment",
+    "description": "très bon",
+    "mass": 625,
+    "price": 20
+  },
+  {
+    "id": 67,
+    "name": "Foie de veau persillé",
+    "description": "très bon",
+    "mass": 445,
+    "price": 18
+  },
+  {
+    "id": 68,
+    "name": "Foie gras de canard maison chutney de saison",
+    "description": "délicieux",
+    "mass": 223,
+    "price": 21
+  },
+  {
+    "id": 69,
+    "name": "Fondant à la crème de marrons et au chocolat",
+    "description": "très très bon",
+    "mass": 221,
+    "price": 9
+  },
+  {
+    "id": 70,
+    "name": "Fondant au chocolat plus que fondant",
+    "description": "bon",
+    "mass": 120,
+    "price": 9
+  },
+  {
+    "id": 71,
+    "name": "Fricassée de ris de veau",
+    "description": "délicieux",
+    "mass": 127,
+    "price": 17
+  },
+  {
+    "id": 72,
+    "name": "Ganache chocolat noir aux Amarenas, coulis de griottes",
+    "description": "bon",
+    "mass": 445,
+    "price": 9
+  },
+  {
+    "id": 73,
+    "name": "Gâteau de Saint-Jacques émulsion de homard",
+    "description": "délicieux",
+    "mass": 223,
+    "price": 16
+  },
+  {
+    "id": 74,
+    "name": "Gratin Dauphinois",
+    "description": "très bon",
+    "mass": 221,
+    "price": 12
+  },
+  {
+    "id": 75,
+    "name": "Gravelax de saumon mariné aux betteraves rouges, brunoise de chorizo Ibérique",
+    "description": "bon",
+    "mass": 120,
+    "price": 12
+  },
+  {
+    "id": 76,
+    "name": "Châteaubriant grillé, Pommes Pont Neuf, béarnaise",
+    "description": "très bon",
+    "mass": 127,
+    "price": 21
+  },
+  {
+    "id": 77,
+    "name": "La Coupole l’hiver : la poire Belle Hélène à notre façon",
+    "description": "très bon",
+    "mass": 235,
+    "price": 10
+  },
+  {
+    "id": 78,
+    "name": "La tarte du jour, salade verte mêlée",
+    "description": "délicieux",
+    "mass": 120,
+    "price": 10
+  },
+  {
+    "id": 79,
+    "name": "La vraie Tartiflette",
+    "description": "très très bon",
+    "mass": 223,
+    "price": 22
+  },
+  {
+    "id": 80,
+    "name": "Lasagnes aux courgettes et au chèvre",
+    "description": "bon",
+    "mass": 254,
+    "price": 17
+  },
+  {
+    "id": 81,
+    "name": "Médaillons de suprème de pintade de l'Orléanais, guacamole à l'orange",
+    "description": "délicieux",
+    "mass": 652,
+    "price": 19
+  },
+  {
+    "id": 82,
+    "name": "Meringue glacée fraise des bois et myrtilles",
+    "description": "bon",
+    "mass": 248,
+    "price": 10
+  },
+  {
+    "id": 83,
+    "name": "Moelleux au chocolat maison",
+    "description": "délicieux",
+    "mass": 156,
+    "price": 10
+  },
+  {
+    "id": 84,
+    "name": "Muffins poires pépites de chocolat",
+    "description": "très bon",
+    "mass": 560,
+    "price": 8
+  },
+  {
+    "id": 85,
+    "name": "Noix de jambon rôtie, réduction miel - balsamique et pommes de terre fondantes",
+    "description": "bon",
+    "mass": 221,
+    "price": 16
+  },
+  {
+    "id": 86,
+    "name": "Oeuf mollet, saumon fumé, sésame grillé et salade verte mêlée",
+    "description": "bon",
+    "mass": 120,
+    "price": 12
+  },
+  {
+    "id": 87,
+    "name": "Pain perdu brioché sur une compote à la rhubarbe",
+    "description": "très bon",
+    "mass": 127,
+    "price": 10
+  },
+  {
+    "id": 88,
+    "name": "Pannequet de saumon mi-fumé, infusion thé vert - crustacés",
+    "description": "délicieux",
+    "mass": 235,
+    "price": 12
+  },
+  {
+    "id": 89,
+    "name": "Papillote de saumon à la mozzarella",
+    "description": "très très bon",
+    "mass": 120,
+    "price": 15
+  },
+  {
+    "id": 90,
+    "name": "Parmentier de queue de boeuf et foie gras, salade de mâche à l'huile de truffe",
+    "description": "bon",
+    "mass": 223,
+    "price": 18
+  },
+  {
+    "id": 91,
+    "name": "Pavé de flétan poché, sauce à l'estragon et légumes du sud",
+    "description": "délicieux",
+    "mass": 445,
+    "price": 18
+  },
+  {
+    "id": 92,
+    "name": "Pizza 3 fromages",
+    "description": "bon",
+    "mass": 223,
+    "price": 12
+  },
+  {
+    "id": 93,
+    "name": "Pizza 4 fromages",
+    "description": "délicieux",
+    "mass": 221,
+    "price": 13
+  },
+  {
+    "id": 94,
+    "name": "Pizza 5 fromages",
+    "description": "très bon",
+    "mass": 120,
+    "price": 14
+  },
+  {
+    "id": 95,
+    "name": "Pizza Napolitaine",
+    "description": "bon",
+    "mass": 127,
+    "price": 12
+  },
+  {
+    "id": 96,
+    "name": "Pizza Regina",
+    "description": "bon",
+    "mass": 235,
+    "price": 12
+  },
+  {
+    "id": 97,
+    "name": "Plateau de fromages",
+    "description": "très bon",
+    "mass": 120,
+    "price": 20
+  },
+  {
+    "id": 98,
+    "name": "Poulet basquaise",
+    "description": "très très bon",
+    "mass": 127,
+    "price": 18
+  },
+  {
+    "id": 99,
+    "name": "Profiteroles",
+    "description": "délicieux",
+    "mass": 235,
+    "price": 10
+  },
+  {
+    "id": 100,
+    "name": "Quasi de veau façon Rossini, gratin de pomme de terre et céleri",
+    "description": "très très bon",
+    "mass": 120,
+    "price": 23
+  },
+  {
+    "id": 101,
+    "name": "Quiche lorraine",
+    "description": "bon",
+    "mass": 223,
+    "price": 10
+  },
+  {
+    "id": 102,
+    "name": "Ravioles du Royans dans un velouté aux poireaux, une escalope de foie gras juste poêlée",
+    "description": "bon",
+    "mass": 254,
+    "price": 18
+  },
+  {
+    "id": 103,
+    "name": "Risotto au canard confit et champignons forestiers",
+    "description": "bon",
+    "mass": 652,
+    "price": 18
+  },
+  {
+    "id": 104,
+    "name": "Saint-Jacques marinées sur un écrasé de pommes de terre Vitelotte comme une piémontaise, méli-mélo de jambon Serrano et tuile de parmesan",
+    "description": "très bon",
+    "mass": 248,
+    "price": 21
+  },
+  {
+    "id": 105,
+    "name": "Saint-Jacques poêlée avec ses tagliatelles fraîches à l'encre de seiche",
+    "description": "très bon",
+    "mass": 127,
+    "price": 21
+  },
+  {
+    "id": 106,
+    "name": "soupe de légumes",
+    "description": "délicieux",
+    "mass": 235,
+    "price": 10
+  },
+  {
+    "id": 107,
+    "name": "Tartare de bœuf charolais",
+    "description": "très très bon",
+    "mass": 120,
+    "price": 15
+  },
+  {
+    "id": 108,
+    "name": "Tartare de tomates et d'aubergines frites, œuf poché au basilic",
+    "description": "bon",
+    "mass": 223,
+    "price": 15
+  },
+  {
+    "id": 109,
+    "name": "Tarte à l'orange",
+    "description": "très très bon",
+    "mass": 445,
+    "price": 8
+  },
+  {
+    "id": 110,
+    "name": "Tarte aux fruits de saison",
+    "description": "délicieux",
+    "mass": 127,
+    "price": 8
+  },
+  {
+    "id": 111,
+    "name": "Terrine de campagne forestière au porto et salade verte mêlée",
+    "description": "bon",
+    "mass": 235,
+    "price": 10
+  },
+  {
+    "id": 112,
+    "name": "Velouté de champignon",
+    "description": "délicieux",
+    "mass": 120,
+    "price": 10
+  },
+  {
+    "id": 113,
+    "name": "Velouté de champignons, moelleux au jambon de boeuf",
+    "description": "très bon",
+    "mass": 223,
+    "price": 10
+  },
+  {
+    "id": 114,
+    "name": "Blanquette de veau et ses petits légumes",
+    "description": "bon",
+    "mass": 248,
+    "price": 14
+  },
+  {
+    "id": 115,
+    "name": "Croque-Monsieur façon Madame",
+    "description": "bon",
+    "mass": 156,
+    "price": 9
+  },
+  {
+    "id": 116,
+    "name": "Sole meunière et son duo de riz",
+    "description": "très bon",
+    "mass": 560,
+    "price": 16
+  },
+  {
+    "id": 117,
+    "name": "Fondant chocolat",
+    "description": "délicieux",
+    "mass": 221,
+    "price": 7
+  },
+  {
+    "id": 118,
+    "name": "Tarte praline",
+    "description": "très très bon",
+    "mass": 120,
+    "price": 7
+  },
+  {
+    "id": 119,
+    "name": "Andouillette et gratin dauphinois",
+    "description": "bon",
+    "mass": 127,
+    "price": 16
+  },
+  {
+    "id": 120,
+    "name": "Côte de boeufs et poêlée de légumes",
+    "description": "délicieux",
+    "mass": 235,
+    "price": 18
+  },
+  {
+    "id": 121,
+    "name": "Truite saumonée et riz pilaf",
+    "description": "très très bon",
+    "mass": 120,
+    "price": 17
+  },
+  {
+    "id": 122,
+    "name": "Iles flottantes",
+    "description": "très très bon",
+    "mass": 223,
+    "price": 7
+  },
+  {
+    "id": 123,
+    "name": "Opéra",
+    "description": "bon",
+    "mass": 445,
+    "price": 7
+  }
+]
