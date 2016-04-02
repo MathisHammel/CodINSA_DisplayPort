@@ -2,8 +2,7 @@ package models;
 
 import algorithms.Utils;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Unit extends GameEntity {
     private int actions;
@@ -102,21 +101,28 @@ public abstract class Unit extends GameEntity {
     public abstract Unit clone();
 
 
-    public Set<Cell> getReachableCells(World world){
-        Set<Cell> reachableCells = this.getNeighboursCells(world);
-        for (Cell c : reachableCells) {
-            // on sait qu'il est possible
-            int action = Utils.checkMove(c, this.getX(), this.getY(), this.getUnitType(), this.getActions());
+    public Map<Cell, ReachableResult> getReachableCells(World world){
+        Map<Cell, ReachableResult> reachableCells = this.getNeighboursCells(world);
+        for (Cell c : reachableCells.keySet()) {
             // on sauvegarde la position et energie de l'unit pour la restituer ensuite.
             int oldAction = this.getActions();
             int oldX = this.getX();
             int oldY = this.getY();
             // on simule un deplacement
+            // on sait qu'il est possible
+            int action = this.getActions() - reachableCells.get(c).cost;
             this.setActions(action);
             this.setX(c.getX());
             this.setY(c.getY());
 
-            reachableCells.addAll(this.getReachableCells(world));
+            // appel récursif + FUSIIOOOOON
+            Map<Cell, ReachableResult> newResults = this.getReachableCells(world);
+            for (Map.Entry<Cell, ReachableResult> result : newResults.entrySet()) {
+                if(reachableCells.containsKey(result.getKey()) &&
+                        result.getValue().cost < reachableCells.get(result.getKey()).cost){
+                    reachableCells.put(result.getKey(), result.getValue());
+                }
+            }
 
             // on restitue l'ancien etat
             this.setActions(oldAction);
@@ -137,8 +143,8 @@ public abstract class Unit extends GameEntity {
     }
 
     // OK
-    private Set<Cell> getNeighboursCells(World world){
-        Set<Cell> reachableCells = new HashSet<>();
+    public Map<Cell, ReachableResult> getNeighboursCells(World world){
+        Map<Cell, ReachableResult> reachableCells = new HashMap<>();
         for (int x = this.getX()-1; x <= this.getX()+1; x++) {
             for(int y = this.getY()-1; y <= this.getY()+1; y++){
                 if(x != this.getX() && y != this.getY()){
@@ -147,11 +153,23 @@ public abstract class Unit extends GameEntity {
                     //int res = this.checkMove(c);
                     if ( res >= 0){
                         // c'est une position atteignable
-                        reachableCells.add(c);
+                        reachableCells.put(c,new ReachableResult(world.getCell(this.getX(), this.getY()), this.getActions() - res));
                     }
                 }
             }
         }
         return reachableCells;
     }
+
+    //pour djiijijijstra
+    public class ReachableResult{
+        public Cell from;
+        public int cost;
+
+        public ReachableResult(Cell from, int cost){
+            this.from = from;
+            this.cost = cost;
+        }
+    }
+
 }
