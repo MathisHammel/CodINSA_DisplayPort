@@ -16,14 +16,14 @@ public class Main {
         Pattern unitPattern = Pattern.compile("\\d+,\\d+,\\d+,\\d+,\\d+;");
         Pattern unitPatternCapture = Pattern.compile("(\\d+),(\\d+),(\\d+),(\\d+),(\\d+);");
 
-        Pattern playerPattern = Pattern.compile("P\\d+:\\[(?:"+unitPattern.pattern()+")*\\];\\d+;");
-        Pattern playerPatternCapture = Pattern.compile("P\\d+:\\[("+unitPattern.pattern()+")*\\];(\\d+);");
+        Pattern playerPattern = Pattern.compile("P\\d+:\\[(?:"+unitPattern.pattern()+")*\\];\\d+:");
+        Pattern playerPatternCapture = Pattern.compile("P\\d+:\\[("+unitPattern.pattern()+")*\\];(\\d+):");
 
         Pattern playersPattern = Pattern.compile("(?:"+playerPattern.pattern()+")+");
 
         Pattern responsePattern = Pattern.compile("(\\d+):OK:M:\\[("+mapPattern.pattern()+")\\]:U:("+playersPattern.pattern()+")");
         
-        String test = "1:OK:M:[[[,F,N,N,-1];[,F,N,N,-1];[,F,N,N,-1];[,F,N,N,-1];[,F,N,N,-1];];[[,P,N,N,-1];[,F,A,V,0];[,P,N,N,-1];[,P,N,N,-1];[,P,N,N,-1];];[[,M,N,N,-1];[,M,N,N,-1];[,M,N,N,-1];[,M,N,N,-1];[,M,N,N,-1];];[[,P,N,N,-1];[,P,N,N,-1];[,P,N,N,-1];[,F,N,V,1];[,P,N,N,-1];];[[,R,N,N,-1];[,R,N,N,-1];[,R,N,N,-1];[,R,N,N,-1];[,R,N,N,-1];];]:U:P0:[0,2,1,1,2;];940:P1:[];1000;";
+        String test = "1:OK:M:[[[,F,N,N,-1];[,F,N,N,-1];[,F,N,N,-1];[,F,N,N,-1];[,F,N,N,-1];];[[,P,N,N,-1];[,F,A,V,0];[,P,N,N,-1];[,P,N,N,-1];[,P,N,N,-1];];[[,M,N,N,-1];[,M,N,N,-1];[,M,N,N,-1];[,M,N,N,-1];[,M,N,N,-1];];[[,P,N,N,-1];[,P,N,N,-1];[,P,N,N,-1];[,F,N,V,1];[,P,N,N,-1];];[[,R,N,N,-1];[,R,N,N,-1];[,R,N,N,-1];[,R,N,N,-1];[,R,N,N,-1];];]:U:P0:[0,2,1,1,2;];940:P1:[];1000:";
 
         System.out.println(responsePattern);
         System.out.println(test);
