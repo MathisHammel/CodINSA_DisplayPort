@@ -1,5 +1,7 @@
 package models;
 
+import algorithms.Utils;
+
 /**
  * Created by Charles on 02/04/2016.
  */
@@ -98,4 +100,23 @@ public abstract class Unit {
 
     public abstract Unit clone();
 
+    public int checkMove(Cell cellToReach) {
+        if (cellToReach == null)
+            return -1;
+        if (Utils.infiniteDistance(cellToReach.getX(), cellToReach.getY(), this.getX(),
+                this.getY()) != 1)
+            return -1;
+        if (cellToReach.getLand() == Land.RIVER
+                && this.getUnitType() != UnitType.ENGINEER)
+            return -1;
+        if (cellToReach.getLand() == Land.MONTAIN && cellToReach.getBuilding() != Building.ROAD)
+            return this.getActions() - 4;
+        if (cellToReach.getBuilding() == Building.ROAD)
+            return this.getActions() - 1;
+        return this.getActions() - 2;
+    }
+
+    public Cell[] getReachableCells(World world){
+        return null;
+    }
 }
