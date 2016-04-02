@@ -14,13 +14,13 @@ public class MoveAction implements Action {
     int x;
     int y;
 
-    MoveAction(Unit unit, int x, int y) {
+    public MoveAction(Unit unit, int x, int y) {
         this.unitId = unit.getId();
         this.x = x;
         this.y = y;
     }
 
-    MoveAction(int unitId, int x, int y) {
+    public MoveAction(int unitId, int x, int y) {
         this.unitId = unitId;
         this.x = x;
         this.y = y;

@@ -19,7 +19,7 @@ import models.UnitType;
 public class CreateAction implements Action {
     UnitType unitType;
 
-    CreateAction(UnitType unitType) {
+    public CreateAction(UnitType unitType) {
         this.unitType = unitType;
     }
 

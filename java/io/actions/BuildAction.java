@@ -14,12 +14,12 @@ public class BuildAction implements Action {
     int builderId;
     Building building;
 
-    BuildAction(Unit builder, Building building) {
+    public BuildAction(Unit builder, Building building) {
         this.builderId = builder.getId();
         this.building = building;
     }
 
-    BuildAction(int builderId, Building building) {
+    public BuildAction(int builderId, Building building) {
         this.builderId = builderId;
         this.building = building;
     }

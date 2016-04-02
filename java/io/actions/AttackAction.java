@@ -14,13 +14,13 @@ public class AttackAction implements Action {
     int x;
     int y;
 
-    AttackAction(Unit attacker, int x, int y) {
+    public AttackAction(Unit attacker, int x, int y) {
         this.attackerId = attacker.getId();
         this.x = x;
         this.y = y;
     }
 
-    AttackAction(Unit attacker, Unit target) {
+    public AttackAction(Unit attacker, Unit target) {
         this.attackerId = attacker.getId();
         this.x = target.getX();
         this.y = target.getY();

@@ -10,11 +10,11 @@ import models.Unit;
 public class DestroyAction implements Action {
     int unitId;
 
-    DestroyAction(Unit unit) {
+    public DestroyAction(Unit unit) {
         this.unitId = unit.getId();
     }
 
-    DestroyAction(int unitId) {
+    public DestroyAction(int unitId) {
         this.unitId = unitId;
     }
 
