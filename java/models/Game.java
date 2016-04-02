@@ -6,7 +6,7 @@ public class Game {
     public static int OUR_ID = 0;
 
     protected World world;
-    protected Player[] players;
+    protected Player[] players = new Player[2];
     protected int currentPlayerId;
     protected int roundNumber;
 
@@ -52,7 +52,7 @@ public class Game {
     }
 
     public World getWorld() {
-        return this.getWorld();
+        return this.world;
     }
 
     public void nextRound() {
