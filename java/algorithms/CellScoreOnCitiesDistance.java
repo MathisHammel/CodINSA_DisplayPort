@@ -4,7 +4,7 @@ import models.Cell;
 import models.Game;
 
 
-public class CellCoefficientOnCitiesDistance implements CellCoefficientInterface {
+public class CellScoreOnCitiesDistance implements CellScoreInterface {
     @Override
     public int evaluate(Game game, Cell cellToEvaluate) {
         Cell ourCity = game.us.city;

@@ -67,4 +67,8 @@ public class Game {
         return us;
     }
 
+    public Game clone() {
+        World w = this.world.clone();
+        return new Game();
+    }
 }
