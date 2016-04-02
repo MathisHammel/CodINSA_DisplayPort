@@ -3,7 +3,7 @@ package models;
 /**
  * Created by Charles on 02/04/2016.
  */
-public class Cell {
+public class Cell extends GameEntity {
     private Land land;
     private Building building;
     private int unit;
@@ -19,6 +19,7 @@ public class Cell {
     }
 
     public Cell(int x, int y, Land land, Building building, int unit, int owner) {
+        super(null);
         this.x = x;
         this.y = y;
         this.land = land;

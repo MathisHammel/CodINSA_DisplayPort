@@ -16,7 +16,7 @@ public class Game {
             new Player(1)
         };
         this.roundNumber = 0;
-        this.world = new World(5);
+        this.world = null;
         this.currentPlayerId = 0;
     }
 
@@ -24,7 +24,7 @@ public class Game {
         this.players[OUR_ID] = us;
         this.players[1 - OUR_ID] = them;
         this.currentPlayerId = currentPlayerId;
-        this.world = new World(map.length, map);
+        this.world = new World(map);
     }
 
     public Player getPlayer(int id) {

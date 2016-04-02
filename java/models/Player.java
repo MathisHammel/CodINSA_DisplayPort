@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Player {
+public class Player extends GameEntity {
     public final static int START_GOLD = 100;
 
     private int id;
@@ -18,14 +18,11 @@ public class Player {
     private int cellsNumber;
 
     public Player(int id){
-        this.id = id;
-        this.gold = START_GOLD;
-        this.units = new HashMap<>();
-        this.cellsNumber = 1;
-        this.city = null;
+        this(id, START_GOLD, new HashMap<Integer, Unit>());
     }
     
     public Player(int id, int gold, Map<Integer, Unit> units){
+        super(null);
         this.id = id;
         this.gold = gold;
         this.units = units;

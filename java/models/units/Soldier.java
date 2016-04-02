@@ -4,12 +4,12 @@ import models.Unit;
 import models.UnitType;
 
 public class Soldier extends Unit{
-    public Soldier(int x, int y, int id) {
-        super(UnitType.SOLDIER, x, y, id);
+    public Soldier(int x, int y) {
+        this(x, y, -1);
     }
 
-    public Soldier(int x, int y) {
-        super(UnitType.SOLDIER, x, y, -1);
+    public Soldier(int x, int y, int id) {
+        super(UnitType.SOLDIER, x, y, id);
     }
 
     @Override

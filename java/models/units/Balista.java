@@ -4,12 +4,13 @@ import models.Unit;
 import models.UnitType;
 
 public class Balista extends Unit{
-    public Balista(int x, int y, int id) {
-        super(UnitType.BALISTA, x, y, id);
-    }
 
     public Balista(int x, int y) {
-        super(UnitType.BALISTA, x, y, -1);
+        this(x, y, -1);
+    }
+
+    public Balista(int x, int y, int id) {
+        super(UnitType.BALISTA, x, y, id);
     }
 
     @Override
