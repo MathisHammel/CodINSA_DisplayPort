@@ -30,6 +30,10 @@ public abstract class Unit extends GameEntity {
         this.id = id;
     }
 
+    public void bindGame(Game g) {
+        this.setGame(g);
+    }
+
     public int getActions(){
         return this.actions;
     }
