@@ -77,6 +77,9 @@ public class Player extends GameEntity {
     }
 
     public Unit setUnit(int unitId, Unit unit) {
+        if(this.game != null) {
+            unit.bindGame(this.getGame());
+        }
         return this.units.put(unitId, unit);
     }
 
@@ -121,7 +124,6 @@ public class Player extends GameEntity {
             world.getCell(x, y).setOwner(id);
         }
     }
-
 
     public void createUnit(char newUnitType) {
         UnitType type = UnitType.PEASANT;
