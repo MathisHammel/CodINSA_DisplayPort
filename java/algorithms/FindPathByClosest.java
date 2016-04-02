@@ -1,5 +1,7 @@
 package algorithms;
 
+import io.Action;
+import io.actions.MoveAction;
 import models.Cell;
 import models.Game;
 import models.Unit;
@@ -10,8 +12,8 @@ import java.util.*;
 
 public class FindPathByClosest implements FindPathInterface {
     @Override
-    public List<String> evaluatePath(Game game, Unit unitToMove, Cell destination) {
-        LinkedList<String> operations = new LinkedList<>();
+    public List<Action> evaluatePath(Game game, Unit unitToMove, Cell destination) {
+        LinkedList<Action> operations = new LinkedList<>();
         Map<Cell, Unit.ReachableResult> cells = unitToMove.getReachableCells(game.getWorld());
 
         // selectionner la case la plus proche
@@ -28,7 +30,7 @@ public class FindPathByClosest implements FindPathInterface {
         {
             // il faut reconstituer le chemin
             while(closestCell != game.getWorld().getCell(unitToMove.getX(), unitToMove.getY())){
-                operations.addFirst("Bouger bouger l'ingénieur en "+closestCell.getX()+";"+closestCell.getY());
+                operations.addFirst(new MoveAction(unitToMove, closestCell.getX(), closestCell.getY()));
                 closestCell = cells.get(closestCell).from;
             }
         }

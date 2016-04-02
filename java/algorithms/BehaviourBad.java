@@ -1,8 +1,11 @@
 package algorithms;
 
+import io.Action;
+import io.actions.CreateAction;
 import models.Game;
 import models.Unit;
 import models.UnitType;
+import models.units.Engineer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +13,8 @@ import java.util.Map;
 
 public class BehaviourBad implements BehaviourInterface {
     @Override
-    public List<String> decideActions(Game game) {
-        List<String> operations = new ArrayList<>();
+    public List<Action> decideActions(Game game) {
+        List<Action> operations = new ArrayList<>();
         // bad strategy
         // Buy engineers, and send them to the enemy city
         if(game.getCurrentPlayer().getUnits().isEmpty()){

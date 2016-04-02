@@ -18,11 +18,16 @@ public class ArtificialIntelligence {
     }
 
     public static List<Action> getNextActions(Game game) {
-        List<Action> actions = new ArrayList<Action>();
+        List<Action> actions = new ArrayList<>();
+
+        BehaviourInterface algorithm = new BehaviourBad();
+        actions.addAll(algorithm.decideActions(game));
+        /*
         Unit peasant = new Peasant(2, 1);
         actions.add(new CreateAction(peasant.getUnitType()));
         actions.add(new MoveAction(peasant, 2, 2));
         actions.add(new EndOfTurnAction());
+        */
         return actions;
     }
 }
