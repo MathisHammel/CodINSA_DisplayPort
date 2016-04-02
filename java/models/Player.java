@@ -1,5 +1,7 @@
 package models;
 
+import models.units.Engineer;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,17 +24,28 @@ public class Player {
     }
 
     public void gainGold(World world) {
+        cells = 1;
         for (int i = 0; i < world.getSize(); i++) {
             for (int j = 0; j < world.getSize(); j++) {
-                if (world.getCell(i, j).owner == id)
-                    gold += 5;   // 5 gold per land owned
+                if (world.getCell(i, j).owner == id) {
+                    cells += 1;
+                }
             }
+        }
+        gold += 5 * cells;
+    }
+
+    public void moveUnit(World world, int idUnit, int x, int y, int newAction) {
+        units.get(idUnit).setX(x);
+        units.get(idUnit).setY(y);
+        units.get(idUnit).setActions(newAction);
+        world.getCell(x, y).unit = units.get(idUnit);
+        if (world.getCell(x, y).owner != id) {
+            world.getCell(x, y).owner = id;
         }
     }
 
-    public void moveUnit(int id, int x, int y, int newAction) {
-        units.get(id).setX(x);
-        units.get(id).setY(y);
-        units.get(id).setActions(newAction);
+    public void createUnit(char newUnitType) {
+
     }
 }

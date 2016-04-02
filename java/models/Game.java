@@ -19,10 +19,17 @@ public class Game {
         currentPlayer += 1;
         currentPlayer %= players.size();
         players.get(currentPlayer).gainGold(world);
-        // some actions
+        // creation
+        char newUnitType = 'E';
+        players.get(currentPlayer).createUnit(newUnitType);
+        // attack
+
+        // move
         int newAction = checkMove(0, 1, 1);
-        if (newAction >= 0)
-            players.get(currentPlayer).moveUnit(0, 1, 1, newAction); // move the first unit to (1, 1)
+        if (newAction >= 0) {
+            players.get(currentPlayer).moveUnit(world, 0, 1, 1, newAction); // move the first unit to (1, 1)
+
+        }
 
 
         heal();  // interaction hospitals-units
@@ -31,10 +38,11 @@ public class Game {
     private int checkMove(int idUnit, int x, int y) {
         if (world.getCell(x, y) == null)
             return -1;
-        if (Math.max(Math.abs(players.get(currentPlayer).units.get(idUnit).getX() - x ),
+        if (Math.max(Math.abs(players.get(currentPlayer).units.get(idUnit).getX() - x),
                 Math.abs(players.get(currentPlayer).units.get(idUnit).getY() - y)) != 1)
             return -1;
-        if (world.getCell(x, y).land == Land.RIVER && players.get(currentPlayer).units.get(idUnit).getUnitType() != UnitType.ENGINEER)
+        if (world.getCell(x, y).land == Land.RIVER
+                && players.get(currentPlayer).units.get(idUnit).getUnitType() != UnitType.ENGINEER)
             return -1;
         if (world.getCell(x, y).land == Land.MONTAIN && world.getCell(x, y).building != Building.ROAD)
             return players.get(currentPlayer).units.get(idUnit).getActions() - 4;
@@ -50,4 +58,6 @@ public class Game {
                 unit.setHealth(unit.getMaxHealth());
         }
     }
+
+
 }
