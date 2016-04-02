@@ -2,9 +2,9 @@ package models;
 
 import algorithms.Utils;
 
-/**
- * Created by Charles on 02/04/2016.
- */
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Unit {
     private int actions;
     private int health;
@@ -100,23 +100,57 @@ public abstract class Unit {
 
     public abstract Unit clone();
 
-    public int checkMove(Cell cellToReach) {
-        if (cellToReach == null)
-            return -1;
-        if (Utils.infiniteDistance(cellToReach.getX(), cellToReach.getY(), this.getX(),
-                this.getY()) != 1)
-            return -1;
-        if (cellToReach.getLand() == Land.RIVER
-                && this.getUnitType() != UnitType.ENGINEER)
-            return -1;
-        if (cellToReach.getLand() == Land.MONTAIN && cellToReach.getBuilding() != Building.ROAD)
-            return this.getActions() - 4;
-        if (cellToReach.getBuilding() == Building.ROAD)
-            return this.getActions() - 1;
-        return this.getActions() - 2;
+
+    public Set<Cell> getReachableCells(World world){
+        Set<Cell> reachableCells = this.getNeighboursCells(world);
+        for (Cell c : reachableCells) {
+            // on sait qu'il est possible
+            int action = Utils.checkMove(c, this.getX(), this.getY(), this.getUnitType(), this.getActions());
+            // on sauvegarde la position et energie de l'unit pour la restituer ensuite.
+            int oldAction = this.getActions();
+            int oldX = this.getX();
+            int oldY = this.getY();
+            // on simule un deplacement
+            this.setActions(action);
+            this.setX(c.getX());
+            this.setY(c.getY());
+
+            reachableCells.addAll(this.getReachableCells(world));
+
+            // on restitue l'ancien etat
+            this.setActions(oldAction);
+            this.setX(oldX);
+            this.setY(oldY);
+        }
+        return reachableCells;
     }
 
-    public Cell[] getReachableCells(World world){
-        return null;
+    public void move(World world, int x, int y, int newAction) {
+        this.setX(x);
+        this.setY(y);
+        this.setActions(newAction);
+        world.getCell(x, y).setUnit(this.id);
+        if (world.getCell(x, y).getOwner().id != id) {
+            world.getCell(x, y).setOwner(id);
+        }
+    }
+
+    // OK
+    private Set<Cell> getNeighboursCells(World world){
+        Set<Cell> reachableCells = new HashSet<>();
+        for (int x = this.getX()-1; x <= this.getX()+1; x++) {
+            for(int y = this.getY()-1; y <= this.getY()+1; y++){
+                if(x != this.getX() && y != this.getY()){
+                    Cell c = world.getCell(x,y);
+                    int res = Utils.checkMove(c, this.getX(), this.getY(), this.getUnitType(), this.getActions());
+                    //int res = this.checkMove(c);
+                    if ( res >= 0){
+                        // c'est une position atteignable
+                        reachableCells.add(c);
+                    }
+                }
+            }
+        }
+        return reachableCells;
     }
 }
