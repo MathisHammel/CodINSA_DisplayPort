@@ -42,12 +42,12 @@ public class Game {
         if (Utils.infiniteDistance(x, y, currentPlayer.units.get(idUnit).getX(),
                 currentPlayer.units.get(idUnit).getY()) != 1)
             return -1;
-        if (world.getCell(x, y).land == Land.RIVER
+        if (world.getCell(x, y).getLand() == Land.RIVER
                 && currentPlayer.units.get(idUnit).getUnitType() != UnitType.ENGINEER)
             return -1;
-        if (world.getCell(x, y).land == Land.MONTAIN && world.getCell(x, y).building != Building.ROAD)
+        if (world.getCell(x, y).getLand() == Land.MONTAIN && world.getCell(x, y).getBuilding() != Building.ROAD)
             return currentPlayer.units.get(idUnit).getActions() - 4;
-        if (world.getCell(x, y).building == Building.ROAD)
+        if (world.getCell(x, y).getBuilding() == Building.ROAD)
             return currentPlayer.units.get(idUnit).getActions() - 1;
         return currentPlayer.units.get(idUnit).getActions() - 2;
     }
@@ -55,7 +55,7 @@ public class Game {
     private void heal() {
         for (int i: currentPlayer.units.keySet()) {
             Unit unit =currentPlayer.units.get(i);
-            if (world.getCell(unit.getX(), unit.getY()).building == Building.HOSPITAL)
+            if (world.getCell(unit.getX(), unit.getY()).getBuilding() == Building.HOSPITAL)
                 unit.setHealth(unit.getMaxHealth());
             unit.setActions(unit.getMaxActions());
         }
