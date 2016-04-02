@@ -1,7 +1,7 @@
 package models;
 
 public abstract class GameEntity {
-    protected Game game;
+    protected Game game = null;
 
     protected GameEntity(Game game) {
         this.game = game;

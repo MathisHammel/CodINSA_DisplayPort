@@ -38,6 +38,9 @@ public class World extends GameEntity {
 
     public World setMap(Cell[][] map) {
         this.map = map;
+        if(this.game != null) {
+            this.bindGame(this.getGame());
+        }
         return this;
     }
 
@@ -59,6 +62,9 @@ public class World extends GameEntity {
             System.err.println("Trying to set out of bounds cell at " + x + ";" + y);
         } else {
             this.map[x][y] = cell;
+            if(this.game != null){
+                cell.bindGame(this.getGame());
+            }
         }
         return this;
     }
