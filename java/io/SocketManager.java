@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.List;
 
 import algorithms.ArtificialIntelligence;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import models.Game;
 
 public class SocketManager {
@@ -16,6 +18,8 @@ public class SocketManager {
     private PrintWriter writer;
     
     private int playerNumber;
+    
+    private Queue<Action> actionsToDo = new ArrayDeque<>();
     
     /**
      * Se connecte à un serveur.
@@ -35,6 +39,7 @@ public class SocketManager {
             Game.OUR_ID = this.playerNumber;
             
             writer.println("OK");
+            writer.flush();
             
             System.out.println("Connected to server.");
         } catch (IOException ex) {
@@ -47,14 +52,41 @@ public class SocketManager {
                 try {
                     String serverResponse;
                     while((serverResponse = reader.readLine()) != null) {
+                        if(serverResponse.startsWith("M:")) {
+                            System.out.println("Received initial situation.");
+                            
+                            serverResponse = "0:OK:"+ serverResponse;
+                        }
+                        
                         if(serverResponse.split(":")[1].equals("OK")) {
+                            System.out.println("Received new map");
+                            
                             Game game = Parser.parse(serverResponse);
-                            if(false /*notre tour*/) {
-                                List<Action> actions = ArtificialIntelligence.getNextActions(game);
-                                // this.send();
-                            }
+                            if(game.getCurrentPlayer() == game.getOurPlayer()) {
+                                if(actionsToDo.isEmpty()) {
+                                    List<Action> actions = ArtificialIntelligence.getNextActions(game);
+                                    actionsToDo.addAll(actions);
 
-                            // TODO: envoyer les actions
+                                    System.out.println("Got "+actionsToDo.size()+" new action(s)");
+                                }
+                                
+                                boolean repeat = true;
+                                while(!actionsToDo.isEmpty() && repeat) {
+                                    Action nextAction = actionsToDo.poll();
+                                    if(nextAction.check(game)) { 
+                                        send(nextAction);
+                                        repeat = false;
+                                    } else {
+                                        System.out.println("[Action "+nextAction.serialize()+" skipped]");
+                                    }
+
+                                    System.out.println(actionsToDo.size()+" action(s) left");
+                                }
+                            } else {
+                                actionsToDo.clear();
+                                
+                                System.out.println("Other player playing...");
+                            }                            
                         } else {
                             System.err.println("Server refused command, think I did something bad");
                             System.err.println(serverResponse);
@@ -78,16 +110,19 @@ public class SocketManager {
         socket.close();
     }
     
+    /*
     private void send(List<Action> actions) {
         for (Action action: actions) {
             send(action);
         }
     }
+    */
 
     private void send(Action action) {
         String actionString = action.serialize();
         System.out.println("Sent: "+actionString);
         writer.println(actionString);
+        writer.flush();
     }
 
 }

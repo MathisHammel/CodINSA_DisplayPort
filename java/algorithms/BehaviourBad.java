@@ -31,6 +31,6 @@ public class BehaviourBad implements BehaviourInterface {
             }
         }
 
-        return null;
+        return operations;
     }
 }

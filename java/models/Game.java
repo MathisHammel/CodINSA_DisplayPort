@@ -3,21 +3,19 @@ package models;
 import algorithms.Utils;
 
 public class Game {
-    public static int OUR_ID = 0;
+    public static int OUR_ID = -1;
+    public static int PLAYER0_CITY_X = -1;
+    public static int PLAYER0_CITY_Y = -1;
+    public static int PLAYER1_CITY_X = -1;
+    public static int PLAYER1_CITY_Y = -1;
 
     protected World world;
-    protected Player[] players;
+    protected Player[] players = new Player[2];
     protected int currentPlayerId;
     protected int roundNumber;
 
     public Game () {
-        this.players = new Player[]{
-            new Player(0),
-            new Player(1)
-        };
-        this.roundNumber = 0;
-        this.world = null;
-        this.currentPlayerId = 0;
+        this(new Player(0), new Player(1), 0, (World) null);
     }
 
     public Game(Player player0, Player player1, int currentPlayerId, Cell[][] map) {
@@ -25,10 +23,29 @@ public class Game {
     }
 
     public Game(Player player0, Player player1, int currentPlayerId, World world) {
+        this(player0, player1, currentPlayerId, world, 0);
+    }
+
+    public Game(Player player0, Player player1, int currentPlayerId, World world, int roundNumber) {
         this.players[0] = player0;
         this.players[1] = player1;
+        player0.setCity(world.getCell(PLAYER0_CITY_X, PLAYER0_CITY_Y));
+        player1.setCity(world.getCell(PLAYER1_CITY_X, PLAYER1_CITY_Y));
         this.currentPlayerId = currentPlayerId;
         this.world = world;
+        this.roundNumber = roundNumber;
+        this.bindGame();
+    }
+
+    public Game clone() {
+        World world = this.world.clone();
+        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world, this.roundNumber);
+    }
+
+    public void bindGame() {
+        this.players[0].bindGame(this);
+        this.players[1].bindGame(this);
+        this.world.bindGame(this);
     }
 
     public Player getPlayer(int id) {
@@ -52,7 +69,11 @@ public class Game {
     }
 
     public World getWorld() {
-        return this.getWorld();
+        return this.world;
+    }
+
+    public Unit getOurUnit(int unitId) {
+        return this.getOurPlayer().getUnit(unitId);
     }
 
     public void nextRound() {
@@ -116,10 +137,5 @@ public class Game {
             }
             unit.setActions(unit.getMaxActions());
         }
-    }
-
-    public Game clone() {
-        World world = this.world.clone();
-        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world);
     }
 }

@@ -28,6 +28,10 @@ public class Cell extends GameEntity {
         this.owner = owner;
     }
 
+    public void bindGame(Game g) {
+        this.setGame(g);
+    }
+
     public Land getLand() {
         return this.land;
     }

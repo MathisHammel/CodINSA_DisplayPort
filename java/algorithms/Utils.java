@@ -28,5 +28,4 @@ public class Utils {
             return availableActions - 1;
         return availableActions - 2;
     }
-
 }
