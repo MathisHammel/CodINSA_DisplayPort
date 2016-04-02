@@ -9,9 +9,9 @@ public class CellScoreOnCitiesDistance implements CellScoreInterface {
     public int evaluate(Game game, Cell cellToEvaluate) {
         Cell ourCity = game.us.city;
         Cell enemyCity = game.them.city;
-        int cityDistance = Utils.infiniteDistance(ourCity.x, ourCity.y, enemyCity.x, enemyCity.y);
-        int cellToOurCity = Utils.infiniteDistance(ourCity.x, ourCity.y, cellToEvaluate.x, cellToEvaluate.y);
-        int cellToEnemyCity = Utils.infiniteDistance(enemyCity.x, enemyCity.y, cellToEvaluate.x, cellToEvaluate.y);
+        int cityDistance = Utils.infiniteDistance(ourCity.getX(), ourCity.getY(), enemyCity.getX(), enemyCity.getY());
+        int cellToOurCity = Utils.infiniteDistance(ourCity.getX(), ourCity.getY(), cellToEvaluate.getX(), cellToEvaluate.getY());
+        int cellToEnemyCity = Utils.infiniteDistance(enemyCity.getX(), enemyCity.getY(), cellToEvaluate.getX(), cellToEvaluate.getY());
         return cellToOurCity + cellToEnemyCity - cityDistance;
     }
 }
