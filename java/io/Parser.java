@@ -48,9 +48,11 @@ public class Parser {
                 
                 units[i][j] = getUnit(mapInformation[1], i, j);
                 
+                int proprio = Integer.parseInt(mapInformation[3]);
+                
                 cells[i][j] = new Cell(i, j, getLand(mapInformation[0]), 
-                        getBuilding(mapInformation[2]), -1, 
-                        Integer.parseInt(mapInformation[3]));
+                        getBuilding(mapInformation[2], proprio, i, j), -1, 
+                        proprio);
             }
         }
         
@@ -98,10 +100,18 @@ public class Parser {
         return null;
     }
     
-    private static Building getBuilding(String s) {
+    private static Building getBuilding(String s, int player, int x, int y) {
         switch(s.charAt(0)) {
             case 'N': return Building.NONE;
-            case 'V': return Building.CITY;
+            case 'V':
+                if(player == 0 && Game.PLAYER0_CITY_X == -1) {
+                    Game.PLAYER0_CITY_X = x;
+                    Game.PLAYER0_CITY_Y = y;
+                } else if(player == 1 && Game.PLAYER1_CITY_X == -1) {
+                    Game.PLAYER1_CITY_X = x;
+                    Game.PLAYER1_CITY_Y = y;
+                }
+                return Building.CITY;
             case 'F': return Building.FORT;
             case 'R': return Building.ROAD;
             case 'P': return Building.BRIDGE;
