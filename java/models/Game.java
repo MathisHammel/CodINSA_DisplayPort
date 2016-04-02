@@ -17,16 +17,13 @@ public class Game {
     }
 
     public void nextRound() {
-        if (currentPlayer == us)
-            currentPlayer = them;
-        else
-            currentPlayer = us;
+        currentPlayer = otherPlayer();
         currentPlayer.gainGold(world);
         // creation
         char newUnitType = 'E';
         currentPlayer.createUnit(newUnitType);
         // attack
-        currentPlayer.attack(world, 0, 1, 1); // make the first unit attack (1, 1)
+        currentPlayer.attack(world, otherPlayer(), 0, 1, 1); // make the first unit attack (1, 1)
 
         // move
         int newAction = checkMove(0, 1, 1);  // format idUnit x y
@@ -63,5 +60,10 @@ public class Game {
         }
     }
 
+    private Player otherPlayer() {
+        if (currentPlayer == us)
+            return them;
+        return us;
+    }
 
 }

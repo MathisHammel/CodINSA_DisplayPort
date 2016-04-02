@@ -92,7 +92,7 @@ public class Player {
         units.put(newUnitId, u);
     }
 
-    public void attack(World world, int idUnit, int x, int y) {
+    public void attack(World world, Player otherPlayer, int idUnit, int x, int y) {
         if (world.getCell(x, y).unit == null)
             return;
         // check attack range
@@ -100,17 +100,48 @@ public class Player {
         int maxRange = units.get(idUnit).getMaxRange();
         if (world.getCell(x, y).land == Land.FOREST)
             maxRange = 1;
-        int distance = Utils.infiniteDistance(x, y, units.get(idUnit).getX(), units.get(idUnit).getY());
+        int minRangeOther = world.getCell(x, y).unit.getMinRange();
+        int maxRangeOther = world.getCell(x, y).unit.getMaxRange();
+        if (world.getCell(units.get(idUnit).getX(), units.get(idUnit).getY()).land == Land.FOREST)
+            maxRangeOther = 1;
 
+        int distance = Utils.infiniteDistance(x, y, units.get(idUnit).getX(), units.get(idUnit).getY());
         if (minRange > distance || distance < maxRange)
             return;
-        boolean counterAttack;
-
+        boolean counterAttack = true;
+        if (minRangeOther > distance || distance < maxRangeOther)
+            counterAttack = false;
 
         // check defense bonus
+        int defense = units.get(idUnit).getDefense();
+        if (world.getCell(units.get(idUnit).getX(), units.get(idUnit).getY()).building == Building.FORT)
+            defense += 2;
+        int defenseOther = world.getCell(x, y).unit.getDefense();
+        if (world.getCell(x, y).building == Building.FORT)
+            defenseOther += 2;
 
         // 3 rounds of attack
-
+        int ran;
+        for (int i = 0; i < 3; i++) {
+            ran = 1 + (int)(Math.random()) * 6;
+            if (ran == 6) {
+                world.getCell(x, y).unit.setHealth(world.getCell(x, y).unit.getHealth() - units.get(idUnit).getStrength());
+            } else if (ran >= defenseOther + 3) {
+                world.getCell(x, y).unit.setHealth(world.getCell(x, y).unit.getHealth() - units.get(idUnit).getStrength());
+            }
+            if (otherPlayer.unitDie(world.getCell(x, y).unit.getId()))
+                break;
+            if (counterAttack) {
+                ran = 1 + (int)(Math.random()) * 6;
+                if (ran == 6) {
+                   units.get(idUnit).setHealth(units.get(idUnit).getHealth() - world.getCell(x, y).unit.getStrength());
+                } else if (ran >= defense + 3) {
+                    units.get(idUnit).setHealth(units.get(idUnit).getHealth() - world.getCell(x, y).unit.getStrength());
+                }
+                if (unitDie(idUnit))
+                    break;
+            }
+        }
     }
 
     private boolean unitDie(int idUnit) {
