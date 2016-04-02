@@ -22,12 +22,24 @@ public class Player extends GameEntity {
     }
     
     public Player(int id, int gold, Map<Integer, Unit> units){
+        this(id, gold, units, null, 1);
+    }
+
+    public Player(int id, int gold, Map<Integer, Unit> units, Cell city, int cellsNumber) {
         super(null);
         this.id = id;
         this.gold = gold;
         this.units = units;
-        this.cellsNumber = 1;
-        this.city = null;
+        this.cellsNumber = cellsNumber;
+        this.city = city;
+    }
+
+    public Player clone() {
+        Map<Integer, Unit> units = new HashMap<Integer, Unit>();
+        for(int id: units.keySet()) {
+            units.put(id, units.get(id).clone());
+        }
+        return new Player(id, gold, units, city, cellsNumber);
     }
 
     public int getId() {
@@ -56,10 +68,6 @@ public class Player extends GameEntity {
 
     public Unit setUnit(int unitId, Unit unit) {
         return this.units.put(unitId, unit);
-    }
-
-    public Player clone() {
-        return null;
     }
 
     private boolean unitDie(int idUnit) {
