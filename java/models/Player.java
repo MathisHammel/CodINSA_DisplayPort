@@ -12,7 +12,9 @@ public class Player extends GameEntity {
 
     protected int id;
     protected int gold;
-    protected Cell city;
+    protected int cityX;
+    protected int cityY;
+
     // id, unit
     protected Map<Integer, Unit> units;
     protected int cellsNumber;
@@ -22,16 +24,17 @@ public class Player extends GameEntity {
     }
     
     public Player(int id, int gold, Map<Integer, Unit> units){
-        this(id, gold, units, null, 1);
+        this(id, gold, units, -1, -1, 1);
     }
 
-    public Player(int id, int gold, Map<Integer, Unit> units, Cell city, int cellsNumber) {
+    public Player(int id, int gold, Map<Integer, Unit> units, int cityX, int cityY, int cellsNumber) {
         super(null);
         this.id = id;
         this.gold = gold;
         this.units = units;
         this.cellsNumber = cellsNumber;
-        this.city = city;
+        this.cityX = cityX;
+        this.cityY = cityY;
     }
 
     public Player clone() {
@@ -39,7 +42,14 @@ public class Player extends GameEntity {
         for(int id: units.keySet()) {
             units.put(id, units.get(id).clone());
         }
-        return new Player(id, gold, units, city, cellsNumber);
+        return new Player(id, gold, units, cityX, cityY, cellsNumber);
+    }
+
+    public void bindGame(Game g) {
+        this.setGame(g);
+        for(int id: units.keySet()) {
+            units.get(id).bindGame(g);
+        }
     }
 
     public int getId() {
@@ -55,7 +65,7 @@ public class Player extends GameEntity {
     }
 
     public Cell getCity() {
-        return this.city;
+        return this.getGame().getWorld().getCell(this.cityX, this.cityY);
     }
 
     public Map<Integer, Unit> getUnits() {
@@ -70,8 +80,15 @@ public class Player extends GameEntity {
         return this.units.put(unitId, unit);
     }
 
+    public Player setCity(int x, int y) {
+        this.cityX = x;
+        this.cityY = y;
+        return this;
+    }
+
     public Player setCity(Cell city) {
-        this.city = city;
+        this.cityX = city.getX();
+        this.cityY = city.getY();
         return this;
     }
 
@@ -108,39 +125,39 @@ public class Player extends GameEntity {
 
     public void createUnit(char newUnitType) {
         UnitType type = UnitType.PEASANT;
-        Unit u = new Peasant(city.getX(), city.getY(), id);
+        Unit u = new Peasant(this.cityX, this.cityY, id);
         switch (newUnitType) {
             case 'P':
                 type = UnitType.PEASANT;
-                u = new Peasant(city.getX(), city.getY(), id);
+                u = new Peasant(this.cityX, this.cityY, id);
                 break;
             case 'A':
                 type = UnitType.ARCHER;
-                u = new Archer(city.getX(), city.getY(), id);
+                u = new Archer(this.cityX, this.cityY, id);
                 break;
             case 'N':
                 type = UnitType.DWARF;
-                u = new Dwarf(city.getX(), city.getY(), id);
+                u = new Dwarf(this.cityX, this.cityY, id);
                 break;
             case 'B':
                 type = UnitType.BALISTA;
-                u = new Balista(city.getX(), city.getY(), id);
+                u = new Balista(this.cityX, this.cityY, id);
                 break;
             case 'I':
                 type = UnitType.ENGINEER;
-                u = new Engineer(city.getX(), city.getY(), id);
+                u = new Engineer(this.cityX, this.cityY, id);
                 break;
             case 'E':
                 type = UnitType.SCOUT;
-                u = new Peasant(city.getX(), city.getY(), id);
+                u = new Peasant(this.cityX, this.cityY, id);
                 break;
             case 'C':
                 type = UnitType.PALADIN;
-                u = new Paladin(city.getX(), city.getY(), id);
+                u = new Paladin(this.cityX, this.cityY, id);
                 break;
             case 'S':
                 type = UnitType.ARCHER;
-                u = new Archer(city.getX(), city.getY(), id);
+                u = new Archer(this.cityX, this.cityY, id);
                 break;
         }
         if (gold < type.cost) {

@@ -1,8 +1,5 @@
 package models;
 
-/**
- * Created by Charles on 02/04/2016.
- */
 public class World extends GameEntity {
     protected int size;
     protected Cell[][] map;
@@ -11,6 +8,15 @@ public class World extends GameEntity {
         super(null);
         this.size = map.length;
         this.map = map;
+    }
+
+    public void bindGame(Game g) {
+        this.setGame(g);
+        for(int x = 0; x < this.size; x++) {
+            for(int y = 0; y < this.size; y++) {
+                this.map[x][y].bindGame(g);
+            }
+        }
     }
 
     public void initEmptyMap() {

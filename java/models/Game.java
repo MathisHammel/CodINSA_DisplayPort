@@ -44,6 +44,12 @@ public class Game {
         return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world);
     }
 
+    public void bindGame() {
+        this.players[0].bindGame(this);
+        this.players[1].bindGame(this);
+        this.world.bindGame(this);
+    }
+
     public Player getPlayer(int id) {
         return this.players[id];
     }
