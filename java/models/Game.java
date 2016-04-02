@@ -29,8 +29,9 @@ public class Game {
         int newAction = checkMove(0, 1, 1);  // format idUnit x y
         if (newAction >= 0) {
             currentPlayer.moveUnit(world, 0, 1, 1, newAction); // move the first unit to (1, 1)
-
         }
+
+
 
         heal();  // interaction between hospitals-units and action regeneration
     }

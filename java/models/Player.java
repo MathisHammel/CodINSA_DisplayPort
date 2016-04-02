@@ -89,6 +89,7 @@ public class Player {
             return;
         gold -= type.cost;
         int newUnitId = Collections.max(units.keySet()) + 1;
+        u.setActions(2);
         units.put(newUnitId, u);
     }
 
