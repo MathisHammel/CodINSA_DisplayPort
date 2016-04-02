@@ -31,6 +31,11 @@ public class Game {
         this.world = world;
     }
 
+    public Game clone() {
+        World world = this.world.clone();
+        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world);
+    }
+
     public Player getPlayer(int id) {
         return this.players[id];
     }
@@ -53,6 +58,10 @@ public class Game {
 
     public World getWorld() {
         return this.getWorld();
+    }
+
+    public Unit getOurUnit(int unitId) {
+        return this.getOurPlayer().getUnit(unitId);
     }
 
     public void nextRound() {
@@ -116,10 +125,5 @@ public class Game {
             }
             unit.setActions(unit.getMaxActions());
         }
-    }
-
-    public Game clone() {
-        World world = this.world.clone();
-        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world);
     }
 }

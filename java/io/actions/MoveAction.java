@@ -1,6 +1,8 @@
 package io.actions;
 
+import algorithms.Utils;
 import io.Action;
+import models.Cell;
 import models.Game;
 import models.Unit;
 
@@ -33,6 +35,8 @@ public class MoveAction implements Action {
 
     @Override
     public boolean check(Game game) {
-        return false;
+        Unit unit = game.getCurrentPlayer().getUnit(this.unitId);
+        Cell target = game.getWorld().getCell(this.x, this.y);
+        return Utils.checkMove(target, unit.getX(), unit.getY(), unit.getUnitType(), unit.getActions()) >= 0;
     }
 }

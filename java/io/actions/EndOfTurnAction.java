@@ -13,6 +13,6 @@ public class EndOfTurnAction implements Action {
 
     @Override
     public boolean check(Game game) {
-        return false;
+        return true;
     }
 }
