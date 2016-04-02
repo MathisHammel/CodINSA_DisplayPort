@@ -3,7 +3,7 @@ package models;
 /**
  * Created by Charles on 02/04/2016.
  */
-public class Unit {
+public abstract class Unit {
     private int actions;
     private int health;
     private UnitType unitType;
@@ -92,8 +92,6 @@ public class Unit {
         return this.unitType.cost;
     }
 
-    /*public void moveTo(int x, int y){
-
-    }*/
+    public abstract Unit clone();
 
 }
