@@ -9,13 +9,15 @@ public class Unit {
     private UnitType unitType;
     private int x;
     private int y;
+    private int id;
 
-    public Unit(UnitType type, int x, int y) {
+    public Unit(UnitType type, int x, int y, int id) {
         this.unitType = type;
         this.actions = type.maxActions;
         this.health = type.maxHealth;
         this.x = x;
         this.y = y;
+        this.id = id;
     }
 
     public int getActions(){
@@ -32,6 +34,10 @@ public class Unit {
 
     public int getY(){
         return this.y;
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public Unit setActions(int actions){
