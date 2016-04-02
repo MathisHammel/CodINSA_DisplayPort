@@ -61,7 +61,7 @@ public class Game {
         }
     }
 
-    private Player otherPlayer() {
+    public Player otherPlayer() {
         if (currentPlayer == us)
             return them;
         return us;
