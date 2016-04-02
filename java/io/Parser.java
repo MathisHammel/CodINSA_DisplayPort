@@ -73,7 +73,7 @@ public class Parser {
                 units[x][y].setHealth(Integer.parseInt(playerInfo[2]));
                 
                 playerUnits.put(units[x][y].getId(), units[x][y]);
-                cells[x][y].unit = units[x][y].getId();
+                cells[x][y].setUnit(units[x][y]);
             }
             
             int gold = Integer.parseInt(playerInfos[playerInfos.length - 1]);
