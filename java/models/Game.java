@@ -15,15 +15,7 @@ public class Game {
     protected int roundNumber;
 
     public Game () {
-        this.players = new Player[]{
-            new Player(0),
-            new Player(1)
-        };
-        this.players[0].setCity(world.getCell(PLAYER0_CITY_X, PLAYER0_CITY_Y));
-        this.players[0].setCity(world.getCell(PLAYER1_CITY_X, PLAYER1_CITY_Y));
-        this.roundNumber = 0;
-        this.world = null;
-        this.currentPlayerId = 0;
+        this(new Player(0), new Player(1), 0, (World) null);
     }
 
     public Game(Player player0, Player player1, int currentPlayerId, Cell[][] map) {
@@ -31,17 +23,23 @@ public class Game {
     }
 
     public Game(Player player0, Player player1, int currentPlayerId, World world) {
+        this(player0, player1, currentPlayerId, world, 0);
+    }
+
+    public Game(Player player0, Player player1, int currentPlayerId, World world, int roundNumber) {
         this.players[0] = player0;
         this.players[1] = player1;
         player0.setCity(world.getCell(PLAYER0_CITY_X, PLAYER0_CITY_Y));
         player1.setCity(world.getCell(PLAYER1_CITY_X, PLAYER1_CITY_Y));
         this.currentPlayerId = currentPlayerId;
         this.world = world;
+        this.roundNumber = roundNumber;
+        this.bindGame();
     }
 
     public Game clone() {
         World world = this.world.clone();
-        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world);
+        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world, this.roundNumber);
     }
 
     public void bindGame() {
