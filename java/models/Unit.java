@@ -155,7 +155,7 @@ public abstract class Unit extends GameEntity {
         Map<Cell, ReachableResult> reachableCells = new HashMap<>();
         for (int x = this.getX()-1; x <= this.getX()+1; x++) {
             for(int y = this.getY()-1; y <= this.getY()+1; y++){
-                if(x != this.getX() && y != this.getY()){
+                if(!(x == this.getX() && y == this.getY())){
                     Cell c = world.getCell(x,y);
                     int res = Utils.checkMove(c, this.getX(), this.getY(), this.getUnitType(), this.getActions());
                     //int res = this.checkMove(c);
