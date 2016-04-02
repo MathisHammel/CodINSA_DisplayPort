@@ -28,7 +28,7 @@ public class Player {
     public Player(int id, int gold, Map<Integer, Unit> units){
         this.id = id;
         this.gold = gold;
-        this.units = new HashMap<>();
+        this.units = units;
         this.cellsNumber = 1;
         this.city = null;
     }

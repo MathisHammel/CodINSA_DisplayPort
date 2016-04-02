@@ -13,6 +13,7 @@ import models.Player;
 import models.Unit;
 import models.units.Archer;
 import models.units.Balista;
+import models.units.Dwarf;
 import models.units.Engineer;
 import models.units.Paladin;
 import models.units.Peasant;
@@ -36,6 +37,8 @@ public class Parser {
         String[] mapRows = entries[3].split(";;");
 
         Cell[][] cells = new Cell[mapRows.length][mapRows.length];
+        
+        Unit[][] units = new Unit[mapRows.length][mapRows.length];
 
         for(int i = 0; i < mapRows.length; i++) {
             String[] mapCells = mapRows[i].split(";");
@@ -43,8 +46,10 @@ public class Parser {
             for(int j = 0; j < mapCells.length; j++) {
                 String[] mapInformation = mapCells[j].split(",");
                 
+                units[i][j] = getUnit(mapInformation[1], i, j);
+                
                 cells[i][j] = new Cell(i, j, getLand(mapInformation[0]), 
-                        getBuilding(mapInformation[2]), getUnit(mapInformation[1], i, j), 
+                        getBuilding(mapInformation[2]), -1, 
                         Integer.parseInt(mapInformation[3]));
             }
         }
@@ -52,7 +57,7 @@ public class Parser {
         List<Player> players = new ArrayList<>();
         
         for(int i = 5; i < entries.length; i += 2) {
-            Map<Integer, Unit> units = new HashMap<>();
+            Map<Integer, Unit> playerUnits = new HashMap<>();
             
             int playNumber = Integer.parseInt(entries[i].substring(1));
             
@@ -63,16 +68,17 @@ public class Parser {
                 
                 int x = Integer.parseInt(playerInfo[3]);
                 int y = Integer.parseInt(playerInfo[4]);
-                cells[x][y].unit.setId(Integer.parseInt(playerInfo[0]));
-                cells[x][y].unit.setActions(Integer.parseInt(playerInfo[1]));
-                cells[x][y].unit.setHealth(Integer.parseInt(playerInfo[2]));
+                units[x][y].setId(Integer.parseInt(playerInfo[0]));
+                units[x][y].setActions(Integer.parseInt(playerInfo[1]));
+                units[x][y].setHealth(Integer.parseInt(playerInfo[2]));
                 
-                units.put(cells[x][y].unit.getId(), cells[x][y].unit);
+                playerUnits.put(units[x][y].getId(), units[x][y]);
+                cells[x][y].unit = units[x][y].getId();
             }
             
             int gold = Integer.parseInt(playerInfos[playerInfos.length - 1]);
             
-            Player p = new Player(playNumber, gold, units);
+            Player p = new Player(playNumber, gold, playerUnits);
             players.add(p);
         }
         
@@ -108,8 +114,8 @@ public class Parser {
         switch(s) {
             case "P": return new Peasant(x, y);
             case "A": return new Archer(x, y);
-            //case "N": return new Dwarf(x, y);
-            case "N": return null;
+            case "N": return new Dwarf(x, y);
+            case "O": return null;
             case "B": return new Balista(x, y);
             case "I": return new Engineer(x, y);
             case "E": return new Scout(x, y);
