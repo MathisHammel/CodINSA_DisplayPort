@@ -9,7 +9,7 @@ public class Player {
     Cell city;
     // id, unit
     Map<Integer, Unit> units;
-    int cells;
+    int cellsNumber;
 
     public final static int START_GOLD = 100;
 
@@ -17,7 +17,7 @@ public class Player {
         this.id = id;
         this.gold = START_GOLD;
         this.units = new HashMap<>();
-        this.cells = 1;
+        this.cellsNumber = 1;
         this.city = null;
     }
 

@@ -21,7 +21,7 @@ public class World {
         this.map = new Cell[this.size][this.size];
         for(int x = 0; x < this.size; x++) {
             for(int y = 0; y < this.size; y++) {
-                this.map[x][y] = new Cell(Land.PLAIN, Building.NONE);
+                this.map[x][y] = new Cell(x, y, Land.PLAIN, Building.NONE);
             }
         }
     }
