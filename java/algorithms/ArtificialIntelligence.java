@@ -1,17 +1,11 @@
 package algorithms;
 
-import io.Action;
-import io.actions.CreateAction;
-import io.actions.EndOfTurnAction;
-import io.actions.MoveAction;
+import rules.Action;
 import models.Game;
-import models.Unit;
-import models.UnitType;
-import models.units.Peasant;
+import rules.actions.EndOfTurnAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ArtificialIntelligence {
     public static Action getNextAction(Game game) {

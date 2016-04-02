@@ -1,6 +1,6 @@
 package algorithms;
 
-import io.Action;
+import rules.Action;
 import models.Cell;
 import models.Game;
 import models.Unit;

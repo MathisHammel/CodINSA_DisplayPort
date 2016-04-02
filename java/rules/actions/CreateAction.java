@@ -1,9 +1,8 @@
-package io.actions;
+package rules.actions;
 
-import com.sun.org.apache.xml.internal.security.algorithms.JCEMapper;
-import io.Action;
+import rules.Action;
 import models.*;
-import algorithms.Rules;
+import rules.Rules;
 
 /**
  * Demande à une unité de fabriquer un bâtiment.

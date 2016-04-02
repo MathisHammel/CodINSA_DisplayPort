@@ -1,5 +1,6 @@
-package algorithms;
+package rules;
 
+import algorithms.Utils;
 import models.Cell;
 import models.Game;
 import models.Unit;
@@ -26,12 +27,10 @@ public class Rules {
             System.err.println("Cannot create: city is full");
             return false;
         }
-
         if(game.getCurrentPlayer().getGold() < unitType.cost) {
             System.err.println("Cannot create: unit is too expensive");
             return false;
         }
-
         return true;
     }
 
@@ -39,7 +38,17 @@ public class Rules {
         return false;
     }
 
-    public static boolean checkMove(){
-        return false;
+    public static boolean checkMove(Game game, int unitId, int x, int y) {
+        Unit unit = game.getCurrentPlayer().getUnit(unitId);
+        if (unit == null) {
+            System.err.println("Cannot move: unit " + unitId + " not found");
+            return false;
+        }
+        Cell target = game.getWorld().getCell(x, y);
+        if (target == null) {
+            System.err.println("Cannot move: target not found");
+            return false;
+        }
+        return Utils.checkMove(target, unit.getX(), unit.getY(), unit.getUnitType(), unit.getActions()) >= 0;
     }
 }

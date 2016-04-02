@@ -1,7 +1,7 @@
 package algorithms;
 
 
-import io.Action;
+import rules.Action;
 import models.Game;
 
 import java.util.List;

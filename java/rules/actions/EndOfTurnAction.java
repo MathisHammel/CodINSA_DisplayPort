@@ -1,8 +1,7 @@
-package io.actions;
+package rules.actions;
 
-import io.Action;
+import rules.Action;
 import models.Game;
-import models.Unit;
 
 public class EndOfTurnAction implements Action {
     public EndOfTurnAction() {}
