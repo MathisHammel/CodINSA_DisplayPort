@@ -1,7 +1,9 @@
 package io.actions;
 
+import com.sun.org.apache.xml.internal.security.algorithms.JCEMapper;
 import io.Action;
 import models.*;
+import algorithms.Rules;
 
 /**
  * Demande à une unité de fabriquer un bâtiment.
@@ -40,16 +42,6 @@ public class CreateAction implements Action {
 
     @Override
     public boolean check(Game game) {
-        Cell city = game.getCurrentPlayer().getCity();
-        if (city == null) {
-            System.err.println("Cannot create: city not found");
-            return false;
-        }
-        Unit unit = game.getWorld().getCell(city.getX(), city.getY()).getUnit();
-        if (unit != null) {
-            System.err.println("Cannot create: city is full");
-            return false;
-        }
-        return true;
+        return Rules.checkCreate(game, this.unitType);
     }
 }

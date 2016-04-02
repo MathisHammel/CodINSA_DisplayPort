@@ -19,7 +19,10 @@ public class BehaviourBad implements BehaviourInterface {
         // Buy engineers, and send them to the enemy city
         if(game.getCurrentPlayer().getUnits().isEmpty()){
             // on essaie de créer un ingénieur
-
+            if(Rules.checkCreate(game, UnitType.ENGINEER)){
+                operations.add(new CreateAction(UnitType.ENGINEER));
+                return operations;
+            }
         }
         for (Map.Entry<Integer,Unit> intUnit: game.getCurrentPlayer().getUnits().entrySet()) {
             Unit unit = intUnit.getValue();
