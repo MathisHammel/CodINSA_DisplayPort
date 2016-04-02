@@ -55,7 +55,7 @@ public class Player extends GameEntity {
     }
 
     public Cell getCity() {
-        return null;
+        return this.city;
     }
 
     public Map<Integer, Unit> getUnits() {
@@ -68,6 +68,11 @@ public class Player extends GameEntity {
 
     public Unit setUnit(int unitId, Unit unit) {
         return this.units.put(unitId, unit);
+    }
+
+    public Player setCity(Cell city) {
+        this.city = city;
+        return this;
     }
 
     private boolean unitDie(int idUnit) {
