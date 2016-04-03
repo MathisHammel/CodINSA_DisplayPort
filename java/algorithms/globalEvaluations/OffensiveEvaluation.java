@@ -1,9 +1,10 @@
-package algorithms.globalEvaluations;
+package algorithms.globalevaluations;
 
 import models.Cell;
 import models.Game;
 import models.Player;
 import models.Unit;
+import rules.UnitType;
 
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,17 @@ public class OffensiveEvaluation implements GlobalEvaluationInterface {
             cellCoverage += curUnit.getStrength() * (protectedCells + 3 * attackable.size());
         }
 
-        return cellCoverage;
+        double ennemyOccupation = 0;
+        Cell city = otherPlayer.getCity();
+        if (city.getOwnerId() != otherPlayer.getId()) {
+            ennemyOccupation += 100;
+            if (city.getUnit() != null) {
+                ennemyOccupation += 150;
+                if (city.getUnit().getUnitType() == UnitType.ENGINEER) {
+                    ennemyOccupation += 1e8;
+                }
+            }
+        }
+        return cellCoverage + ennemyOccupation;
     }
 }

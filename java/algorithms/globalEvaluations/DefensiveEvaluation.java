@@ -1,4 +1,4 @@
-package algorithms.globalEvaluations;
+package algorithms.globalevaluations;
 
 import algorithms.Utils;
 import models.Cell;

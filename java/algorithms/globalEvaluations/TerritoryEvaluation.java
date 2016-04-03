@@ -1,6 +1,5 @@
-package algorithms.globalEvaluations;
+package algorithms.globalevaluations;
 
-import algorithms.globalEvaluations.GlobalEvaluationInterface;
 import models.Building;
 import models.Cell;
 import models.Game;
