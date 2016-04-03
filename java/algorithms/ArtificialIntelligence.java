@@ -23,6 +23,9 @@ public class ArtificialIntelligence {
         } else {
             BehaviourInterface moveScouts = new BehaviourExploration();
             actions.addAll(moveScouts.decideActions(game));
+            
+            BehaviourInterface moveSoldier = new BehaviourOffensive();
+            actions.addAll(moveSoldier.decideActions(game));
         }
 
         /*

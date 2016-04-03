@@ -11,6 +11,8 @@ import models.Building;
 public class Rules {
 
     public static boolean checkAttack(Game game, int attackerId, int x, int y) {
+        if(x < 0 || y < 0 || x >= game.getWorld().getSize() || y >= game.getWorld().getSize()) return false;
+        
         Cell targetCell = game.getWorld().getCell(x, y);
         if (targetCell == null) {
             System.err.println("Cannot attack: targetCell not found");
@@ -23,6 +25,10 @@ public class Rules {
         Unit attacker = game.getCurrentPlayer().getUnit(attackerId);
         if (attacker == null) {
             System.err.println("Cannot attack: attacker not found");
+            return false;
+        }
+        if(attacker.getActions() < 2) {
+            System.err.println("Cannot attack: not enough actions");
             return false;
         }
         int minRange = attacker.getMinRange();
@@ -110,6 +116,8 @@ public class Rules {
     }
 
     public static boolean checkMove(Game game, int unitId, int x, int y) {
+        if(x < 0 || y < 0 || x >= game.getWorld().getSize() || y >= game.getWorld().getSize()) return false;
+        
         Unit unit = game.getCurrentPlayer().getUnit(unitId);
         if (unit == null) {
             System.err.println("Cannot move: unit " + unitId + " not found");
@@ -128,6 +136,8 @@ public class Rules {
     }
 
     public static boolean isCellAccessible(Game game, UnitType unitType, int x, int y) {
+        if(x < 0 || y < 0 || x >= game.getWorld().getSize() || y >= game.getWorld().getSize()) return false;
+        
         Cell target = game.getWorld().getCell(x, y);
         if (target == null) {
             // Cell is out of bounds
