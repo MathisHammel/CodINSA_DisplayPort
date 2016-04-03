@@ -1,6 +1,7 @@
 package models;
 
 import algorithms.Utils;
+import rules.UnitType;
 
 public class Game {
     public static int OUR_ID = -1;

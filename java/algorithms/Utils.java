@@ -1,9 +1,8 @@
 package algorithms;
 
-import models.Building;
 import models.Cell;
-import models.Land;
-import models.UnitType;
+import rules.UnitType;
+import rules.Rules;
 
 
 public class Utils {
@@ -11,21 +10,18 @@ public class Utils {
         return Math.max(Math.abs(x1 - x2), Math.abs(y1 - y2));
     }
 
-    public static int checkMove(Cell cellToReach, int xUnit,int yUnit, UnitType unitType, int availableActions) {
-        if (cellToReach == null)
+    public static int getActionsAfterMove(Cell cellToReach, int xUnit, int yUnit, UnitType unitType, int availableActions) {
+        boolean isAccessible = Rules.isCellAccessible(cellToReach.getGame(), unitType, cellToReach.getX(), cellToReach.getY());
+        if(!isAccessible) {
             return -1;
-        if (Utils.infiniteDistance(cellToReach.getX(), cellToReach.getY(), xUnit,
-                yUnit) != 1)
+        }
+        int cost = Rules.getCellCost(cellToReach.getGame(), cellToReach);
+        if (cost > availableActions) {
             return -1;
-        if (cellToReach.getUnit() != null)
+        }
+        if (Utils.infiniteDistance(cellToReach.getX(), cellToReach.getY(), xUnit, yUnit) != 1){
             return -1;
-        if (cellToReach.getLand() == Land.RIVER
-                && unitType != UnitType.ENGINEER)
-            return -1;
-        if (cellToReach.getLand() == Land.MONTAIN && cellToReach.getBuilding() != Building.ROAD)
-            return availableActions - 4;
-        if (cellToReach.getBuilding() == Building.ROAD)
-            return availableActions - 1;
-        return availableActions - 2;
+        }
+        return availableActions - cost;
     }
 }

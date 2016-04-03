@@ -28,10 +28,18 @@ public class BuildAction implements Action {
     public String serialize() {
         char buildId = 'Q';
         switch(this.building) {
-            case BRIDGE: buildId = 'P'; break;
-            case FORT: buildId = 'F'; break;
-            case HOSPITAL: buildId = 'H'; break;
-            case ROAD: buildId = 'R'; break;
+            case BRIDGE:
+                buildId = 'P';
+                break;
+            case FORT:
+                buildId = 'F';
+                break;
+            case HOSPITAL:
+                buildId = 'H';
+                break;
+            case ROAD:
+                buildId = 'R';
+                break;
             case NONE:
                 System.err.println("How am I supposed to build nothing?");
                 return "";
