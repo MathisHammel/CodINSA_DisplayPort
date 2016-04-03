@@ -1,9 +1,7 @@
 package algorithms;
 
-import models.Building;
 import models.Cell;
-import models.Land;
-import models.UnitType;
+import rules.UnitType;
 import rules.Rules;
 
 

@@ -3,7 +3,7 @@ package algorithms;
 import rules.Action;
 import models.Game;
 import models.Unit;
-import models.UnitType;
+import rules.UnitType;
 import rules.Rules;
 import rules.actions.CreateAction;
 import rules.actions.DestroyAction;

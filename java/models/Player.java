@@ -2,6 +2,7 @@ package models;
 
 import algorithms.Utils;
 import models.units.*;
+import rules.UnitType;
 
 import java.util.Collections;
 import java.util.HashMap;

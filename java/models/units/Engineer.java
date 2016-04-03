@@ -1,7 +1,7 @@
 package models.units;
 
 import models.Unit;
-import models.UnitType;
+import rules.UnitType;
 
 public class Engineer extends Unit{
 

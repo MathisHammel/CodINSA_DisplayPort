@@ -1,7 +1,7 @@
 package models.units;
 
 import models.Unit;
-import models.UnitType;
+import rules.UnitType;
 
 public class Soldier extends Unit{
     public Soldier(int x, int y) {

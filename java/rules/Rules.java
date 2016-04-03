@@ -1,6 +1,5 @@
 package rules;
 
-import algorithms.Utils;
 import models.*;
 
 public class Rules {
