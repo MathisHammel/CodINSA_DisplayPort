@@ -84,6 +84,7 @@ public class Simulator {
 
         game.getWorld().getCell(unit.getX(), unit.getY()).setUnit(-1);
         game.getWorld().getCell(x, y).setUnit(unit.getId());
+        game.getWorld().getCell(x, y).setOwner(game.getCurrentPlayerId());
 
         unit.setX(x);
         unit.setY(y);
