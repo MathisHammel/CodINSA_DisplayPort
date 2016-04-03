@@ -4,6 +4,7 @@ import rules.Action;
 import models.Building;
 import models.Game;
 import models.Unit;
+import rules.Rules;
 
 
 /**
@@ -52,6 +53,6 @@ public class BuildAction implements Action {
 
     @Override
     public boolean check(Game game) {
-        return false;
+        return Rules.checkBuild(game, builderId);
     }
 }
