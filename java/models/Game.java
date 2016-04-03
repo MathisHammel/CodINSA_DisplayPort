@@ -77,7 +77,7 @@ public class Game {
         return this.getOurPlayer().getUnit(unitId);
     }
 
-    public void nextRound() {
+    /*public void nextRound() {
         this.currentPlayerId = 1 - currentPlayerId;
         Player currentPlayer = this.getCurrentPlayer();
 
@@ -96,7 +96,7 @@ public class Game {
         }
 
         heal();  // interaction between hospitals-units and action regeneration
-    }
+    }*/
 
     // return the cost to move to x,y (-1 if impossible)
     private int checkMove(int idUnit, int x, int y) {
