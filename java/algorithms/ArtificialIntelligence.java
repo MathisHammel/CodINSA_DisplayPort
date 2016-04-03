@@ -39,8 +39,6 @@ public class ArtificialIntelligence {
         BehaviourInterface algorithm = new BehaviourBad();
         actions.addAll(algorithm.decideActions(game));
         
-        if(actions.isEmpty()) actions.add(new EndOfTurnAction());
-        
         return actions;
     }
 }

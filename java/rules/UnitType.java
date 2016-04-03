@@ -1,8 +1,5 @@
-package models;
+package rules;
 
-/**
- * Created by Charles on 02/04/2016.
- */
 public class UnitType {
     public int maxActions;
     public int maxHealth;

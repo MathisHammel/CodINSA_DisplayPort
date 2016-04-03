@@ -3,6 +3,7 @@ package rules.actions;
 import rules.Action;
 import models.*;
 import rules.Rules;
+import rules.UnitType;
 
 /**
  * Demande à une unité de fabriquer un bâtiment.

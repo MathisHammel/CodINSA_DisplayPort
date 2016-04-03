@@ -1,7 +1,7 @@
 package models.units;
 
 import models.Unit;
-import models.UnitType;
+import rules.UnitType;
 
 public class Scout extends Unit{
     public Scout(int x, int y) {

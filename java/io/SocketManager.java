@@ -12,6 +12,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import models.Game;
 import rules.Action;
+import rules.actions.EndOfTurnAction;
 
 public class SocketManager {
     private Socket socket;
@@ -63,12 +64,18 @@ public class SocketManager {
                             System.out.println("Received new map");
                             
                             Game game = Parser.parse(serverResponse);
+                            
                             if(game.getCurrentPlayer() == game.getOurPlayer()) {
                                 if(actionsToDo.isEmpty()) {
                                     List<Action> actions = ArtificialIntelligence.getNextActions(game);
                                     actionsToDo.addAll(actions);
 
                                     System.out.println("Got "+actionsToDo.size()+" new action(s)");
+                                    
+                                    if(actionsToDo.isEmpty()) {
+                                        actionsToDo.add(new EndOfTurnAction());
+                                        System.out.println("Added default end of turn action");
+                                    }
                                 }
                                 
                                 boolean repeat = true;
@@ -82,6 +89,11 @@ public class SocketManager {
                                     }
 
                                     System.out.println(actionsToDo.size()+" action(s) left");
+                                    
+                                    if(repeat && actionsToDo.isEmpty()) {
+                                        actionsToDo.add(new EndOfTurnAction());
+                                        System.out.println("Added default end of turn action");
+                                    }
                                 }
                             } else {
                                 actionsToDo.clear();
