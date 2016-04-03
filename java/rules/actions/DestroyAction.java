@@ -1,6 +1,6 @@
-package io.actions;
+package rules.actions;
 
-import io.Action;
+import rules.Action;
 import models.Building;
 import models.Game;
 import models.Unit;

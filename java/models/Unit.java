@@ -12,10 +12,6 @@ public abstract class Unit extends GameEntity {
     protected int y;
     protected int id;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Unit(UnitType type, int x, int y, int id) {
         this(type, x, y, id, type.maxActions, type.maxHealth);
     }
@@ -74,6 +70,10 @@ public abstract class Unit extends GameEntity {
         return this;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public UnitType getUnitType(){
         return this.unitType;
     }
@@ -107,7 +107,6 @@ public abstract class Unit extends GameEntity {
     }
 
     public abstract Unit clone();
-
 
     public Map<Cell, ReachableResult> getReachableCells(World world){
         Map<Cell, ReachableResult> reachableCells = this.getNeighboursCells(world);

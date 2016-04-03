@@ -1,11 +1,10 @@
 package algorithms;
 
-import io.Action;
-import io.actions.MoveAction;
+import rules.Action;
+import rules.actions.MoveAction;
 import models.Cell;
 import models.Game;
 import models.Unit;
-import models.UnitType;
 
 import java.util.*;
 

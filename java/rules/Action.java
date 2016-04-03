@@ -1,4 +1,4 @@
-package io;
+package rules;
 
 import models.Game;
 

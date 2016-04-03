@@ -1,7 +1,7 @@
-package io.actions;
+package rules.actions;
 
 import algorithms.Utils;
-import io.Action;
+import rules.Action;
 import models.Cell;
 import models.Game;
 import models.Unit;

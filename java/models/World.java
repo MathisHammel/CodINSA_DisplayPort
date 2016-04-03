@@ -10,20 +10,21 @@ public class World extends GameEntity {
         this.map = map;
     }
 
+    public World clone() {
+        Cell[][] map = new Cell[this.size][this.size];
+        for(int x = 0; x < this.size; x++) {
+            for(int y = 0; y < this.size; y++) {
+                map[x][y] = this.map[x][y].clone();
+            }
+        }
+        return new World(map);
+    }
+
     public void bindGame(Game g) {
         this.setGame(g);
         for(int x = 0; x < this.size; x++) {
             for(int y = 0; y < this.size; y++) {
                 this.map[x][y].bindGame(g);
-            }
-        }
-    }
-
-    public void initEmptyMap() {
-        this.map = new Cell[this.size][this.size];
-        for(int x = 0; x < this.size; x++) {
-            for(int y = 0; y < this.size; y++) {
-                this.map[x][y] = new Cell(x, y, Land.PLAIN, Building.NONE);
             }
         }
     }
@@ -69,13 +70,4 @@ public class World extends GameEntity {
         return this;
     }
 
-    public World clone() {
-        Cell[][] map = new Cell[this.size][this.size];
-        for(int x = 0; x < this.size; x++) {
-            for(int y = 0; y < this.size; y++) {
-                map[x][y] = this.map[x][y].clone();
-            }
-        }
-        return new World(map);
-    }
 }

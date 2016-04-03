@@ -12,15 +12,7 @@ public class UnitType {
     public int maxRange;
     public int cost;
 
-    private UnitType (
-            int maxActions,
-            int strength,
-            int defense,
-            int maxHealth,
-            int minRange,
-            int maxRange,
-            int cost
-    ) {
+    private UnitType (int maxActions, int strength, int defense, int maxHealth, int minRange, int maxRange, int cost) {
         this.maxActions = maxActions;
         this.maxHealth = maxHealth;
         this.strength = strength;
