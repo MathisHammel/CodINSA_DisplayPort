@@ -33,9 +33,8 @@ public class FindPathOffensive implements FindPathInterface {
             operations.add(new AttackAction(myUnit, cell.getX(), cell.getY()));
         } else {
             if(cell == null) {
-                cell = game.getCurrentPlayer().getCity();
+                cell = game.getOtherPlayer().getCity();
             }
-
             return new FindPathByClosest().evaluatePath(game, myUnit, cell);
         }
         
