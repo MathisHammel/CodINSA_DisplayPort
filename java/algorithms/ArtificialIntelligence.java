@@ -1,6 +1,7 @@
 package algorithms;
 
 import algorithms.behaviours.*;
+import algorithms.pathfinders.FindPathByClosest;
 import algorithms.pathfinders.FindPathExploration;
 import algorithms.pathfinders.FindPathInterface;
 import algorithms.setups.SetupInterface;
@@ -8,12 +9,17 @@ import algorithms.setups.SetupLarge;
 import algorithms.setups.SetupMedium;
 import algorithms.setups.SetupSmall;
 import algorithms.worldevaluations.DefensiveEvaluation;
+import models.Unit;
 import models.World;
 import rules.Action;
 import models.Game;
+import rules.Rules;
+import rules.UnitType;
+import rules.actions.DestroyAction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ArtificialIntelligence {
     public static Action getNextAction(Game game) {
@@ -57,7 +63,7 @@ public class ArtificialIntelligence {
         if(set != null) {
             actions.add(set);
         } else {
-            // execution des algorithme communs et  du behaviour selecionné
+            // execution des algorithmes communs et  du behaviour selecionné
 
             // Faire potentiellement construire les ingénieurs sur la pos courante
             // Todo
@@ -67,6 +73,23 @@ public class ArtificialIntelligence {
             // Déplacement des Scouts
             FindPathInterface findPathScout = new FindPathExploration();
             actions.addAll(findPathScout.evaluatePath(game, null, null));
+            // S'il n'y a plus rien à faire
+            if(actions.isEmpty()){
+                // move all the engineers to the enemy city
+                for (Map.Entry<Integer, Unit> intUnit: game.getCurrentPlayer().getUnits(UnitType.ENGINEER).entrySet()) {
+                    Unit unit = intUnit.getValue();
+                    // si on est sur une ville on attaque
+                    //game.bindGame();
+                    if(game.getWorld().getCell(unit.getX(),unit.getY()) == game.getOtherPlayer().getCity() && Rules.checkDestroy(game, unit.getId())){
+                        // C'est la WIN !
+                        actions.add(new DestroyAction(unit));
+                        return actions;
+                    }
+                    // on essaie de bouger l'ingénieur vers la ville
+                    FindPathInterface pathEngineers = new FindPathByClosest();
+                    actions.addAll(pathEngineers.evaluatePath(game, unit, game.getOtherPlayer().getCity()));
+                }
+            }
         }
 
         return actions;

@@ -40,7 +40,7 @@ public class Game {
 
     public Game clone() {
         World world = this.world.clone();
-        return new Game(this.getOurPlayer(), this.getTheirPlayer(), this.currentPlayerId, world, this.roundNumber);
+        return new Game(this.getOurPlayer().clone(), this.getTheirPlayer().clone(), this.currentPlayerId, world, this.roundNumber);
     }
 
     public void bindGame() {

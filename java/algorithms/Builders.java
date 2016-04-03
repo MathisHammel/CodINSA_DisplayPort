@@ -1,4 +1,4 @@
-package algorithms.others;
+package algorithms;
 
 import algorithms.Utils;
 import models.*;
