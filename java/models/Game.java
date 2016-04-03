@@ -77,6 +77,11 @@ public class Game {
         return 1 - this.currentPlayerId;
     }
 
+    public Game swapPlayerRoles() {
+        this.currentPlayerId = 1 - this.currentPlayerId;
+        return this;
+    }
+
     public World getWorld() {
         return this.world;
     }
@@ -84,27 +89,6 @@ public class Game {
     public Unit getOurUnit(int unitId) {
         return this.getOurPlayer().getUnit(unitId);
     }
-
-    /*public void nextRound() {
-        this.currentPlayerId = 1 - currentPlayerId;
-        Player currentPlayer = this.getCurrentPlayer();
-
-        currentPlayer.gainGold(world);
-
-        // creation
-        char newUnitType = 'E';
-        currentPlayer.createUnit(newUnitType);
-        // attack
-        currentPlayer.attack(world, this.getOtherPlayer(), 0, 1, 1); // make the first unit attack (1, 1)
-
-        // move
-        int newAction = checkMove(0, 1, 1);  // format idUnit x y
-        if (newAction >= 0) {
-            currentPlayer.moveUnit(world, 0, 1, 1, newAction); // move the first unit to (1, 1)
-        }
-
-        heal();  // interaction between hospitals-units and action regeneration
-    }*/
 
     // return the cost to move to x,y (-1 if impossible)
     private int checkMove(int idUnit, int x, int y) {

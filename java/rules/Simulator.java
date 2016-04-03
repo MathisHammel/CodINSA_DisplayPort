@@ -1,10 +1,10 @@
 package rules;
 
-import models.Building;
-import models.Cell;
-import models.Game;
-import models.Unit;
+import models.*;
 import models.units.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Simulator {
     private static int uid = 0;
@@ -91,6 +91,34 @@ public class Simulator {
         return game;
     }
 
+    public static Game simulateEndOfTurn(Game g) {
+        Game game = g.clone();
+        game.swapPlayerRoles();
+
+        int currentPlayerId = game.getCurrentPlayerId();
+        int size = game.getWorld().getSize();
+        Cell[][] map = game.getWorld().getMap();
+
+        int count = 0;
+        for(int x = 0; x < size; x++) {
+            for(int y = 0; y < size; y++) {
+                Cell curCell = map[x][y];
+                if(curCell.getOwnerId() == currentPlayerId) {
+                    count ++;
+                    if (curCell.getBuilding() == Building.HOSPITAL && curCell.getUnit() != null) {
+                        Unit u = curCell.getUnit();
+                        u.setHealth(u.getUnitType().maxHealth);
+                    }
+                }
+            }
+        }
+
+        Player curP = game.getCurrentPlayer();
+        curP.setGold(curP.getGold() + 5 * count);
+
+        return game;
+    }
+
     private static Unit createUnit(UnitType unitType, int x, int y) {
         int id = getUid();
         if(unitType == UnitType.ARCHER) {
@@ -114,6 +142,4 @@ public class Simulator {
             return new Peasant(x, y, id);
         }
     }
-
-
 }
