@@ -32,4 +32,8 @@ public class Utils {
         return ((double) ((10 * seed + unit.getId() + unit.getX() + unit.getY()) % 10.0) / 10.0) < x;
     }
 
+    public static boolean random(double seed, Cell cell, double x) {
+        return ((double) ((10 * seed + cell.getX() + cell.getY()) % 10.0) / 10.0) < x;
+    }
+
 }
