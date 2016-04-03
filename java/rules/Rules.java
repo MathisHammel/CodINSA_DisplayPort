@@ -84,10 +84,10 @@ public class Rules {
         if(target.getUnit() != null) {
             return false; // Cannot move: cell is full
         }
-        if (target.getLand() == Land.RIVER && target.getBuilding() == Building.BRIDGE && unitType != UnitType.ENGINEER) {
+        if (target.getLand() == Land.RIVER && target.getBuilding() != Building.BRIDGE && unitType != UnitType.ENGINEER) {
             return false; // RIVER IS NOT ACCESSIBLE
         }
-        return false;
+        return true;
     }
 
     public static int getCellCost(Game game, Cell target) {

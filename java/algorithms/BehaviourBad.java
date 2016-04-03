@@ -31,7 +31,7 @@ public class BehaviourBad implements BehaviourInterface {
             UnitType unitType = unit.getUnitType();
             if(unitType == UnitType.ENGINEER ){
                 // si on est sur une ville on attaque
-                if(game.getWorld().getCell(unit.getX(),unit.getY()) == game.getOtherPlayer().getCity()){
+                if(game.getWorld().getCell(unit.getX(),unit.getY()) == game.getOtherPlayer().getCity() && Rules.checkDestroy(game, unit.getId())){
                     // C'est la WIN !
                     operations.add(new DestroyAction(unit));
                     return operations;
