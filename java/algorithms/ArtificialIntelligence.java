@@ -1,6 +1,8 @@
 package algorithms;
 
 import algorithms.behaviours.*;
+import algorithms.pathfinders.FindPathExploration;
+import algorithms.pathfinders.FindPathInterface;
 import algorithms.setups.SetupInterface;
 import algorithms.setups.SetupLarge;
 import algorithms.setups.SetupMedium;
@@ -27,11 +29,15 @@ public class ArtificialIntelligence {
         SetupInterface setup;
         BehaviourInterface behaviour;
 
-        // evaluer la stratégie
+        // evaluer la stratégie offensive ou defensive
         boolean offensive = true;
         DefensiveEvaluation defensiveEvaluation = new DefensiveEvaluation();
         if (defensiveEvaluation.evaluate(game) > 0.8) {
-            offensive = false;
+            behaviour = new BehaviourDefensive();
+        }
+        else{
+            behaviour = new BehaviourOffensive();
+
         }
         System.out.println("Offensive ? " + offensive);
 
@@ -39,34 +45,28 @@ public class ArtificialIntelligence {
         int worldSize = game.getWorld().getSize();
         if (worldSize <= World.SIZE_SMALL){
             setup = new SetupSmall();
-            if (offensive) {
-                behaviour = new BehaviourOffensiveSmall();
-            } else {
-                behaviour = new BehaviourDefensiveSmall();
-            }
         }
         else if(worldSize <= World.SIZE_MEDIUM){
             setup = new SetupMedium();
-            if (offensive) {
-                behaviour = new BehaviourOffensiveMedium();
-            } else {
-                behaviour = new BehaviourDefensiveMedium();
-            }
         }
         else{
             setup = new SetupLarge();
-            if (offensive) {
-                behaviour = new BehaviourOffensiveLarge();
-            } else {
-                behaviour = new BehaviourDefensiveLarge();
-            }
         }
 
         Action set = setup.deploy(game);
         if(set != null) {
             actions.add(set);
         } else {
+            // execution des algorithme communs et  du behaviour selecionné
+
+            // Faire potentiellement construire les ingénieurs sur la pos courante
+            // Todo
+
             actions.addAll(behaviour.decideActions(game));
+
+            // Déplacement des Scouts
+            FindPathInterface findPathScout = new FindPathExploration();
+            actions.addAll(findPathScout.evaluatePath(game, null, null));
         }
 
         return actions;
