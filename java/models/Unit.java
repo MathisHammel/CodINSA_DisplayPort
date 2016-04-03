@@ -108,12 +108,30 @@ public abstract class Unit extends GameEntity {
         return this.unitType.cost;
     }
 
-    public List<Cell> attackable(Game game) {
+    public List<Cell> attackable() {
         List<Cell> cells = new ArrayList<>();
-        for (int x = 0; x < game.getWorld().getSize(); x++) {
-            for (int y = 0; y < game.getWorld().getSize(); y++) {
-                if (Rules.checkAttack(game, getId(), x, y)) {
-                    cells.add(game.getWorld().getCell(x, y));
+        int rMin = this.getMinRange();
+        int rMax = this.getMaxRange();
+        int curX = this.getX();
+        int curY = this.getY();
+
+        for (int r = rMin; r <= rMax; r++) {
+            for(int i = 0; i < 2*r; i++) {
+                Cell c1 = this.getGame().getWorld().getCell(curX - r + i, curY - r);
+                Cell c2 = this.getGame().getWorld().getCell(curX + r, curY - r + i);
+                Cell c3 = this.getGame().getWorld().getCell(curX + r - i, curY + r);
+                Cell c4 = this.getGame().getWorld().getCell(curX - r, curY + r - i);
+                if(Rules.checkAttack(this.getGame(), this.getId(), c1.getX(), c1.getY())) {
+                    cells.add(c1);
+                }
+                if(Rules.checkAttack(this.getGame(), this.getId(), c2.getX(), c2.getY())) {
+                    cells.add(c2);
+                }
+                if(Rules.checkAttack(this.getGame(), this.getId(), c3.getX(), c3.getY())) {
+                    cells.add(c3);
+                }
+                if(Rules.checkAttack(this.getGame(), this.getId(), c4.getX(), c4.getY())) {
+                    cells.add(c4);
                 }
             }
         }
