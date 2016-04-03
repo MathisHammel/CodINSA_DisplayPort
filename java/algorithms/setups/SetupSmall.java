@@ -1,6 +1,5 @@
-package algorithms;
+package algorithms.setups;
 
-import java.util.List;
 import models.Game;
 import rules.Action;
 import rules.Rules;

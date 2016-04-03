@@ -1,9 +1,9 @@
-package algorithms;
+package algorithms.pathfinders;
 
-import algorithms.behaviours.BehaviourInterface;
+import algorithms.Utils;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,6 @@ import models.Unit;
 import rules.Action;
 import rules.UnitType;
 import rules.actions.AttackAction;
-import rules.actions.MoveAction;
 
 public class FindPathOffensive implements FindPathInterface {
 
