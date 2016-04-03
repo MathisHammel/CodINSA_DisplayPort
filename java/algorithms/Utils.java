@@ -1,6 +1,7 @@
 package algorithms;
 
 import models.Cell;
+import models.Unit;
 import rules.UnitType;
 import rules.Rules;
 
@@ -26,4 +27,9 @@ public class Utils {
         }
         return availableActions - cost;
     }
+
+    public static boolean random(double seed, Unit unit, double x) {
+        return ((double) ((10 * seed + unit.getId() + unit.getX() + unit.getY()) % 10.0) / 10.0) < x;
+    }
+
 }
