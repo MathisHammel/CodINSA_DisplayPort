@@ -16,6 +16,10 @@ public class Rules {
             System.err.println("Cannot attack: targetCell not found");
             return false;
         }
+        if(targetCell.getOwner() == game.getCurrentPlayer()) {
+            System.err.println("Cannot attack: cannot attack self");
+            return false;
+        }
         Unit attacker = game.getCurrentPlayer().getUnit(attackerId);
         if (attacker == null) {
             System.err.println("Cannot attack: attacker not found");
