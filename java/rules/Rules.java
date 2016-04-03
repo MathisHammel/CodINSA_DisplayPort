@@ -14,13 +14,13 @@ public class Rules {
         return false;
     }
 
-    public static boolean checkBuild(Game game, int builderId) {
+    public static boolean checkBuild(Game game, int builderId, Building building) {
         Unit unit = game.getCurrentPlayer().getUnit(builderId);
         if (unit == null) {
             System.err.println("Cannot build: unit " + builderId + " not found");
             return false;
         }
-        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != null) {
+        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != Building.NONE) {
             System.err.println("Cannot build: there is already a building");
             return false;
         }
@@ -30,6 +30,10 @@ public class Rules {
         }
         if (unit.getActions() < 2) {
             System.err.println("Cannot build: unit " + builderId + " not enough actions");
+            return false;
+        }
+        if(EntityInfo.getBuildingCode(building) > game.getCurrentPlayer().getGold()) {
+            System.err.println("Cannot build: not enough gold");
             return false;
         }
         return true;
@@ -70,7 +74,7 @@ public class Rules {
         }
         Building building = target.getBuilding();
         if (building == Building.NONE) {
-            System.err.println("Cannot destroy: not building");
+            System.err.println("Cannot destroy: no building");
             return false;
         }
         if(unit.getActions() < 2) {
