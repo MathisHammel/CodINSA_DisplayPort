@@ -91,16 +91,10 @@ public class Simulator {
             System.out.println(unit);
             System.out.println(unit.getId());
         } catch(Exception err) {
-            throw err;
+            return game;
         }
 
-
-
-        if(unit != null){
-            game.getWorld().getCell(unit.getX(), unit.getY()).setUnit(-1);
-        }else{
-            int a = 11;
-        }
+        game.getWorld().getCell(unit.getX(), unit.getY()).setUnit(-1);
         game.getWorld().getCell(x, y).setUnit(unit.getId());
         game.getWorld().getCell(x, y).setOwner(game.getCurrentPlayerId());
 

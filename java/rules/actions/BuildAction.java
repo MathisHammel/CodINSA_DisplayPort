@@ -27,7 +27,7 @@ public class BuildAction implements Action {
     }
 
     public String serialize() {
-        return "B," + this.builderId + "," + EntityInfo.getBuildingCost(this.building);
+        return "B," + this.builderId + "," + EntityInfo.getBuildingCode(this.building);
     }
 
     @Override

@@ -40,12 +40,14 @@ public class FindPathRanged implements FindPathInterface {
         
         Cell bestWay = null; //do not move
         double score = new OffensiveEvaluation().evaluate(game);
+        System.out.println(score);
         
         for(Cell c : unitToMove.getReachableCells(game.getWorld()).keySet()) {
             Game newGame = Simulator.simulateMove(game, unitToMove.getId(), c.getX(), c.getY());
             double scoreC = new OffensiveEvaluation().evaluate(newGame);
             
             if(scoreC > score) {
+                System.out.println(scoreC);
                 bestWay = c;
                 score = scoreC;
             }

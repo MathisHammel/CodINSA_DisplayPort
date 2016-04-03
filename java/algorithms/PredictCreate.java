@@ -1,26 +1,42 @@
 package algorithms;
 
-import algorithms.Utils;
 import models.*;
 import rules.Action;
 import rules.Rules;
-import rules.Simulator;
 import rules.UnitType;
-import rules.actions.BuildAction;
 import rules.actions.CreateAction;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-public class Creators {
+public class PredictCreate {
+
     enum Size {
         SMALL,
         MEDIUM,
         LARGE
     }
 
-    public static List<Action> predictCreates(Game game, boolean offensive, Size size) {
+    public static List<Action> predictSmallOffensive(Game game) {
+        return predictAll(game, true, Size.SMALL);
+    }
+    public static List<Action> predictMediumOffensive(Game game) {
+        return predictAll(game, true, Size.MEDIUM);
+    }
+    public static List<Action> predictLargeOffensive(Game game) {
+        return predictAll(game, true, Size.LARGE);
+    }
+    public static List<Action> predictSmallDefensive(Game game) {
+        return predictAll(game, false, Size.SMALL);
+    }
+    public static List<Action> predictMediumDefensive(Game game) {
+        return predictAll(game, false, Size.MEDIUM);
+    }
+    public static List<Action> predictLargeDefensive(Game game) {
+        return predictAll(game, false, Size.LARGE);
+    }
+
+    private static List<Action> predictAll(Game game, boolean offensive, Size size) {
         double seed = Math.random();
         List<Action> actions = new LinkedList<>();
 
