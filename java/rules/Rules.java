@@ -11,7 +11,28 @@ import models.Building;
 public class Rules {
 
     public static boolean checkAttack(Game game, int attackerId, int x, int y) {
-        return false;
+        Cell targetCell = game.getWorld().getCell(x, y);
+        if (targetCell == null) {
+            System.err.println("Cannot attack: targetCell not found");
+            return false;
+        }
+        Unit attacker = game.getCurrentPlayer().getUnit(attackerId);
+        if (attacker == null) {
+            System.err.println("Cannot attack: attacker not found");
+            return false;
+        }
+        int minRange = attacker.getMinRange();
+        int maxRange = attacker.getMaxRange();
+        if (game.getWorld().getCell(x, y).getLand() == Land.FOREST){
+            maxRange = 1;
+        }
+
+        int distance = Utils.infiniteDistance(x, y, attacker.getX(), attacker.getY());
+        if (distance < minRange || distance > maxRange) {
+            System.err.println("Cannot attack: invalid range");
+            return false;
+        }
+        return true;
     }
 
     public static boolean checkBuild(Game game, int builderId, Building building) {

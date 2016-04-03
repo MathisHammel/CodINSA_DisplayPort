@@ -126,74 +126,7 @@ public class Player extends GameEntity {
         }
     }
 
-    public void createUnit(char newUnitType) {
-        UnitType type = UnitType.PEASANT;
-        Unit u = new Peasant(this.cityX, this.cityY, id);
-        switch (newUnitType) {
-            case 'P':
-                type = UnitType.PEASANT;
-                u = new Peasant(this.cityX, this.cityY, id);
-                break;
-            case 'A':
-                type = UnitType.ARCHER;
-                u = new Archer(this.cityX, this.cityY, id);
-                break;
-            case 'N':
-                type = UnitType.DWARF;
-                u = new Dwarf(this.cityX, this.cityY, id);
-                break;
-            case 'B':
-                type = UnitType.BALISTA;
-                u = new Balista(this.cityX, this.cityY, id);
-                break;
-            case 'I':
-                type = UnitType.ENGINEER;
-                u = new Engineer(this.cityX, this.cityY, id);
-                break;
-            case 'E':
-                type = UnitType.SCOUT;
-                u = new Peasant(this.cityX, this.cityY, id);
-                break;
-            case 'C':
-                type = UnitType.PALADIN;
-                u = new Paladin(this.cityX, this.cityY, id);
-                break;
-            case 'S':
-                type = UnitType.ARCHER;
-                u = new Archer(this.cityX, this.cityY, id);
-                break;
-        }
-        if (gold < type.cost) {
-            return;
-        }
-        gold -= type.cost;
-        int newUnitId = Collections.max(units.keySet()) + 1;
-        u.setActions(2);
-        units.put(newUnitId, u);
-    }
-
     public void attack(World world, Player otherPlayer, int idUnit, int x, int y) {
-        if (world.getCell(x, y).getUnit() == null){
-            return;
-        }
-        // check attack range
-        int minRange = units.get(idUnit).getMinRange();
-        int maxRange = units.get(idUnit).getMaxRange();
-        if (world.getCell(x, y).getLand() == Land.FOREST){
-            maxRange = 1;
-        }
-
-        int minRangeOther = world.getCell(x, y).getUnit().getMinRange();
-        int maxRangeOther = world.getCell(x, y).getUnit().getMaxRange();
-        if (world.getCell(units.get(idUnit).getX(), units.get(idUnit).getY()).getLand() == Land.FOREST)
-            maxRangeOther = 1;
-
-        int distance = Utils.infiniteDistance(x, y, units.get(idUnit).getX(), units.get(idUnit).getY());
-        if (minRange > distance || distance < maxRange)
-            return;
-        boolean counterAttack = true;
-        if (minRangeOther > distance || distance < maxRangeOther)
-            counterAttack = false;
 
         // check defense bonus
         int defense = units.get(idUnit).getDefense();
@@ -214,7 +147,7 @@ public class Player extends GameEntity {
             }
             if (otherPlayer.unitDie(world.getCell(x, y).getUnit().getId()))
                 break;
-            if (counterAttack) {
+            if (false) {
                 ran = 1 + (int)(Math.random()) * 6;
                 if (ran == 6) {
                    units.get(idUnit).setHealth(units.get(idUnit).getHealth() - world.getCell(x, y).getUnit().getStrength());
