@@ -3,6 +3,7 @@ package algorithms.behaviours;
 import models.Game;
 import rules.Action;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ import java.util.List;
 public class BehaviourOffensiveSmall implements BehaviourInterface {
         @Override
         public List<Action> decideActions(Game game) {
-                return null;
+                LinkedList<Action> operations = new LinkedList<>();
+                return operations;
         }
 }

@@ -26,9 +26,10 @@ public class ArtificialIntelligence {
         // evaluer la stratégie
         boolean offensive = true;
         DefensiveEvaluation defensiveEvaluation = new DefensiveEvaluation();
-        if (defensiveEvaluation.evaluate(game) > 0.8){
+        if (defensiveEvaluation.evaluate(game) > 0.8) {
             offensive = false;
         }
+        System.out.println("Offensive ? " + offensive);
 
         // Detection de la taille et affectation des algorithmes
         int worldSize = game.getWorld().getSize();
