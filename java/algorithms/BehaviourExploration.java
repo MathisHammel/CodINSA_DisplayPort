@@ -26,13 +26,13 @@ public class BehaviourExploration implements BehaviourInterface {
             int bestScore = Integer.MIN_VALUE;
             for(Cell candidate : reachableCells.keySet()) {
                 double weight;
-                if(candidate.getOwner() == game.getOurPlayer()) weight = 0.5;
-                else if(candidate.getOwner() == game.getTheirPlayer()) weight = 1.5;
+                if(candidate.getOwner() == game.getOurPlayer()) weight = 0.1;
+                else if(candidate.getOwner() == game.getTheirPlayer()) weight = 2;
                 else weight = 1;
                 
-                if(bestScore < weight * candidate.getScore()) {
+                if(bestScore < weight * (candidate.getScore()+0.15)) {
                     best = candidate;
-                    bestScore = (int) (weight * candidate.getScore());
+                    bestScore = (int) (weight * (candidate.getScore()+0.15));
                 }
             }
             
