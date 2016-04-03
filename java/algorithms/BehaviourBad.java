@@ -1,12 +1,12 @@
 package algorithms;
 
-import io.Action;
-import io.actions.CreateAction;
-import io.actions.DestroyAction;
+import rules.Action;
 import models.Game;
 import models.Unit;
 import models.UnitType;
 import rules.Rules;
+import rules.actions.CreateAction;
+import rules.actions.DestroyAction;
 
 import java.util.ArrayList;
 import java.util.List;
