@@ -3,6 +3,10 @@ package models;
 import algorithms.CellScoreOnCitiesDistance;
 
 public class World extends GameEntity {
+    public static final int SIZE_SMALL = 5;
+    public static final int SIZE_MEDIUM = 10;
+    public static final int SIZE_LARGE = 15;
+
     protected int size;
     protected Cell[][] map;
 

@@ -1,7 +1,6 @@
 
 package algorithms;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,15 +11,16 @@ import rules.Action;
 import rules.UnitType;
 import rules.actions.MoveAction;
 
-public class BehaviourExploration implements BehaviourInterface {
+public class FindPathExploration implements FindPathInterface
+{
 
     @Override
-    public List<Action> decideActions(Game game) {
+    public  List<Action> evaluatePath(Game game, Unit nullUnit, Cell nullDest) {
         LinkedList<Action> operations = new LinkedList<>();
-        
+
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.SCOUT).entrySet()) {
             Unit unitToMove = entry.getValue();
-            
+
             Map<Cell, Unit.ReachableResult> reachableCells = unitToMove.getReachableCells(game.getWorld());
             Cell best = null;
             int bestScore = Integer.MIN_VALUE;
@@ -29,13 +29,13 @@ public class BehaviourExploration implements BehaviourInterface {
                 if(candidate.getOwner() == game.getOurPlayer()) weight = 0.1;
                 else if(candidate.getOwner() == game.getTheirPlayer()) weight = 2;
                 else weight = 1;
-                
+
                 if(bestScore < weight * (candidate.getScore()+0.15)) {
                     best = candidate;
                     bestScore = (int) (weight * (candidate.getScore()+0.15));
                 }
             }
-            
+
             if(best != null) {
                 // il faut reconstituer le chemin
                 while(best != game.getWorld().getCell(unitToMove.getX(), unitToMove.getY())){
@@ -44,8 +44,8 @@ public class BehaviourExploration implements BehaviourInterface {
                 }
             }
         }
-        
+
         return operations;
     }
-    
+
 }
