@@ -10,7 +10,7 @@ import models.Building;
 
 public class Rules {
 
-    public static boolean checkAttack(){
+    public static boolean checkAttack(Game game, int attackerId, int x, int y) {
         return false;
     }
 

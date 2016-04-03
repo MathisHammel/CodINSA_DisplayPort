@@ -3,6 +3,7 @@ package rules.actions;
 import rules.Action;
 import models.Game;
 import models.Unit;
+import rules.Rules;
 
 /**
  * Attaque un autre personnage.
@@ -33,6 +34,6 @@ public class AttackAction implements Action {
 
     @Override
     public boolean check(Game game) {
-        return false;
+        return Rules.checkAttack(game, attackerId, x, y);
     }
 }

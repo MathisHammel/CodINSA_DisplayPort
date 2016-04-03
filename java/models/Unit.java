@@ -1,6 +1,7 @@
 package models;
 
 import algorithms.Utils;
+import rules.Rules;
 import rules.UnitType;
 
 import java.util.*;
@@ -106,6 +107,19 @@ public abstract class Unit extends GameEntity {
     public int getCost(){
         return this.unitType.cost;
     }
+
+    public List<Cell> attackable(Game game) {
+        List<Cell> cells = new ArrayList<>();
+        for (int x = 0; x < game.getWorld().getSize(); x++) {
+            for (int y = 0; y < game.getWorld().getSize(); y++) {
+                if (Rules.checkAttack(game, getId(), x, y)) {
+                    cells.add(game.getWorld().getCell(x, y));
+                }
+            }
+        }
+        return cells;
+    }
+
 
     public abstract Unit clone();
 
