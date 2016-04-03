@@ -1,5 +1,6 @@
 package algorithms;
 
+import algorithms.behaviours.BehaviourInterface;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

@@ -1,13 +1,12 @@
-package algorithms.evaluations;
+package algorithms.globalEvaluations;
 
+import algorithms.globalEvaluations.GlobalEvaluationInterface;
 import models.Building;
 import models.Cell;
 import models.Game;
 import models.Land;
 
-import java.util.Map;
-
-public class TerritoryEvaluation implements EvaluationInterface{
+public class TerritoryEvaluation implements GlobalEvaluationInterface {
     @Override
     public double evaluate(Game game) {
         Cell[][] map = game.getWorld().getMap();
@@ -61,12 +60,23 @@ public class TerritoryEvaluation implements EvaluationInterface{
         double otherRatio = otherPlayer.cells / (double) ms.cells;
         double freeRatio = 1 - curRatio - otherRatio;
 
-        double delta;
-        if(freeRatio >= 0.3) {
-
+        double territoryDelta;
+        territoryDelta = otherPlayer.cells - curPlayer.cells;
+        if (freeRatio < 0.3) {
+            territoryDelta *= 2;
         }
 
-        return 0.0;
+        double waterRatio = ms.water / ms.cells;
+        double bridgesRatio = ms.bridges / ms.water;
+        double waterDelta = ms.bridges-ms.water;
+        if (bridgesRatio < 0.25) {
+            waterDelta *= 1.5;
+        }
+        if (waterRatio > 0.4) {
+            waterDelta *= 2;
+        }
+
+        return 20 * curPlayer.cells + 30 * territoryDelta + 10 * waterDelta + Math.sqrt(curPlayer.forts);
     }
 
     public class MapStats {
