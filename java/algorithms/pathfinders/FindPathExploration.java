@@ -1,5 +1,5 @@
 
-package algorithms;
+package algorithms.pathfinders;
 
 import java.util.LinkedList;
 import java.util.List;

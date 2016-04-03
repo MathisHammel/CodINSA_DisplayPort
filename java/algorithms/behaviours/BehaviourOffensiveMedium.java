@@ -1,8 +1,8 @@
 package algorithms.behaviours;
 
-import algorithms.FindPathExploration;
-import algorithms.FindPathInterface;
-import algorithms.FindPathOffensive;
+import algorithms.pathfinders.FindPathExploration;
+import algorithms.pathfinders.FindPathInterface;
+import algorithms.pathfinders.FindPathOffensive;
 import models.Game;
 import rules.Action;
 

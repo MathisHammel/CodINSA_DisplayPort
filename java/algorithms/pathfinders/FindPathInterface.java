@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.pathfinders;
 
 import rules.Action;
 import models.Cell;

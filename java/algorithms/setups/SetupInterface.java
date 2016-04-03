@@ -1,5 +1,5 @@
 
-package algorithms;
+package algorithms.setups;
 
 import models.Game;
 import rules.Action;

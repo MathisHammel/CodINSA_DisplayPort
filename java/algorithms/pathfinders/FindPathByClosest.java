@@ -1,5 +1,6 @@
-package algorithms;
+package algorithms.pathfinders;
 
+import algorithms.Utils;
 import rules.Action;
 import rules.actions.MoveAction;
 import models.Cell;

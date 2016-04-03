@@ -1,6 +1,10 @@
 package algorithms;
 
 import algorithms.behaviours.*;
+import algorithms.setups.SetupInterface;
+import algorithms.setups.SetupLarge;
+import algorithms.setups.SetupMedium;
+import algorithms.setups.SetupSmall;
 import algorithms.worldevaluations.DefensiveEvaluation;
 import models.World;
 import rules.Action;
