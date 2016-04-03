@@ -13,8 +13,10 @@ public class OffensiveEvaluation implements GlobalEvaluationInterface {
     @Override
     public double evaluate(Game game) {
 
+        Player currentPlayer = game.getCurrentPlayer();
         Player otherPlayer = game.getOtherPlayer();
-        Map<Integer, Unit> units = otherPlayer.getUnits();
+        
+        Map<Integer, Unit> units = currentPlayer.getUnits();
 
         int size = game.getWorld().getSize();
 
