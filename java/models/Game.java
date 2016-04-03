@@ -69,6 +69,14 @@ public class Game {
         return this.players[1 - OUR_ID];
     }
 
+    public int getCurrentPlayerId(){
+        return this.currentPlayerId;
+    }
+
+    public int getOtherPlayerId(){
+        return 1 - this.currentPlayerId;
+    }
+
     public World getWorld() {
         return this.world;
     }

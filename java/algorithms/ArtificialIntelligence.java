@@ -14,6 +14,7 @@ public class ArtificialIntelligence {
     }
 
     public static List<Action> getNextActions(Game game) {
+        game.getWorld().calculateScores();
         List<Action> actions = new ArrayList<>();
 
         BehaviourInterface algorithm = new BehaviourRushUnit(UnitType.BALISTA);
