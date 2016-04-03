@@ -37,7 +37,7 @@ public class Builders {
                 return new BuildAction(engineer, Building.BRIDGE);
                 // game = Simulator.simulateBuild(game, engineer.getId(), Building.BRIDGE);
             }
-        }else if(Utils.random(seed, engineer, proba) && Rules.checkBuild(game, engineer.getId(), Building.ROAD)) {
+        }else if(Utils.random(seed, engineer, proba/10) && Rules.checkBuild(game, engineer.getId(), Building.ROAD)) {
                 return new BuildAction(engineer, Building.ROAD);
                 // game = Simulator.simulateBuild(game, engineer.getId(), Building.ROAD);
             } else if (Utils.random(seed, engineer, proba2)) {
