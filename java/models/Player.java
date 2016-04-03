@@ -107,6 +107,11 @@ public class Player extends GameEntity {
         return this;
     }
 
+    public Player setGold(int gold) {
+        this.cityY = gold;
+        return this;
+    }
+
     private boolean unitDie(int idUnit) {
         if (units.get(idUnit).getHealth() < 0) {
             units.remove(idUnit);
