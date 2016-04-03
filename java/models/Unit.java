@@ -156,8 +156,8 @@ public abstract class Unit extends GameEntity {
             for(int y = this.getY()-1; y <= this.getY()+1; y++){
                 if(!(x == this.getX() && y == this.getY())){
                     Cell c = world.getCell(x,y);
-                    int res = Utils.checkMove(c, this.getX(), this.getY(), this.getUnitType(), this.getActions());
-                    //int res = this.checkMove(c);
+                    int res = Utils.getActionsAfterMove(c, this.getX(), this.getY(), this.getUnitType(), this.getActions());
+                    //int res = this.getActionsAfterMove(c);
                     if ( res >= 0){
                         // c'est une position atteignable
                         reachableCells.put(c,new ReachableResult(world.getCell(this.getX(), this.getY()), this.getActions() - res));

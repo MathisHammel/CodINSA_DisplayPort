@@ -1,20 +1,20 @@
 package models;
 
 public abstract class GameEntity {
-    protected Game game = null;
+    public Game game = null;
 
-    protected GameEntity(Game game) {
+    public GameEntity(Game game) {
         this.game = game;
     }
 
-    protected Game getGame() {
+    public Game getGame() {
         return this.game;
     }
 
-    protected GameEntity setGame(Game game) {
+    public GameEntity setGame(Game game) {
         this.game = game;
         return this;
     }
 
-    protected abstract void bindGame(Game game);
+    public abstract void bindGame(Game game);
 }
