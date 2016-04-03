@@ -40,8 +40,8 @@ public class Player extends GameEntity {
 
     public Player clone() {
         Map<Integer, Unit> units = new HashMap<Integer, Unit>();
-        for(int id: units.keySet()) {
-            units.put(id, units.get(id).clone());
+        for(int id: this.units.keySet()) {
+            units.put(id, this.units.get(id).clone());
         }
         return new Player(id, gold, units, cityX, cityY, cellsNumber);
     }
