@@ -23,9 +23,9 @@ public class CreatorLargeDefensive implements CreatorsInterface {
             unitType = UnitType.ENGINEER;
         } else if (Utils.random(seed, game.getCurrentPlayer().getCity(), 0.4)) {
             unitType = UnitType.DWARF;
-        } else if (Utils.random(seed, game.getCurrentPlayer().getCity(), 0.8)) {
+        } /*else if (Utils.random(seed, game.getCurrentPlayer().getCity(), 0.8)) {
             unitType = UnitType.BALISTA;
-        } else {
+        } */else {
             unitType = (Math.random() < 0.5) ? UnitType.SOLDIER : UnitType.PALADIN;
         }
 

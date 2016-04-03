@@ -73,7 +73,7 @@ public class ArtificialIntelligence {
             // execution des algorithmes communs et  du behaviour selecionné
 
             // Faire potentiellement construire les ingénieurs sur la pos courante
-            //actions.addAll(Builders.predictBuilds(game));
+            actions.addAll(Builders.predictBuilds(game));
 
             // creation de personnages supplémentaires
             Action generatedUnit = creator.create(game);

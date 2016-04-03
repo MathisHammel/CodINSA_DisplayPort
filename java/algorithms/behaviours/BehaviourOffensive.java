@@ -1,9 +1,6 @@
 package algorithms.behaviours;
 
-import algorithms.pathfinders.FindPathExploration;
-import algorithms.pathfinders.FindPathInterface;
-import algorithms.pathfinders.FindPathOffensive;
-import algorithms.pathfinders.FindPathRanged;
+import algorithms.pathfinders.*;
 import models.Game;
 import rules.Action;
 
@@ -19,13 +16,20 @@ public class BehaviourOffensive implements BehaviourInterface {
     public List<Action> decideActions(Game game) {
         // Bouger et attaquer les unité possibles
         LinkedList<Action> operations = new LinkedList<>();
-        
+
         //archer et baliste
         FindPathInterface findPathRanged = new FindPathRanged();
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.BALISTA).entrySet()) {
             operations.addAll(findPathRanged.evaluatePath(game, entry.getValue(), null));
             if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
-                return operations;
+                // si la baliste veut attaquer mais qu'elle est sur la ville, elle bouge
+                if(game.getCurrentPlayer().getCity() == game.getWorld().getCell(entry.getValue().getX(), entry.getValue().getY())){
+                    FindPathInterface escape = new FindPathByClosest();
+                    operations.addAll(escape.evaluatePath(game, entry.getValue(),game.getOtherPlayer().getCity()));
+                }
+                else{
+                    return operations;
+                }
             }
         }
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.ARCHER).entrySet()) {
