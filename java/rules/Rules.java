@@ -5,6 +5,7 @@ import models.Cell;
 import models.Game;
 import models.Unit;
 import models.UnitType;
+import models.Building;
 
 public class Rules {
 
@@ -12,8 +13,25 @@ public class Rules {
         return false;
     }
 
-    public static boolean checkBuild(Game game){
-        return false;
+    public static boolean checkBuild(Game game, int builderId, Building building) {
+        Unit unit = game.getCurrentPlayer().getUnit(builderId);
+        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != null) {
+            System.err.println("Cannot build: there is already a building");
+            return false;
+        }
+        if (unit == null) {
+            System.err.println("Cannot build: unit " + builderId + " not found");
+            return false;
+        }
+        if (unit.getUnitType() != UnitType.ENGINEER) {
+            System.err.println("Cannot build: unit " + builderId + " not an engineer");
+            return false;
+        }
+        if (unit.getActions() < 2) {
+            System.err.println("Cannot build: unit " + builderId + " not enough actions");
+            return false;
+        }
+        return true;
     }
 
     public static boolean checkCreate(Game game, UnitType unitType) {
