@@ -15,34 +15,29 @@ import rules.UnitType;
 import rules.actions.AttackAction;
 import rules.actions.MoveAction;
 
-public class BehaviourOffensive implements BehaviourInterface {
+public class FindPathOffensive implements FindPathInterface {
 
     @Override
-    public List<Action> decideActions(Game game) {
+    public List<Action> evaluatePath(Game game, Unit myUnit, Cell destination) {
         LinkedList<Action> operations = new LinkedList<>();
-        
-        for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.SOLDIER).entrySet()) {
-            Unit myUnit = entry.getValue();
-            
-            Cell cell = chooseCell(null, game, UnitType.ENGINEER);
-            cell = chooseCell(cell, game, UnitType.DWARF);
-            cell = chooseCell(cell, game, UnitType.PALADIN);
-            cell = chooseCell(cell, game, UnitType.SOLDIER);
-            cell = chooseCell(cell, game, UnitType.PEASANT);
-            cell = chooseCell(cell, game, UnitType.SCOUT);
-            cell = chooseCell(cell, game, UnitType.BALISTA);
-            cell = chooseCell(cell, game, UnitType.ARCHER);
-            
-            Map<Cell, Unit.ReachableResult> cells;
-            if(cell != null && myUnit.attackable().contains(cell)) {
-                operations.add(new AttackAction(myUnit, cell.getX(), cell.getY()));
-            } else {
-                if(cell == null) {
-                    cell = game.getCurrentPlayer().getCity();
-                }
-                
-                return new FindPathByClosest().evaluatePath(game, myUnit, cell);
+
+        Cell cell = chooseCell(null, game, UnitType.ENGINEER);
+        cell = chooseCell(cell, game, UnitType.DWARF);
+        cell = chooseCell(cell, game, UnitType.PALADIN);
+        cell = chooseCell(cell, game, UnitType.SOLDIER);
+        cell = chooseCell(cell, game, UnitType.PEASANT);
+        cell = chooseCell(cell, game, UnitType.SCOUT);
+        cell = chooseCell(cell, game, UnitType.BALISTA);
+        cell = chooseCell(cell, game, UnitType.ARCHER);
+
+        if(cell != null && myUnit.attackable().contains(cell)) {
+            operations.add(new AttackAction(myUnit, cell.getX(), cell.getY()));
+        } else {
+            if(cell == null) {
+                cell = game.getCurrentPlayer().getCity();
             }
+
+            return new FindPathByClosest().evaluatePath(game, myUnit, cell);
         }
         
         return operations;
