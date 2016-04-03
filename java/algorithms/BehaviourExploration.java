@@ -36,10 +36,12 @@ public class BehaviourExploration implements BehaviourInterface {
                 }
             }
             
-            // il faut reconstituer le chemin
-            while(best != game.getWorld().getCell(unitToMove.getX(), unitToMove.getY())){
-                operations.addFirst(new MoveAction(unitToMove, best.getX(), best.getY()));
-                best = reachableCells.get(best).from;
+            if(best != null) {
+                // il faut reconstituer le chemin
+                while(best != game.getWorld().getCell(unitToMove.getX(), unitToMove.getY())){
+                    operations.addFirst(new MoveAction(unitToMove, best.getX(), best.getY()));
+                    best = reachableCells.get(best).from;
+                }
             }
         }
         

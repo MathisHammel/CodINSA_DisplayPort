@@ -2,7 +2,6 @@ package algorithms;
 
 import rules.Action;
 import models.Game;
-import rules.UnitType;
 import rules.actions.EndOfTurnAction;
 
 import java.util.ArrayList;
@@ -15,11 +14,21 @@ public class ArtificialIntelligence {
 
     public static List<Action> getNextActions(Game game) {
         List<Action> actions = new ArrayList<>();
+        
+        SetupInterface setup = new SetupMedium();
+        Action set = setup.deploy(game);
+        if(set != null) {
+            actions.add(set);
+        } else {
+            BehaviourInterface moveScouts = new BehaviourExploration();
+            actions.addAll(moveScouts.decideActions(game));
+        }
 
-        BehaviourInterface algorithm = new BehaviourRushUnit(UnitType.BALISTA);
+        /*
+        BehaviourInterface algorithm = new BehaviourBad();
         actions.addAll(algorithm.decideActions(game));
-
-
+                */
+        
         return actions;
     }
 }
