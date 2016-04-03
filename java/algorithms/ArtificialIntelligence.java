@@ -1,7 +1,7 @@
 package algorithms;
 
 import algorithms.behaviours.*;
-import algorithms.globalEvaluations.DefensiveEvaluation;
+import algorithms.worldevaluations.DefensiveEvaluation;
 import models.World;
 import rules.Action;
 import models.Game;
