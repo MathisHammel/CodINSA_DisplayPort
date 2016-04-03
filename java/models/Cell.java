@@ -44,8 +44,8 @@ public class Cell extends GameEntity {
         return null;
     }
 
-    public Player getOwner() {
-        return null;
+    public int getOwner() {
+        return this.owner;
     }
 
     public int getScore() {

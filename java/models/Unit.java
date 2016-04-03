@@ -201,7 +201,7 @@ public abstract class Unit extends GameEntity {
         return reachableCells;
     }
 
-    //pour djiijijijstra
+    //pour dijkstra
     public class ReachableResult{
         public Cell from;
         public int cost;
