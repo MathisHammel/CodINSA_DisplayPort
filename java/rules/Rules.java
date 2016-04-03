@@ -15,20 +15,20 @@ public class Rules {
         
         Cell targetCell = game.getWorld().getCell(x, y);
         if (targetCell == null) {
-            System.err.println("Cannot attack: targetCell not found");
+            // System.err.println("Cannot attack: targetCell not found");
             return false;
         }
         if(targetCell.getOwner() == game.getCurrentPlayer()) {
-            System.err.println("Cannot attack: cannot attack self");
+            // System.err.println("Cannot attack: cannot attack self");
             return false;
         }
         Unit attacker = game.getCurrentPlayer().getUnit(attackerId);
         if (attacker == null) {
-            System.err.println("Cannot attack: attacker not found");
+            // System.err.println("Cannot attack: attacker not found");
             return false;
         }
         if(attacker.getActions() < 2) {
-            System.err.println("Cannot attack: not enough actions");
+            // System.err.println("Cannot attack: not enough actions");
             return false;
         }
         int minRange = attacker.getMinRange();
@@ -39,7 +39,7 @@ public class Rules {
 
         int distance = Utils.infiniteDistance(x, y, attacker.getX(), attacker.getY());
         if (distance < minRange || distance > maxRange) {
-            System.err.println("Cannot attack: invalid range");
+            // System.err.println("Cannot attack: invalid range");
             return false;
         }
         return true;
@@ -48,23 +48,32 @@ public class Rules {
     public static boolean checkBuild(Game game, int builderId, Building building) {
         Unit unit = game.getCurrentPlayer().getUnit(builderId);
         if (unit == null) {
-            System.err.println("Cannot build: unit " + builderId + " not found");
+            // System.err.println("Cannot build: unit " + builderId + " not found");
             return false;
         }
         if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != Building.NONE) {
-            System.err.println("Cannot build: there is already a building");
+            // System.err.println("Cannot build: there is already a building");
             return false;
         }
         if (unit.getUnitType() != UnitType.ENGINEER) {
-            System.err.println("Cannot build: unit " + builderId + " not an engineer");
+            // System.err.println("Cannot build: unit " + builderId + " not an engineer");
+            return false;
+        }
+        Cell cell = game.getWorld().getCell(unit.getX(), unit.getY());
+        if (cell.getLand() == Land.RIVER && building != Building.BRIDGE) {
+            // System.err.println("Cannot build: River only accepts bridge");
+            return false;
+        }
+        if (cell.getLand() != Land.RIVER && building == Building.BRIDGE) {
+            // System.err.println("Cannot build: Bridge only accepted on rivers");
             return false;
         }
         if (unit.getActions() < 2) {
-            System.err.println("Cannot build: unit " + builderId + " not enough actions");
+            // System.err.println("Cannot build: unit " + builderId + " not enough actions");
             return false;
         }
         if(EntityInfo.getBuildingCode(building) > game.getCurrentPlayer().getGold()) {
-            System.err.println("Cannot build: not enough gold");
+            // System.err.println("Cannot build: not enough gold");
             return false;
         }
         return true;
@@ -73,16 +82,16 @@ public class Rules {
     public static boolean checkCreate(Game game, UnitType unitType) {
         Cell city = game.getCurrentPlayer().getCity();
         if (city == null) {
-            System.err.println("Cannot create: city not found");
+            // System.err.println("Cannot create: city not found");
             return false;
         }
         Unit unit = city.getUnit();
         if (unit != null) {
-            System.err.println("Cannot create: city is full");
+            // System.err.println("Cannot create: city is full");
             return false;
         }
         if(game.getCurrentPlayer().getGold() < unitType.cost) {
-            System.err.println("Cannot create: unit is too expensive");
+            // System.err.println("Cannot create: unit is too expensive");
             return false;
         }
         return true;
@@ -91,25 +100,25 @@ public class Rules {
     public static boolean checkDestroy(Game game, int unitId) {
         Unit unit = game.getCurrentPlayer().getUnit(unitId);
         if (unit == null) {
-            System.err.println("Cannot destroy: unit " + unitId + " not found");
+            // System.err.println("Cannot destroy: unit " + unitId + " not found");
             return false;
         }
         if(unit.getUnitType() != UnitType.ENGINEER) {
-            System.err.println("Cannot destroy: not an engineer");
+            // System.err.println("Cannot destroy: not an engineer");
             return false;
         }
         Cell target = game.getWorld().getCell(unit.getX(), unit.getY());
         if (target == null) {
-            System.err.println("Cannot destroy: cell not found");
+            // System.err.println("Cannot destroy: cell not found");
             return false;
         }
         Building building = target.getBuilding();
         if (building == Building.NONE) {
-            System.err.println("Cannot destroy: no building");
+            // System.err.println("Cannot destroy: no building");
             return false;
         }
         if(unit.getActions() < 2) {
-            System.err.println("Cannot destroy: not enough actions");
+            // System.err.println("Cannot destroy: not enough actions");
             return false;
         }
         return true;
@@ -120,16 +129,16 @@ public class Rules {
         
         Unit unit = game.getCurrentPlayer().getUnit(unitId);
         if (unit == null) {
-            System.err.println("Cannot move: unit " + unitId + " not found");
+            // System.err.println("Cannot move: unit " + unitId + " not found");
             return false;
         }
         if (!isCellAccessible(game, unit.getUnitType(), x, y)) {
-            System.err.println("Cannot move: cell is not accessible");
+            // System.err.println("Cannot move: cell is not accessible");
             return false;
         }
         int cost = getCellCost(game, game.getWorld().getCell(x, y));
         if (cost > unit.getActions()) {
-            System.err.println("Cannot move: not enough actions");
+            // System.err.println("Cannot move: not enough actions");
             return false;
         }
         return true;
