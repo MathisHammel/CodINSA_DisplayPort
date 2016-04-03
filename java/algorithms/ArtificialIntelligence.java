@@ -33,11 +33,11 @@ public class ArtificialIntelligence {
         boolean offensive = true;
         DefensiveEvaluation defensiveEvaluation = new DefensiveEvaluation();
         if (defensiveEvaluation.evaluate(game) > 0.8) {
-            behaviour = new BehaviourDefensive();
+            //behaviour = new BehaviourDefensive();
+            behaviour = new BehaviourOffensive();
         }
         else{
             behaviour = new BehaviourOffensive();
-
         }
         System.out.println("Offensive ? " + offensive);
 

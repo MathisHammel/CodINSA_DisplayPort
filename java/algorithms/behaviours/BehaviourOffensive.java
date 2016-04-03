@@ -3,6 +3,7 @@ package algorithms.behaviours;
 import algorithms.pathfinders.FindPathExploration;
 import algorithms.pathfinders.FindPathInterface;
 import algorithms.pathfinders.FindPathOffensive;
+import algorithms.pathfinders.FindPathRanged;
 import models.Game;
 import rules.Action;
 
@@ -18,35 +19,51 @@ public class BehaviourOffensive implements BehaviourInterface {
     public List<Action> decideActions(Game game) {
         // Bouger et attaquer les unité possibles
         LinkedList<Action> operations = new LinkedList<>();
-
+        
+        //archer et baliste
+        FindPathInterface findPathRanged = new FindPathRanged();
+        for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.BALISTA).entrySet()) {
+            operations.addAll(findPathRanged.evaluatePath(game, entry.getValue(), null));
+            if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
+                return operations;
+            }
+        }
+        for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.ARCHER).entrySet()) {
+            operations.addAll(findPathRanged.evaluatePath(game, entry.getValue(), null));
+            if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
+                return operations;
+            }
+        }
+        
         // bouger vers les enemis/attaquer tout le monde (sauf scout et ingé)
         // soldier, peasan, dwarf, paladin
         FindPathInterface findPathOff = new FindPathOffensive();
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.SOLDIER).entrySet()) {
             operations.addAll(findPathOff.evaluatePath(game, entry.getValue(), null));
-            if(operations.getLast() instanceof AttackAction){
+            if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
                 // Si on a fini sur une attack action on veut effectuer les action tout de suite.
                 return operations;
             }
         }
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.PEASANT).entrySet()) {
             operations.addAll(findPathOff.evaluatePath(game, entry.getValue(), null));
-            if(operations.getLast() instanceof AttackAction){
+            if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
                 return operations;
             }
         }
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.DWARF).entrySet()) {
             operations.addAll(findPathOff.evaluatePath(game, entry.getValue(), null));
-            if(operations.getLast() instanceof AttackAction){
+            if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
                 return operations;
             }
         }
         for(Map.Entry<Integer, Unit> entry : game.getCurrentPlayer().getUnits(UnitType.PALADIN).entrySet()) {
             operations.addAll(findPathOff.evaluatePath(game, entry.getValue(), null));
-            if(operations.getLast() instanceof AttackAction){
+            if(!operations.isEmpty() && operations.getLast() instanceof AttackAction){
                 return operations;
             }
         }
+        
         return operations;
     }
 }
