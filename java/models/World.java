@@ -1,5 +1,7 @@
 package models;
 
+import algorithms.CellScoreOnCitiesDistance;
+
 public class World extends GameEntity {
     protected int size;
     protected Cell[][] map;
@@ -68,6 +70,17 @@ public class World extends GameEntity {
             }
         }
         return this;
+    }
+    
+    /**
+     * Calcule les scores de chaque case du plateau.
+     */
+    public void calculateScores() {
+        for(int x = 0; x < this.size; x++) {
+            for(int y = 0; y < this.size; y++) {
+                this.map[x][y].score = new CellScoreOnCitiesDistance().evaluate(game, this.map[x][y]);
+            }
+        }
     }
 
 }
