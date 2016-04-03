@@ -16,8 +16,8 @@ public class DestroyAction implements Action {
         this.unitId = unit.getId();
     }
 
-    public DestroyAction(int unitId) {
-        this.unitId = unitId;
+    public DestroyAction(int engineerId) {
+        this.unitId = engineerId;
     }
 
     public String serialize() {

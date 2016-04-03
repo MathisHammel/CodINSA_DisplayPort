@@ -2,6 +2,7 @@ package algorithms;
 
 import io.Action;
 import io.actions.CreateAction;
+import io.actions.DestroyAction;
 import models.Game;
 import models.Unit;
 import models.UnitType;
@@ -24,10 +25,17 @@ public class BehaviourBad implements BehaviourInterface {
                 return operations;
             }
         }
+        // move all the engineers to the enemy city
         for (Map.Entry<Integer,Unit> intUnit: game.getCurrentPlayer().getUnits().entrySet()) {
             Unit unit = intUnit.getValue();
             UnitType unitType = unit.getUnitType();
             if(unitType == UnitType.ENGINEER ){
+                // si on est sur une ville on attaque
+                if(game.getWorld().getCell(unit.getX(),unit.getY()) == game.getOtherPlayer().getCity()){
+                    // C'est la WIN !
+                    operations.add(new DestroyAction(unit));
+                    return operations;
+                }
                 // on essaie de bouger l'ingénieur vers la ville
                 FindPathInterface pathAlgo = new FindPathByClosest();
                 operations.addAll(pathAlgo.evaluatePath(game, unit, game.getOtherPlayer().getCity()));
