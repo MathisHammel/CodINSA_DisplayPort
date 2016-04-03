@@ -121,16 +121,16 @@ public abstract class Unit extends GameEntity {
                 Cell c2 = this.getGame().getWorld().getCell(curX + r, curY - r + i);
                 Cell c3 = this.getGame().getWorld().getCell(curX + r - i, curY + r);
                 Cell c4 = this.getGame().getWorld().getCell(curX - r, curY + r - i);
-                if(Rules.checkAttack(this.getGame(), this.getId(), c1.getX(), c1.getY())) {
+                if(c1 != null && Rules.checkAttack(this.getGame(), this.getId(), c1.getX(), c1.getY())) {
                     cells.add(c1);
                 }
-                if(Rules.checkAttack(this.getGame(), this.getId(), c2.getX(), c2.getY())) {
+                if(c2 != null && Rules.checkAttack(this.getGame(), this.getId(), c2.getX(), c2.getY())) {
                     cells.add(c2);
                 }
-                if(Rules.checkAttack(this.getGame(), this.getId(), c3.getX(), c3.getY())) {
+                if(c3 != null && Rules.checkAttack(this.getGame(), this.getId(), c3.getX(), c3.getY())) {
                     cells.add(c3);
                 }
-                if(Rules.checkAttack(this.getGame(), this.getId(), c4.getX(), c4.getY())) {
+                if(c4 != null && Rules.checkAttack(this.getGame(), this.getId(), c4.getX(), c4.getY())) {
                     cells.add(c4);
                 }
             }
