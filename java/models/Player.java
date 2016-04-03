@@ -72,6 +72,17 @@ public class Player extends GameEntity {
     public Map<Integer, Unit> getUnits() {
         return this.units;
     }
+    
+    public Map<Integer, Unit> getUnits(UnitType type) {
+        Map<Integer, Unit> ret = new HashMap<>();
+        
+        for(Map.Entry<Integer, Unit> unit : units.entrySet()) {
+            if(unit.getValue().unitType == type)
+                ret.put(unit.getKey(), unit.getValue());
+        }
+        
+        return ret;
+    }
 
     public Unit getUnit(int unitId) {
         return this.units.get(unitId);
