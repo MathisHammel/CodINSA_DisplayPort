@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.behaviours;
 
 
 import rules.Action;

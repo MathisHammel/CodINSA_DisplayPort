@@ -1,5 +1,7 @@
 package algorithms;
 
+import algorithms.behaviours.*;
+import algorithms.globalEvaluations.DefensiveEvaluation;
 import models.World;
 import rules.Action;
 import models.Game;
@@ -22,26 +24,37 @@ public class ArtificialIntelligence {
         BehaviourInterface behaviour;
 
         // evaluer la stratégie
-
+        boolean offensive = true;
+        DefensiveEvaluation defensiveEvaluation = new DefensiveEvaluation();
+        if (defensiveEvaluation.evaluate(game) > 0.8){
+            offensive = false;
+        }
 
         // Detection de la taille et affectation des algorithmes
         int worldSize = game.getWorld().getSize();
         if (worldSize <= World.SIZE_SMALL){
             setup = new SetupSmall();
-            // TODO à changer
-            behaviour = new BehaviourOffensiveMedium();
+            if (offensive) {
+                behaviour = new BehaviourOffensiveSmall();
+            } else {
+                behaviour = new BehaviourDefensiveSmall();
+            }
         }
         else if(worldSize <= World.SIZE_MEDIUM){
             setup = new SetupMedium();
-            // TODO à changer
-            behaviour = new BehaviourOffensiveMedium();
+            if (offensive) {
+                behaviour = new BehaviourOffensiveMedium();
+            } else {
+                behaviour = new BehaviourDefensiveMedium();
+            }
         }
         else{
-            // World.SIZE_LARGE
-            // TODO SetupLarge()
-            setup = new SetupMedium();
-            // TODO à changer
-            behaviour = new BehaviourOffensiveMedium();
+            setup = new SetupLarge();
+            if (offensive) {
+                behaviour = new BehaviourOffensiveLarge();
+            } else {
+                behaviour = new BehaviourDefensiveLarge();
+            }
         }
 
         Action set = setup.deploy(game);

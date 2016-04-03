@@ -1,15 +1,12 @@
-package algorithms;
+package algorithms.behaviours;
 
-import models.Cell;
+import algorithms.FindPathExploration;
+import algorithms.FindPathInterface;
 import models.Game;
-import models.Unit;
 import rules.Action;
-import rules.UnitType;
-import rules.actions.MoveAction;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class BehaviourOffensiveMedium implements BehaviourInterface {
     @Override

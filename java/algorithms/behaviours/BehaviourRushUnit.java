@@ -1,5 +1,8 @@
-package algorithms;
+package algorithms.behaviours;
 
+import algorithms.FindPathByClosest;
+import algorithms.FindPathInterface;
+import algorithms.behaviours.BehaviourInterface;
 import models.Game;
 import models.Unit;
 import rules.Action;

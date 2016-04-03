@@ -1,4 +1,4 @@
-package algorithms.globalevaluations;
+package algorithms.globalEvaluations;
 
 import models.Game;
 
