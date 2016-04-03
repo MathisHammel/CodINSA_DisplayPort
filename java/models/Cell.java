@@ -41,11 +41,11 @@ public class Cell extends GameEntity {
     }
 
     public Unit getUnit() {
-        return null;
+        return this.unit < 0 ? null : this.getOwner().getUnit(this.unit);
     }
 
     public Player getOwner() {
-        return null;
+        return this.owner < 0 ? null : this.getGame().getPlayer(this.owner);
     }
 
     public int getScore() {

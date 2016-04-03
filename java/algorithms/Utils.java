@@ -11,7 +11,9 @@ public class Utils {
     }
 
     public static int getActionsAfterMove(Cell cellToReach, int xUnit, int yUnit, UnitType unitType, int availableActions) {
-        boolean isAccessible = Rules.isCellAccessible(cellToReach.getGame(), unitType, cellToReach.getX(), cellToReach.getY());
+        boolean isAccessible = false;
+        if(cellToReach != null)
+            isAccessible = Rules.isCellAccessible(cellToReach.getGame(), unitType, cellToReach.getX(), cellToReach.getY());
         if(!isAccessible) {
             return -1;
         }

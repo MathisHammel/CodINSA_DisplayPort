@@ -70,7 +70,7 @@ public class Rules {
             System.err.println("Cannot create: city not found");
             return false;
         }
-        Unit unit = game.getWorld().getCell(city.getX(), city.getY()).getUnit();
+        Unit unit = city.getUnit();
         if (unit != null) {
             System.err.println("Cannot create: city is full");
             return false;
