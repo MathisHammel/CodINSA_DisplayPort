@@ -77,6 +77,20 @@ public class Simulator {
         return game;
     }
 
+    public static Game simulateMove(Game g, int unitId, int x, int y) {
+        Game game = g.clone();
+
+        Unit unit = game.getCurrentPlayer().getUnit(unitId);
+
+        game.getWorld().getCell(unit.getX(), unit.getY()).setUnit(-1);
+        game.getWorld().getCell(x, y).setUnit(unit.getId());
+
+        unit.setX(x);
+        unit.setY(y);
+
+        return game;
+    }
+
     private static Unit createUnit(UnitType unitType, int x, int y) {
         int id = getUid();
         if(unitType == UnitType.ARCHER) {
