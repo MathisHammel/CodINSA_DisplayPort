@@ -141,6 +141,10 @@ public class Rules {
             // System.err.println("Cannot move: not enough actions");
             return false;
         }
+
+        if(Utils.infiniteDistance(unit.getX(), unit.getY(), x, y) != 1){
+            return false;
+        }
         return true;
     }
 

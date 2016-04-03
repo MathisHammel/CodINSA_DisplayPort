@@ -26,10 +26,13 @@ public class SetupMedium implements SetupInterface {
         } else if(game.getCurrentPlayer().getUnits(UnitType.ARCHER).size() < 2) {
             if(Rules.checkCreate(game, UnitType.ARCHER))
                 return new CreateAction(UnitType.ARCHER);
-        } else if(game.getCurrentPlayer().getUnits(UnitType.ENGINEER).size() < 2) {
+        } else if(game.getCurrentPlayer().getUnits(UnitType.ENGINEER).size() < 3) {
             if(Rules.checkCreate(game, UnitType.ENGINEER))
                 return new CreateAction(UnitType.ENGINEER);
-        }
+        }/* else if(game.getCurrentPlayer().getUnits(UnitType.BALISTA).size() < 1) {
+            if(Rules.checkCreate(game, UnitType.BALISTA))
+                return new CreateAction(UnitType.BALISTA);
+        }*/
         
         return null;
     }

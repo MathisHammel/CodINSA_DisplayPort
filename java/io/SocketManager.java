@@ -99,14 +99,51 @@ public class SocketManager {
                                 actionsToDo.clear();
                                 
                                 System.out.println("Other player playing...");
-                            }                            
+                            }
                         } else {
                             System.err.println("Server refused command, think I did something bad");
                             System.err.println(serverResponse);
                             System.err.println("I am flushing the queue and sending the end of turn signal");
-                            
-                            actionsToDo.clear();
-                            send(new EndOfTurnAction());
+
+                            System.out.println("Received new map");
+
+                            Game game = Parser.parse(serverResponse);
+
+                            if(game.getCurrentPlayer() == game.getOurPlayer()) {
+                                if(actionsToDo.isEmpty()) {
+                                    List<Action> actions = ArtificialIntelligence.getNextActions(game);
+                                    actionsToDo.addAll(actions);
+
+                                    System.out.println("Got "+actionsToDo.size()+" new action(s)");
+
+                                    if(actionsToDo.isEmpty()) {
+                                        actionsToDo.add(new EndOfTurnAction());
+                                        System.out.println("Added default end of turn action");
+                                    }
+                                }
+
+                                boolean repeat = true;
+                                while(!actionsToDo.isEmpty() && repeat) {
+                                    Action nextAction = actionsToDo.poll();
+                                    if(nextAction.check(game)) {
+                                        send(nextAction);
+                                        repeat = false;
+                                    } else {
+                                        System.out.println("[Action "+nextAction.serialize()+" skipped]");
+                                    }
+
+                                    System.out.println(actionsToDo.size()+" action(s) left");
+
+                                    if(repeat && actionsToDo.isEmpty()) {
+                                        actionsToDo.add(new EndOfTurnAction());
+                                        System.out.println("Added default end of turn action");
+                                    }
+                                }
+                            } else {
+                                actionsToDo.clear();
+
+                                System.out.println("Other player playing...");
+                            }
                         }
                     }
                 } catch (IOException ex) {
