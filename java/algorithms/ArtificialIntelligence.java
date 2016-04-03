@@ -15,6 +15,7 @@ import rules.Action;
 import models.Game;
 import rules.Rules;
 import rules.UnitType;
+import rules.actions.BuildAction;
 import rules.actions.DestroyAction;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class ArtificialIntelligence {
             // execution des algorithmes communs et  du behaviour selecionné
 
             // Faire potentiellement construire les ingénieurs sur la pos courante
-            // Todo
+            actions.addAll(Builders.predictBuilds(game));
 
             actions.addAll(behaviour.decideActions(game));
 
