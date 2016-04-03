@@ -13,6 +13,7 @@ public class ArtificialIntelligence {
     }
 
     public static List<Action> getNextActions(Game game) {
+        game.getWorld().calculateScores();
         List<Action> actions = new ArrayList<>();
         
         SetupInterface setup = new SetupMedium();

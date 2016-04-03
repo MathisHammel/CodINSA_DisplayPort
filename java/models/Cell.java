@@ -48,6 +48,10 @@ public class Cell extends GameEntity {
         return this.owner < 0 ? null : this.getGame().getPlayer(this.owner);
     }
 
+    public int getOwnerId() {
+        return this.owner;
+    }
+
     public int getScore() {
         return this.score;
     }

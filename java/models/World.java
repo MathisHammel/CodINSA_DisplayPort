@@ -78,7 +78,7 @@ public class World extends GameEntity {
     public void calculateScores() {
         for(int x = 0; x < this.size; x++) {
             for(int y = 0; y < this.size; y++) {
-                this.map[x][y].score = new CellScoreOnCitiesDistance().evaluate(game, this.map[x][y]);
+                this.map[x][y].setScore(new CellScoreOnCitiesDistance().evaluate(game, this.map[x][y]));
             }
         }
     }
