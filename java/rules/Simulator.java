@@ -59,7 +59,9 @@ public class Simulator {
     public static Game simulateCreate(Game g, UnitType unitType) {
         Game game = g.clone();
         Cell city = game.getCurrentPlayer().getCity();
-        city.setUnit(createUnit(unitType, city.getX(), city.getY()));
+        Unit u = createUnit(unitType, city.getX(), city.getY());
+        game.getCurrentPlayer().getUnits().put(u.getId(), u);
+        city.setUnit(u);
 
         int cost = city.getUnit().getUnitType().cost;
         game.getCurrentPlayer().setGold(game.getCurrentPlayer().getGold() - cost);
