@@ -4,7 +4,9 @@ import algorithms.Utils;
 import models.Cell;
 import models.Game;
 import models.Unit;
-import models.UnitType;
+import models.Land;
+import models.Building;
+
 
 public class Rules {
 
@@ -12,14 +14,14 @@ public class Rules {
         return false;
     }
 
-    public static boolean checkBuild(Game game, int builderId, Building building) {
+    public static boolean checkBuild(Game game, int builderId) {
         Unit unit = game.getCurrentPlayer().getUnit(builderId);
-        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != null) {
-            System.err.println("Cannot build: there is already a building");
-            return false;
-        }
         if (unit == null) {
             System.err.println("Cannot build: unit " + builderId + " not found");
+            return false;
+        }
+        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != null) {
+            System.err.println("Cannot build: there is already a building");
             return false;
         }
         if (unit.getUnitType() != UnitType.ENGINEER) {
