@@ -10,17 +10,38 @@ import models.Building;
 
 public class Rules {
 
-    public static boolean checkAttack(){
-        return false;
+    public static boolean checkAttack(Game game, int attackerId, int x, int y) {
+        Cell targetCell = game.getWorld().getCell(x, y);
+        if (targetCell == null) {
+            System.err.println("Cannot attack: targetCell not found");
+            return false;
+        }
+        Unit attacker = game.getCurrentPlayer().getUnit(attackerId);
+        if (attacker == null) {
+            System.err.println("Cannot attack: attacker not found");
+            return false;
+        }
+        int minRange = attacker.getMinRange();
+        int maxRange = attacker.getMaxRange();
+        if (game.getWorld().getCell(x, y).getLand() == Land.FOREST){
+            maxRange = 1;
+        }
+
+        int distance = Utils.infiniteDistance(x, y, attacker.getX(), attacker.getY());
+        if (distance < minRange || distance > maxRange) {
+            System.err.println("Cannot attack: invalid range");
+            return false;
+        }
+        return true;
     }
 
-    public static boolean checkBuild(Game game, int builderId) {
+    public static boolean checkBuild(Game game, int builderId, Building building) {
         Unit unit = game.getCurrentPlayer().getUnit(builderId);
         if (unit == null) {
             System.err.println("Cannot build: unit " + builderId + " not found");
             return false;
         }
-        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != null) {
+        if (game.getWorld().getCell(unit.getX(), unit.getY()).getBuilding() != Building.NONE) {
             System.err.println("Cannot build: there is already a building");
             return false;
         }
@@ -30,6 +51,10 @@ public class Rules {
         }
         if (unit.getActions() < 2) {
             System.err.println("Cannot build: unit " + builderId + " not enough actions");
+            return false;
+        }
+        if(EntityInfo.getBuildingCode(building) > game.getCurrentPlayer().getGold()) {
+            System.err.println("Cannot build: not enough gold");
             return false;
         }
         return true;
@@ -70,7 +95,7 @@ public class Rules {
         }
         Building building = target.getBuilding();
         if (building == Building.NONE) {
-            System.err.println("Cannot destroy: not building");
+            System.err.println("Cannot destroy: no building");
             return false;
         }
         if(unit.getActions() < 2) {
