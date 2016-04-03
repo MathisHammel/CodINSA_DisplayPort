@@ -51,6 +51,11 @@ public class OffensiveEvaluation implements GlobalEvaluationInterface {
                 }
             }
         }
+        
+        if(currentPlayer.getCity().getUnit() != null) {
+            ennemyOccupation -= 150;
+        }
+        
         return cellCoverage + ennemyOccupation;
     }
 }

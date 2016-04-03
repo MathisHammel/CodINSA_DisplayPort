@@ -103,6 +103,10 @@ public class SocketManager {
                         } else {
                             System.err.println("Server refused command, think I did something bad");
                             System.err.println(serverResponse);
+                            System.err.println("I am flushing the queue and sending the end of turn signal");
+                            
+                            actionsToDo.clear();
+                            send(new EndOfTurnAction());
                         }
                     }
                 } catch (IOException ex) {
